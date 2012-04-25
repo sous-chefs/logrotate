@@ -23,6 +23,9 @@ The definition takes the following params:
 * template: sets the template source, default is "logrotate.erb".
 * cookbook: select the template source from the specified cookbook. By default it will use the cookbook where the definition is used.
 * create: creation parameters for the logrotate "create" config, follows the form "mode owner group".
+* postrotate: lines to be executed after the log file is rotated
+* prerotate: lines to be executed after the log file is rotated
+* sharedscripts: if true, the sharedscripts options is specified which makes sure prescript and postscript commands are run only once (even if multiple files match the path)
 
 See USAGE below.
 

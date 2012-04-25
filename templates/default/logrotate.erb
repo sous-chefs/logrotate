@@ -8,5 +8,17 @@
   copytruncate
   notifempty
   create <%= @create %>
+<%- if @sharedscripts %>
+  sharedscripts
+<%- end %>
+<%- unless @postrotate.nil? %>
+  postrotate
+<%= @postrotate %>
+  endscript
+<%- unless @prerotate.nil? %>
+  prerotate
+<%= @prerotate %>
+  endscript
+<%- end %>
 }
 <% end -%>
