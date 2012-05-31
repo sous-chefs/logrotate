@@ -1,12 +1,10 @@
 <% @path.each do |p| -%>
 <%= p %> {
   <%= @frequency %>
-  missingok
   rotate <%= @rotate %>
-  compress
-  delaycompress
-  copytruncate
-  notifempty
+  <% @options.each do |o| -%>
+  <%= o %>
+  <% end -%>
   create <%= @create %>
 }
 <% end -%>
