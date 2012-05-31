@@ -21,6 +21,9 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
   include_recipe "logrotate"
 
   path = params[:path].respond_to?(:each) ? params[:path] : params[:path].split
+  create = params[:create] ? params[:create] : "644 root adm"
+  options_tmp =  params[:options] ? params[:options] : ["missingok", "compress", "delaycompress", "copytruncate", "notifempty"]
+  options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
 
   if params[:enable]
 
@@ -38,7 +41,8 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
         :rotate => params[:rotate],
         :sharedscripts => params[:sharedscripts],
         :postrotate => params[:postrotate],
-        :prerotate => params[:prerotate]
+        :prerotate => params[:prerotate],
+        :options => options
       )
     end
 
