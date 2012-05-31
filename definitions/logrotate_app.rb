@@ -22,6 +22,8 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
 
   path = params[:path].respond_to?(:each) ? params[:path] : params[:path].split
   create = params[:create] ? params[:create] : "644 root adm"
+  options_tmp =  params[:options] ? params[:options] : ["missingok", "compress", "delaycompress", "copytruncate", "notifempty"]
+  options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
 
   if params[:enable]
 
@@ -36,7 +38,8 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
         :path => path,
         :create => create,
         :frequency => params[:frequency],
-        :rotate => params[:rotate]
+        :rotate => params[:rotate],
+        :options => options
       )
     end
 
