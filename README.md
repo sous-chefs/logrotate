@@ -71,6 +71,17 @@ To rotate multiple logfile paths, specify the path as an array:
       rotate 7
     end
 
+To specify which logrotate options, specify the options as an array:
+
+    logrotate_app "tomcat-myapp" do
+      cookbook "logrotate"
+      path "/var/log/tomcat/myapp.log"
+      options ["missingok", "delaycompress", "notifempty"]
+      frequency "daily"
+      rotate 30
+      create "644 root adm"
+    end
+
 License and Author
 ==================
 
