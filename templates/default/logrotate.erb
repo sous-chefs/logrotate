@@ -7,6 +7,8 @@
   delaycompress
   copytruncate
   notifempty
+<% if @create %>
   create <%= @create %>
+<% end %>
 }
 <% end -%>
