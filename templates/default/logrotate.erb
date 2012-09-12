@@ -8,5 +8,8 @@
   copytruncate
   notifempty
   create <%= @create %>
+  <% if @dateext %>
+  <%= @dateext %>
+  <% end %>
 }
 <% end -%>
