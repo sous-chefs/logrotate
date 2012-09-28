@@ -11,12 +11,12 @@
 <%- if @sharedscripts %>
   sharedscripts
 <%- end %>
-<%- unless @postrotate.nil? %>
+<%- if @postrotate %>
   postrotate
 <%= @postrotate %>
   endscript
 <%- end %>
-<%- unless @prerotate.nil? %>
+<%- if @prerotate %>
   prerotate
 <%= @prerotate %>
   endscript
