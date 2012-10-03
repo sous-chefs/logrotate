@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-define :logrotate_app, :enable => true, :frequency => "weekly", :template => "logrotate.erb", :cookbook => "logrotate" do
+define :logrotate_app, :enable => true, :frequency => "weekly", :size => "", :copytruncate => true, :template => "logrotate.erb", :cookbook => "logrotate" do
   include_recipe "logrotate"
 
   path = params[:path].respond_to?(:each) ? params[:path] : params[:path].split
@@ -35,7 +35,9 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
       variables(
         :path => path,
         :create => create,
+        :copytruncate => params[:copytruncate],
         :frequency => params[:frequency],
+        :size => params[:size],
         :rotate => params[:rotate]
       )
     end
