@@ -1,12 +1,19 @@
 <% @path.each do |p| -%>
 <%= p %> {
   <%= @frequency %>
+<% if @size -%>
+  size <%= @size %>
+<% end -%>
   missingok
   rotate <%= @rotate %>
   compress
   delaycompress
+<% if @copytruncate -%>
   copytruncate
+<% end -%>
   notifempty
+<% unless @copytruncate -%>
   create <%= @create %>
+<% end -%>
 }
 <% end -%>
