@@ -21,7 +21,6 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
   include_recipe "logrotate"
 
   path = params[:path].respond_to?(:each) ? params[:path] : params[:path].split
-  create = params[:create] ? params[:create] : "644 root adm"
 
   if params[:enable]
 
@@ -34,7 +33,7 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
       backup false
       variables(
         :path => path,
-        :create => create,
+        :create => params[:create],
         :frequency => params[:frequency],
         :rotate => params[:rotate]
       )
