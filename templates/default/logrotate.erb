@@ -8,8 +8,21 @@
   delaycompress
   copytruncate
   notifempty
-<% if @create %>
+<%- if @create %>
   create <%= @create %>
-<% end %>
+<%- end %>
+<%- if @sharedscripts %>
+  sharedscripts
+<%- end %>
+<%- if @postrotate %>
+  postrotate
+<%= @postrotate %>
+  endscript
+<%- end %>
+<%- if @prerotate %>
+  prerotate
+<%= @prerotate %>
+  endscript
+<%- end %>
 }
-<% end -%>
+<%- end %>
