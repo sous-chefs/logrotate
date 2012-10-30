@@ -37,4 +37,11 @@ describe 'logrotate::logrotate_app' do
     file('/etc/logrotate.d/tomcat-myapp-alt-cookbook').must_match(/# From an alternate cookbook/)
   end
 
+  describe 'uses the options passed to the definition' do
+    let(:config) { file('/etc/logrotate.d/tomcat-myapp-cook-1338') }
+    it { config.must_match(/missingok/) }
+    it { config.must_match(/delaycompress/) }
+    it { config.wont_match(/notifempty/) }
+  end
+
 end
