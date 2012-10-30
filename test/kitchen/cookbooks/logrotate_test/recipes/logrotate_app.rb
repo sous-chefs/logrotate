@@ -44,3 +44,11 @@ logrotate_app "tomcat-myapp-alt-cookbook" do
   frequency "daily"
   rotate 30
 end
+
+logrotate_app "tomcat-myapp-cook-1338" do
+  path "/var/log/tomcat/myapp.log"
+  options ["missingok", "delaycompress"]
+  frequency "daily"
+  rotate 30
+  create "644 root adm"
+end
