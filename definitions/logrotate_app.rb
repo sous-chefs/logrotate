@@ -22,7 +22,6 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
 
   acceptable_options = ['missingok', 'compress', 'delaycompress', 'copytruncate', 'notifempty', 'delaycompress', 'ifempty', 'mailfirst', 'nocompress', 'nocopy', 'nocopytruncate', 'nocreate', 'nodelaycompress', 'nomail', 'nomissingok', 'noolddir', 'nosharedscripts', 'notifempty', 'sharedscripts']
   path = params[:path].respond_to?(:each) ? params[:path] : params[:path].split
-  create = params[:create] ||= "644 root adm"
   options_tmp = params[:options] ||= ["missingok", "compress", "delaycompress", "copytruncate", "notifempty"]
   options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
 
