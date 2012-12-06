@@ -49,7 +49,15 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
         :prerotate => params[:prerotate],
         :options => options
       )
+      notifies :run, "execute[test_logrotate.d/#{params[:name]}]",
+        :immediately
     end
+    
+    # test logrotate configuration, if changed
+    execute "test_logrotate.d/#{params[:name]}" do
+      command "/usr/sbin/logrotate --debug /etc/logrotate.d/#{params[:name]}"
+      action :nothing
+    end # execute "test logrotate.d/#{params[:name]}"
 
   else
 
