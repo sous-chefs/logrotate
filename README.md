@@ -119,7 +119,7 @@ The definition takes the following params:
   follows the form "mode owner group". This is an optional parameter,
   and is nil by default.
 * postrotate: lines to be executed after the log file is rotated
-* prerotate: lines to be executed after the log file is rotated
+* prerotate: lines to be executed before the log file is rotated
 * sharedscripts: if true, the sharedscripts options is specified which
   makes sure prescript and postscript commands are run only once (even
   if multiple files match the path)
