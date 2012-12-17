@@ -82,36 +82,36 @@ The default recipe will ensure the `logrotate` package is always up to date.
 To create application specific `logrotate` configurations, use the `logrotate_app` definition.
 
 ```ruby
-# Rotate a tomcat application named "myapp"
-logrotate_app "tomcat-myapp" do
-  cookbook      "logrotate"
-  path          "/var/log/tomcat/myapp.log"
-  frequency     "daily"
+# Rotate a tomcat application named 'myapp'
+logrotate_app 'tomcat-myapp' do
+  cookbook      'logrotate'
+  path          '/var/log/tomcat/myapp.log'
+  frequency     'daily'
   rotate        30
-  create        "644 root adm"
+  create        '644 root adm'
 end
 ```
 
 ```ruby
 # Rotate multiple logfile paths using an array
-logrotate_app "tomcat-myapp" do
-  cookbook        "logrotate"
-  path            [ "/var/log/tomcat/myapp.log", "/opt/local/tomcat/catalina.out" ]
-  frequency       "daily"
-  create          "644 root adm"
+logrotate_app 'tomcat-myapp' do
+  cookbook        'logrotate'
+  path            [ '/var/log/tomcat/myapp.log', '/opt/local/tomcat/catalina.out' ]
+  frequency       'daily'
+  create          '644 root adm'
   rotate          7
 end
 ```
 
 ```ruby
 # Specify logrotate options
-logrotate_app "tomcat-myapp" do
-  cookbook        "logrotate"
-  path            "/var/log/tomcat/myapp.log"
-  options         [ "missingok", "delaycompress", "notifempty" ]
-  frequency       "daily"
+logrotate_app 'tomcat-myapp' do
+  cookbook        'logrotate'
+  path            '/var/log/tomcat/myapp.log'
+  options         [ 'missingok', 'delaycompress', 'notifempty' ]
+  frequency       'daily'
   rotate          30
-  create          "644 root adm"
+  create          '644 root adm'
 end
 ```
 
