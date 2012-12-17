@@ -84,34 +84,34 @@ To create application specific `logrotate` configurations, use the `logrotate_ap
 ```ruby
 # Rotate a tomcat application named "myapp"
 logrotate_app "tomcat-myapp" do
-  cookbook "logrotate"
-  path "/var/log/tomcat/myapp.log"
-  frequency "daily"
-  rotate 30
-  create "644 root adm"
+  cookbook      "logrotate"
+  path          "/var/log/tomcat/myapp.log"
+  frequency     "daily"
+  rotate        30
+  create        "644 root adm"
 end
 ```
 
 ```ruby
 # Rotate multiple logfile paths using an array
 logrotate_app "tomcat-myapp" do
-  cookbook "logrotate"
-  path [ "/var/log/tomcat/myapp.log", "/opt/local/tomcat/catalina.out" ]
-  frequency "daily"
-  create "644 root adm"
-  rotate 7
+  cookbook        "logrotate"
+  path            [ "/var/log/tomcat/myapp.log", "/opt/local/tomcat/catalina.out" ]
+  frequency       "daily"
+  create          "644 root adm"
+  rotate          7
 end
 ```
 
 ```ruby
 # Specify logrotate options
 logrotate_app "tomcat-myapp" do
-  cookbook "logrotate"
-  path "/var/log/tomcat/myapp.log"
-  options ["missingok", "delaycompress", "notifempty"]
-  frequency "daily"
-  rotate 30
-  create "644 root adm"
+  cookbook        "logrotate"
+  path            "/var/log/tomcat/myapp.log"
+  options         [ "missingok", "delaycompress", "notifempty" ]
+  frequency       "daily"
+  rotate          30
+  create          "644 root adm"
 end
 ```
 
