@@ -29,6 +29,7 @@ The definition takes the following params:
 * frequency: sets the frequency for rotation. Default value is
   'weekly'. Valid values are: daily, weekly, monthly, yearly, see the
   logrotate man page for more information.
+* size: Log files are rotated when they grow bigger than size bytes.
 * template: sets the template source, default is "logrotate.erb".
 * cookbook: select the template source from the specified cookbook. By
   default it will use the cookbook where the definition is used.

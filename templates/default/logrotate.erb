@@ -2,6 +2,9 @@
 <% @path.each do |p| -%>
 <%= p %> {
   <%= @frequency %>
+<%- if @size %>
+  size <%= @size %>
+<%- end %>
   rotate <%= @rotate %>
 <%- if @create %>
   create <%= @create %>
