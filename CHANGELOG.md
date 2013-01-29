@@ -1,3 +1,7 @@
+## v1.1.0:
+
+* [COOK-2218] - Logrotate size parameter
+
 ## v1.0.2:
 
 * [COOK-1027] - Add support for pre-/post-rotate commands
