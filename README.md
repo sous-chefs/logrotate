@@ -22,11 +22,38 @@ contents of the configuration file is controlled through node attributes under
 `node['logrotate']['global']`. The default attributes are based on the
 configuration from the Ubuntu logrotate package.
 
-To define a boolean directive (e.g. `compress`, `copy`) simply add an attribute
-named for the directive with any value:
+To define a valueless directive (e.g. `compress`, `copy`) simply add an attribute
+named for the directive with a truthy value :
 
 ```ruby
 node['logrotate']['global']['compress'] = 'any value here'
+```
+
+Note that defining a valueless directive with a falsey value will not make it
+false, but will remove it:
+
+```ruby
+# Removes a defaulted 'compress' directive; does not add a 'nocompress' directive.
+node.override['logrotate']['global']['compress'] = false 
+```
+
+To fully overrride a booleanish directive like `compress`, you should probably
+remove the positive form and add the negative form:
+
+```ruby
+node.override['logrotate']['global']['compress'] = false
+node.override['logrotate']['global']['nocompress'] = true
+```
+
+The same is true of frequency directives; to be certain the frequency directive
+you want is included in the global configuration, you should override the ones
+you don't want as false:
+
+```ruby
+%w[ daily, weekly, yearly ].do |freq|
+    node.override['logrotate']['global'][freq] = false
+end
+node.override['logrotate']['global']['monthly'] = true
 ```
 
 To define a parameter with a value (e.g. `create`, `mail`) add an attribute
