@@ -25,9 +25,5 @@ parsedConfiguration = CookbookLogrotate::LogrotateConfiguration.from_hash node['
 template '/etc/logrotate.conf' do
     source 'logrotate-global.erb'
     mode '644'
-    variables({
-        :directives => parsedConfiguration.directives,
-        :values => parsedConfiguration.values,
-        :paths => parsedConfiguration.paths 
-    })
+    variables({ :configuration => parsedConfiguration })
 end
