@@ -1,4 +1,0 @@
-cookbook "logrotate" do
-  configuration "default"
-  configuration "logrotate_app"
-end
