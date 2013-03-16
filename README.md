@@ -34,7 +34,7 @@ false, but will remove it:
 
 ```ruby
 # Removes a defaulted 'compress' directive; does not add a 'nocompress' directive.
-node.override['logrotate']['global']['compress'] = false 
+node.override['logrotate']['global']['compress'] = false
 ```
 
 To fully overrride a booleanish directive like `compress`, you should probably
@@ -71,7 +71,7 @@ name and a hash containing directives and parameters as described above:
 node['logrotate']['global']['/var/log/wtmp'] = {
     'missingok' => true,
     'monthly' => true,
-    'create' => '0660 root utmp', 
+    'create' => '0660 root utmp',
     'rotate' => 1
 }
 ```
@@ -83,7 +83,7 @@ as arrays of the lines to put in the script or multiline strings:
 node['logrotate']['global']['/var/log/foo/*.log'] = {
     'missingok' => true,
     'monthly' => true,
-    'create' => '0660 root adm', 
+    'create' => '0660 root adm',
     'rotate' => 1,
     'prerotate' => [ 'service foo start_rotate', 'logger started foo service log rotation' ],
     'postrotate' => <<-EOF

@@ -16,14 +16,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-require 'pp'
 
 include_recipe 'logrotate::default'
 
-parsedConfiguration = CookbookLogrotate::LogrotateConfiguration.from_hash node['logrotate']['global'].to_hash
+parsed_configuration = CookbookLogrotate::LogrotateConfiguration.from_hash node['logrotate']['global'].to_hash
 
 template '/etc/logrotate.conf' do
-    source 'logrotate-global.erb'
-    mode '644'
-    variables({ :configuration => parsedConfiguration })
+  source 'logrotate-global.erb'
+  mode 00644
+  variables({ :configuration => parsed_configuration })
 end
