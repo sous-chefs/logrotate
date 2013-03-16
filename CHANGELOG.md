@@ -1,3 +1,8 @@
+## v1.2.0:
+
+* [COOK-2401] - Add the ability to manage the global logrotate
+  configuration
+
 ## v1.1.0:
 
 * [COOK-2218] - Logrotate size parameter
