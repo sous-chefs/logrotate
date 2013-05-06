@@ -44,4 +44,12 @@ describe 'logrotate::logrotate_app' do
     it { config.wont_match(/notifempty/) }
   end
 
+  describe 'generates a script that is passed in' do
+    let(:config) { file('/etc/logrotate.d/tomcat-myapp-cook-2872') }
+    it { config.must_match(/firstaction/) }
+    it { config.must_match(/lastaction/) }
+    it { config.must_match(/echo 'firstaction'/) }
+    it { config.must_match(/echo 'lastaction'/) }
+  end
+
 end
