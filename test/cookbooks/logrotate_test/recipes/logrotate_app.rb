@@ -52,3 +52,12 @@ logrotate_app "tomcat-myapp-cook-1338" do
   rotate 30
   create "644 root adm"
 end
+
+logrotate_app "tomcat-myapp-cook-2872" do
+  path "/var/log/tomcat/myapp.log"
+  frequency "daily"
+  rotate 30
+  create "644 root adm"
+  firstaction "echo 'firstaction'"
+  lastaction "echo 'lastaction'"
+end
