@@ -57,7 +57,7 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
   else
 
     execute "rm /etc/logrotate.d/#{params[:name]}" do
-      only_if FileTest.exists?("/etc/logrotate.d/#{params[:name]}")
+      only_if{ FileTest.exists?("/etc/logrotate.d/#{params[:name]}") }
       command "rm /etc/logrotate.d/#{params[:name]}"
     end
 

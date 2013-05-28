@@ -61,3 +61,8 @@ logrotate_app "tomcat-myapp-cook-2872" do
   firstaction "echo 'firstaction'"
   lastaction "echo 'lastaction'"
 end
+
+logrotate_app "tomcat-myapp-cook-2908" do
+  path "/var/log/tomcat/myapp.log"
+  enable false
+end
