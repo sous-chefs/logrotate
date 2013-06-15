@@ -1,3 +1,10 @@
+## v1.2.2:
+
+### Bug
+
+- [COOK-2872]: Add firstaction/lastaction ability to logrotate
+- [COOK-2908]: Argument error in `logrotate_app` definition
+
 ## v1.2.0:
 
 * [COOK-2401] - Add the ability to manage the global logrotate
