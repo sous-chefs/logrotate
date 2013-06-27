@@ -44,6 +44,7 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
         :create => params[:create],
         :frequency => params[:frequency],
         :size => params[:size],
+        :minsize => params[:minsize],
         :rotate => params[:rotate],
         :sharedscripts => params[:sharedscripts],
         :postrotate => params[:postrotate],
@@ -63,4 +64,3 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
 
   end
 end
-
