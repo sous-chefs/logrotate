@@ -9,6 +9,9 @@
 <%- if @create %>
   create <%= @create %>
 <%- end %>
+<%- if @olddir %>
+  olddir <%= @olddir %>
+<%- end %>
 <% @options.each do |o| -%>
   <%= o %>
 <% end -%>
