@@ -45,6 +45,7 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
         :frequency => params[:frequency],
         :size => params[:size],
         :rotate => params[:rotate],
+        :olddir => params[:olddir],
         :sharedscripts => params[:sharedscripts],
         :postrotate => params[:postrotate],
         :prerotate => params[:prerotate],
