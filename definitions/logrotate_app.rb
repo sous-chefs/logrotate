@@ -29,7 +29,7 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
 
     invalid_options = options - acceptable_options
     unless invalid_options.size.empty?
-        Chef::Application.fatal! "The passed value(s) [#{invalid_options.join(',')}] is are not valid"
+        Chef::Application.fatal! "The passed value(s) [#{invalid_options.join(',')}] are not valid"
     end
 
     template "/etc/logrotate.d/#{params[:name]}" do
