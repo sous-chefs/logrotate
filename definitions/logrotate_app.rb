@@ -28,8 +28,8 @@ define :logrotate_app, :enable => true, :frequency => "weekly", :template => "lo
   if params[:enable]
 
     invalid_options = options - acceptable_options
-    if invalid_options.size == 1
-        Chef::Application.fatal! "The passed value [#{invalid_options[0]}] is not an acceptable value"
+    unless invalid_options.size.empty?
+        Chef::Application.fatal! "The passed value(s) [#{invalid_options.join(',')}] are not valid"
     end
 
     template "/etc/logrotate.d/#{params[:name]}" do
