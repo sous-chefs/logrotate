@@ -18,15 +18,18 @@
 #
 
 log_rotate_params = {
-  :enable        => true,
-  :frequency     => 'weekly',
-  :template      => 'logrotate.erb',
-  :cookbook      => 'logrotate',
-  :postrotate    => nil,
-  :prerotate     => nil,
-  :firstaction   => nil,
-  :lastaction    => nil,
-  :sharedscripts => false
+  :enable         => true,
+  :frequency      => 'weekly',
+  :template       => 'logrotate.erb',
+  :cookbook       => 'logrotate',
+  :template_mode  => '0440',
+  :template_owner => 'root',
+  :template_group => 'root',
+  :postrotate     => nil,
+  :prerotate      => nil,
+  :firstaction    => nil,
+  :lastaction     => nil,
+  :sharedscripts  => false
 }
 
 define(:logrotate_app, log_rotate_params) do
@@ -46,9 +49,9 @@ define(:logrotate_app, log_rotate_params) do
     template "/etc/logrotate.d/#{params[:name]}" do
       source   params[:template]
       cookbook params[:cookbook]
-      mode     '0644'
-      owner    'root'
-      group    'root'
+      mode     params[:template_mode]
+      owner    params[:template_owner]
+      group    params[:template_group]
       backup   false
       variables(
         :path          => path,

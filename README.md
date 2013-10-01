@@ -88,6 +88,9 @@ The definition takes the following params:
 - `frequency`: sets the frequency for rotation. Default value is 'weekly'. Valid values are: daily, weekly, monthly, yearly, see the logrotate man page for more information.
 - `size`: Log files are rotated when they grow bigger than size bytes.
 - `template`: sets the template source, default is "logrotate.erb".
+- `template_mode`: the mode to create the logrotate template with (default "0440")
+- `template_owner`: the owner of the logrotate template (default "root")
+- `template_group`: the group of the logrotate template (default "root")
 - `cookbook`: select the template source from the specified cookbook. By default it will use the cookbook where the definition is used.
 - `create`: creation parameters for the logrotate "create" config, follows the form "mode owner group". This is an optional parameter, and is nil by default.
 - `postrotate`: lines to be executed after the log file is rotated
