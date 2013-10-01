@@ -18,3 +18,9 @@
 #
 
 package "logrotate"
+
+# This service definition is required so templates and other resources
+# can restart/reload the service when updated.
+service 'logrotate' do
+  action :nothing
+end

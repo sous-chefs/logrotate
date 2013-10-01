@@ -67,6 +67,7 @@ define(:logrotate_app, log_rotate_params) do
         :lastaction    => params[:lastaction],
         :options       => options
       )
+      notifies :reload, 'service[logrotate]', :delayed
     end
   else
     file "/etc/logrotate.d/#{params[:name]}" do
