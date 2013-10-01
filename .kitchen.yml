@@ -1,52 +1,29 @@
----
 driver_plugin: vagrant
 driver_config:
-    require_chef_omnibus: true
+  require_chef_omnibus: true
+  customize:
+    memory: 1024
 
 platforms:
-- name: ubuntu-12.04
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
-  run_list:
-  - recipe[apt]
-
-- name: ubuntu-10.04
-  driver_config:
-    box: opscode-ubuntu-10.04
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-10.04_provisionerless.box
-  run_list:
-  - recipe[apt]
-
-- name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
-  run_list:
-  - recipe[yum::epel]
-
-- name: centos-5.9
-  driver_config:
-    box: opscode-centos-5.9
-    box_url: http://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-5.9_provisionerless.box
-  run_list:
-  - recipe[yum::epel]
+  - name: ubuntu-12.04
+    run_list:
+    - recipe[apt::default]
+  - name: ubuntu-10.04
+    run_list:
+    - recipe[apt::default]
+  - name: centos-6.4
+  - name: centos-5.9
 
 suites:
-- name: default
-  run_list:
-  - recipe[minitest-handler]
-  - recipe[logrotate_test]
-  attributes: {}
-
-- name: global
-  run_list:
-  - recipe[minitest-handler]
-  - recipe[logrotate::global]
-  attributes: {}
-
-- name: lwrp
-  run_list:
-  - recipe[minitest-handler]
-  - recipe[logrotate_test::logrotate_app]
-  attributes: {}
+  - name: default
+    run_list:
+      - recipe[logrotate_test::default]
+      - recipe[minitest-handler::default]
+  - name: global
+    run_list:
+      - recipe[logrotate::global]
+      - recipe[minitest-handler::default]
+  - name: definition
+    run_list:
+      - recipe[logrotate_test::logrotate_app]
+      - recipe[minitest-handler::default]
