@@ -61,10 +61,10 @@ define(:logrotate_app, log_rotate_params) do
         :rotate        => params[:rotate],
         :olddir        => params[:olddir],
         :sharedscripts => params[:sharedscripts],
-        :postrotate    => params[:postrotate],
-        :prerotate     => params[:prerotate],
-        :firstaction   => params[:firstaction],
-        :lastaction    => params[:lastaction],
+        :postrotate    => Array(params[:postrotate]).join("\n"),
+        :prerotate     => Array(params[:prerotate]).join("\n"),
+        :firstaction   => Array(params[:firstaction]).join("\n"),
+        :lastaction    => Array(params[:lastaction]).join("\n"),
         :options       => options
       )
       notifies :reload, 'service[logrotate]', :delayed
