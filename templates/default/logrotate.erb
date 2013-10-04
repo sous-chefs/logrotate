@@ -26,22 +26,22 @@
 <%- if @sharedscripts %>
   sharedscripts
 <%- end %>
-<%- if @postrotate %>
+<%- unless @postrotate.empty? %>
   postrotate
 <%= @postrotate %>
   endscript
 <%- end %>
-<%- if @prerotate %>
+<%- unless @prerotate.empty? %>
   prerotate
 <%= @prerotate %>
   endscript
 <%- end %>
-<%- if @firstaction %>
+<%- unless @firstaction.empty? %>
   firstaction
 <%= @firstaction %>
   endscript
 <%- end %>
-<%- if @lastaction %>
+<%- unless @lastaction.empty? %>
   lastaction
 <%= @lastaction %>
   endscript

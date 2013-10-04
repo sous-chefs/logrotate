@@ -2,7 +2,7 @@
 # Cookbook Name:: logrotate
 # Recipe:: default
 #
-# Copyright 2009-2012, Opscode, Inc.
+# Copyright 2009-2013, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,10 +17,4 @@
 # limitations under the License.
 #
 
-package "logrotate"
-
-# This service definition is required so templates and other resources
-# can restart/reload the service when updated.
-service 'logrotate' do
-  action :nothing
-end
+package 'logrotate'

@@ -35,8 +35,8 @@ log_rotate_params = {
 define(:logrotate_app, log_rotate_params) do
   include_recipe 'logrotate::default'
 
-  acceptable_options = ['missingok', 'compress', 'delaycompress', 'dateext', 'copytruncate', 'notifempty', 'delaycompress', 'ifempty', 'mailfirst', 'nocompress', 'nocopy', 'nocopytruncate', 'nocreate', 'nodelaycompress', 'nomail', 'nomissingok', 'noolddir', 'nosharedscripts', 'notifempty', 'sharedscripts']
-  options_tmp = params[:options] ||= ["missingok", "compress", "delaycompress", "copytruncate", "notifempty"]
+  acceptable_options = %w(missingok compress delaycompress dateext copytruncate notifempty delaycompress ifempty mailfirst nocompress nocopy nocopytruncate nocreate nodelaycompress nomail nomissingok noolddir nosharedscripts notifempty sharedscripts)
+  options_tmp = params[:options] ||= %w(missingok compress delaycompress copytruncate notifempty)
   options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
 
   if params[:enable]
@@ -53,7 +53,7 @@ define(:logrotate_app, log_rotate_params) do
       group    params[:template_group]
       backup   false
       variables(
-        :path          => Array(params[:path]).map { |path| %Q(#{path}).inspect }.join(' '),
+        :path          => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
         :create        => params[:create],
         :frequency     => params[:frequency],
         :size          => params[:size],
@@ -67,7 +67,6 @@ define(:logrotate_app, log_rotate_params) do
         :lastaction    => Array(params[:lastaction]).join("\n"),
         :options       => options
       )
-      notifies :reload, 'service[logrotate]', :delayed
     end
   else
     file "/etc/logrotate.d/#{params[:name]}" do

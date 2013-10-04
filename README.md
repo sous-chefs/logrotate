@@ -1,5 +1,7 @@
 logrotate Cookbook
 ==================
+[![Build Status](https://secure.travis-ci.org/opscode-cookbooks/logrotate.png?branch=master)](http://travis-ci.org/opscode-cookbooks/logrotate)
+
 Manages the logrotate package and provides a definition to manage application specific logrotate configuration.
 
 
