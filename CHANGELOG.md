@@ -3,6 +3,15 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the logrotate cookbook.
 
 
+v1.4.0
+------
+### Bug
+- **[COOK-3632](https://tickets.opscode.com/browse/COOK-3632)** - Raise Exception when adding more than one invalid option
+- **[COOK-3141](https://tickets.opscode.com/browse/COOK-3141)** - Do not duplicate template entires for multiple paths
+- **[COOK-3034](https://tickets.opscode.com/browse/COOK-3034)** - Update logrotate_app params to accept arrays and strings
+
+### Improvement
+- **[COOK-2646](https://tickets.opscode.com/browse/COOK-2646)** - Add ability to choose file mode for logrotate template
 v1.3.0
 ------
 ### Improvement
