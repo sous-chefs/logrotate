@@ -25,4 +25,5 @@ template '/etc/logrotate.conf' do
   source 'logrotate-global.erb'
   mode 00644
   variables({ :configuration => parsed_configuration })
+  notifies :reload, 'service[logrotate]', :delayed
 end
