@@ -12,6 +12,7 @@ v1.4.0
 
 ### Improvement
 - **[COOK-2646](https://tickets.opscode.com/browse/COOK-2646)** - Add ability to choose file mode for logrotate template
+
 v1.3.0
 ------
 ### Improvement
