@@ -29,7 +29,8 @@ log_rotate_params = {
   :prerotate      => nil,
   :firstaction    => nil,
   :lastaction     => nil,
-  :sharedscripts  => false
+  :sharedscripts  => false,
+  :su_user        => nil
 }
 
 define(:logrotate_app, log_rotate_params) do
@@ -65,6 +66,7 @@ define(:logrotate_app, log_rotate_params) do
         :prerotate     => Array(params[:prerotate]).join("\n"),
         :firstaction   => Array(params[:firstaction]).join("\n"),
         :lastaction    => Array(params[:lastaction]).join("\n"),
+        :su_user       => params[:su_user],
         :options       => options
       )
     end
