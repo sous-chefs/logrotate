@@ -89,6 +89,7 @@ The definition takes the following params:
 - `enable`: true/false, if true it will create the template in /etc/logrotate.d.
 - `frequency`: sets the frequency for rotation. Default value is 'weekly'. Valid values are: daily, weekly, monthly, yearly, see the logrotate man page for more information.
 - `size`: Log files are rotated when they grow bigger than size bytes.
+- `maxsize`: Log  files  are  rotated  when  they  grow bigger than size bytes even before the additionally specified time interval.
 - `template`: sets the template source, default is "logrotate.erb".
 - `template_mode`: the mode to create the logrotate template with (default "0440")
 - `template_owner`: the owner of the logrotate template (default "root")
