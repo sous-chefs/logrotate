@@ -53,7 +53,7 @@ define(:logrotate_app, log_rotate_params) do
       group    params[:template_group]
       backup   false
       variables(
-        :path          => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
+        :path          => Array(params[:path]).map { |path| path.to_s.inspect.tr('"','') }.join(' '),
         :create        => params[:create],
         :frequency     => params[:frequency],
         :size          => params[:size],
