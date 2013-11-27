@@ -58,6 +58,7 @@ define(:logrotate_app, log_rotate_params) do
         :frequency     => params[:frequency],
         :size          => params[:size],
         :minsize       => params[:minsize],
+        :maxsize       => params[:maxsize],
         :rotate        => params[:rotate],
         :olddir        => params[:olddir],
         :sharedscripts => params[:sharedscripts],
