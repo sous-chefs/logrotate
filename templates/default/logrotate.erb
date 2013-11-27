@@ -51,4 +51,7 @@
 <%= @lastaction %>
   endscript
 <%- end %>
+<%- if @su_user %>
+  su <%= @su_user %>
+<%- end %>
 }
