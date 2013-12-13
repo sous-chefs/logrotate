@@ -18,7 +18,7 @@
 #
 
 module CookbookLogrotate
-  DIRECTIVES = %w[
+  DIRECTIVES ||= %w[
     compress        copy        copytruncate    daily           dateext
     delaycompress   ifempty     mailfirst       maillast        missingok
     monthly         nocompress  nocopy          nocopytruncate  nocreate
@@ -27,16 +27,16 @@ module CookbookLogrotate
     weekly          yearly
   ]
 
-  VALUES = %w[
+  VALUES ||= %w[
     compresscmd    uncompresscmd  compressext    compressoptions
     create         dateformat     include        mail
     maxage         minsize        rotate         size
     shredcycles    start          tabooext
   ]
 
-  SCRIPTS = %w[firstaction  prerotate  postrotate  lastaction]
+  SCRIPTS ||= %w[firstaction  prerotate  postrotate  lastaction]
 
-  DIRECTIVES_AND_VALUES = DIRECTIVES + VALUES
+  DIRECTIVES_AND_VALUES ||= DIRECTIVES + VALUES
 
   # Helper class for creating configurations
   class LogrotateConfiguration
