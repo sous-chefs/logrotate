@@ -83,10 +83,10 @@ module CookbookLogrotate
 
     private
 
-      def initialize(hash)
-        @directives = LogrotateConfiguration.directives_from(hash)
-        @values = LogrotateConfiguration.values_from(hash)
-        @paths = LogrotateConfiguration.paths_from(hash)
-      end
+    def initialize(hash)
+      @directives = LogrotateConfiguration.directives_from(hash)
+      @values = LogrotateConfiguration.values_from(hash)
+      @paths = LogrotateConfiguration.paths_from(hash)
+    end
   end
 end
