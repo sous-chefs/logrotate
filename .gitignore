@@ -19,3 +19,8 @@ Gemfile.lock
 bin/
 tmp/
 vendor/
+
+# RVM
+.ruby-version
+.ruby-gemset
+.rvmrc
