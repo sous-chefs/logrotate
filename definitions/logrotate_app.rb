@@ -56,6 +56,7 @@ define(:logrotate_app, log_rotate_params) do
         :path          => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
         :create        => params[:create],
         :frequency     => params[:frequency],
+        :dateformat    => params[:dateformat],
         :size          => params[:size],
         :minsize       => params[:minsize],
         :maxsize       => params[:maxsize],

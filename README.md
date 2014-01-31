@@ -88,6 +88,7 @@ The definition takes the following params:
 - `path`: specifies a single path (string) or multiple paths (array) that should have logrotation stanzas created in the config file. No default, this must be specified.
 - `enable`: true/false, if true it will create the template in /etc/logrotate.d.
 - `frequency`: sets the frequency for rotation. Default value is 'weekly'. Valid values are: daily, weekly, monthly, yearly, see the logrotate man page for more information.
+- `dateformat`: specifies date extension with %Y, %m, %d, and %s. The default value is -%Y%m%d.
 - `size`: Log files are rotated when they grow bigger than size bytes.
 - `maxsize`: Log  files  are  rotated  when  they  grow bigger than size bytes even before the additionally specified time interval.
 - `su`: Rotate log files set under this user and group instead of using default user/group.
