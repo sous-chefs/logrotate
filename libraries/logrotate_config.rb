@@ -17,6 +17,7 @@
 # limitations under the License.
 #
 
+# Helper module for Logrotate configuration
 module CookbookLogrotate
   DIRECTIVES = %w[
     compress        copy        copytruncate    daily           dateext
