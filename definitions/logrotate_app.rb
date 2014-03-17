@@ -41,6 +41,7 @@ define(:logrotate_app, log_rotate_params) do
 
   if params[:enable]
     invalid_options = options - acceptable_options
+
     unless invalid_options.empty?
       Chef::Application.fatal! "The passed value(s) [#{invalid_options.join(',')}] are not valid"
     end
@@ -63,6 +64,9 @@ define(:logrotate_app, log_rotate_params) do
         :su            => params[:su],
         :rotate        => params[:rotate],
         :olddir        => params[:olddir],
+        :compresscmd   => params[:compresscmd],
+        :uncompresscmd => params[:uncompresscmd],
+        :compressext   => params[:compressext],
         :sharedscripts => params[:sharedscripts],
         :postrotate    => Array(params[:postrotate]).join("\n"),
         :prerotate     => Array(params[:prerotate]).join("\n"),
