@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'logrotate::global' do
-  let(:chef_run) { ChefSpec::ChefRunner.new.converge(described_recipe) }
+  let(:chef_run) { ChefSpec::Runner.new.converge(described_recipe) }
 
   it 'includes the default recipe' do
     expect(chef_run).to include_recipe('logrotate::default')
