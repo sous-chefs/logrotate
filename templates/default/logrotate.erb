@@ -33,10 +33,10 @@
   compresscmd <%= @compresscmd %>
 <%- end %>
 <%- if @uncompresscmd %>
-  compresscmd <%= @uncompresscmd %>
+  uncompresscmd <%= @uncompresscmd %>
 <%- end %>
 <%- if @compressext %>
-  compresscmd <%= @compressext %>
+  compressext <%= @compressext %>
 <%- end %>
 <% @options.each do |o| -%>
   <%= o %>
