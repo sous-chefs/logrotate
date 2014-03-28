@@ -28,7 +28,7 @@ Note that defining a valueless directive with a falsey value will not make it fa
 node.override['logrotate']['global']['compress'] = false
 ```
 
-To fully overrride a booleanish directive like `compress`, you should probably remove the positive form and add the negative form:
+To fully override a booleanish directive like `compress`, you should probably remove the positive form and add the negative form:
 
 ```ruby
 node.override['logrotate']['global']['compress'] = false
