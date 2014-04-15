@@ -18,3 +18,17 @@
 #
 
 package 'logrotate'
+
+directory "/etc/logrotate.d" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
+
+cron "logrotate" do
+  minute "35"
+  hour "7"
+  command "/usr/sbin/logrotate /etc/logrotate.conf"
+  only_if platform? "solaris2"
+end
