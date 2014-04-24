@@ -29,6 +29,15 @@
 <%- if @olddir %>
   olddir <%= @olddir %>
 <%- end %>
+<%- if @compresscmd %>
+  compresscmd <%= @compresscmd %>
+<%- end %>
+<%- if @uncompresscmd %>
+  uncompresscmd <%= @uncompresscmd %>
+<%- end %>
+<%- if @compressext %>
+  compressext <%= @compressext %>
+<%- end %>
 <% @options.each do |o| -%>
   <%= o %>
 <% end -%>
