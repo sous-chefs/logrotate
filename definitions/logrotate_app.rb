@@ -54,25 +54,26 @@ define(:logrotate_app, log_rotate_params) do
       group    params[:template_group]
       backup   false
       variables(
-        :path          => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
-        :create        => params[:create],
-        :frequency     => params[:frequency],
-        :dateformat    => params[:dateformat],
-        :size          => params[:size],
-        :minsize       => params[:minsize],
-        :maxsize       => params[:maxsize],
-        :su            => params[:su],
-        :rotate        => params[:rotate],
-        :olddir        => params[:olddir],
-        :compresscmd   => params[:compresscmd],
-        :uncompresscmd => params[:uncompresscmd],
-        :compressext   => params[:compressext],
-        :sharedscripts => params[:sharedscripts],
-        :postrotate    => Array(params[:postrotate]).join("\n"),
-        :prerotate     => Array(params[:prerotate]).join("\n"),
-        :firstaction   => Array(params[:firstaction]).join("\n"),
-        :lastaction    => Array(params[:lastaction]).join("\n"),
-        :options       => options
+        :path             => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
+        :create           => params[:create],
+        :frequency        => params[:frequency],
+        :dateformat       => params[:dateformat],
+        :size             => params[:size],
+        :minsize          => params[:minsize],
+        :maxsize          => params[:maxsize],
+        :su               => params[:su],
+        :rotate           => params[:rotate],
+        :olddir           => params[:olddir],
+        :compresscmd      => params[:compresscmd],
+        :compressoptions  => params[:compressoptions],
+        :uncompresscmd    => params[:uncompresscmd],
+        :compressext      => params[:compressext],
+        :sharedscripts    => params[:sharedscripts],
+        :postrotate       => Array(params[:postrotate]).join("\n"),
+        :prerotate        => Array(params[:prerotate]).join("\n"),
+        :firstaction      => Array(params[:firstaction]).join("\n"),
+        :lastaction       => Array(params[:lastaction]).join("\n"),
+        :options          => options
       )
     end
   else
