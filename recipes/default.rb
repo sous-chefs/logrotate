@@ -26,9 +26,10 @@ directory "/etc/logrotate.d" do
   action :create
 end
 
-cron "logrotate" do
-  minute "35"
-  hour "7"
-  command "/usr/sbin/logrotate /etc/logrotate.conf"
-  only_if platform? "solaris2"
+if platform? "solaris2" # ~FC023 style preference
+  cron "logrotate" do
+    minute "35"
+    hour "7"
+    command "/usr/sbin/logrotate /etc/logrotate.conf"
+  end
 end
