@@ -28,7 +28,7 @@ end
 
 logrotate_app 'tomcat-myapp-custom-options' do
   path        '/var/log/tomcat/myapp.log'
-  options     %w(missingok delaycompress)
+  options     %w(missingok delaycompress invalid-option)
   frequency   'daily'
   rotate      30
   create      '644 root adm'
