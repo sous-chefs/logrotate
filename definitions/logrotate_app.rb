@@ -35,7 +35,7 @@ log_rotate_params = {
 define(:logrotate_app, log_rotate_params) do
   include_recipe 'logrotate::default'
 
-  acceptable_options = %w(missingok compress delaycompress dateext dateyesterday copytruncate notifempty delaycompress ifempty mailfirst nocompress nocopy nocopytruncate nocreate nodelaycompress nomail nomissingok noolddir nosharedscripts notifempty sharedscripts nodateext)
+  acceptable_options = %w(missingok compress delaycompress dateext dateyesterday copy copytruncate notifempty delaycompress ifempty mailfirst maillast nocompress nocopy nocopytruncate nocreate nodelaycompress nomail nomissingok noolddir nosharedscripts noshred notifempty sharedscripts shred nodateext)
   options_tmp = params[:options] ||= %w(missingok compress delaycompress copytruncate notifempty)
   options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
 
@@ -58,16 +58,22 @@ define(:logrotate_app, log_rotate_params) do
         :create           => params[:create],
         :frequency        => params[:frequency],
         :dateformat       => params[:dateformat],
+        :extension        => params[:extension],
+        :tabooext         => params[:tabooext],
+        :mail             => params[:mail],
         :size             => params[:size],
         :minsize          => params[:minsize],
         :maxsize          => params[:maxsize],
+        :maxage           => params[:maxage],
         :su               => params[:su],
         :rotate           => params[:rotate],
+        :start            => params[:start],
         :olddir           => params[:olddir],
         :compresscmd      => params[:compresscmd],
         :compressoptions  => params[:compressoptions],
         :uncompresscmd    => params[:uncompresscmd],
         :compressext      => params[:compressext],
+        :shredcycles      => params[:shredcycles],
         :sharedscripts    => params[:sharedscripts],
         :postrotate       => Array(params[:postrotate]).join("\n"),
         :prerotate        => Array(params[:prerotate]).join("\n"),
