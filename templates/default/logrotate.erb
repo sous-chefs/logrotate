@@ -17,6 +17,9 @@
 <%- if @maxsize %>
   maxsize <%= @maxsize %>
 <%- end %>
+<%- if @maxage %>
+  maxage <%= @maxage %>
+<%- end %>
 <%- if @su %>
   su <%= @su %>
 <%- end %>
@@ -33,13 +36,22 @@
   compresscmd <%= @compresscmd %>
 <%- end %>
 <%- if @compressoptions %>
-    compressoptions <%= @compressoptions %>
+  compressoptions <%= @compressoptions %>
 <%- end %>
 <%- if @uncompresscmd %>
   uncompresscmd <%= @uncompresscmd %>
 <%- end %>
 <%- if @compressext %>
   compressext <%= @compressext %>
+<%- end %>
+<%- if @extension %>
+  extension <%= @extension %>
+<%- end %>
+<%- if @tabooext %>
+  tabooext <%= @tabooext %>
+<%- end %>
+<%- if @shredcycles %>
+  shredcycles <%= @shredcycles %>
 <%- end %>
 <% @options.each do |o| -%>
   <%= o %>
