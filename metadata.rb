@@ -9,10 +9,6 @@ version           '1.6.0'
 recipe 'logrotate', 'Installs logrotate package'
 provides 'logrotate_app'
 
-supports 'amazon'
-supports 'centos'
-supports 'debian'
-supports 'fedora'
-supports 'redhat'
-supports 'scientific'
-supports 'ubuntu'
+%w{amazon centos debian fedora redhat scientific solaris2 ubuntu}.each do |platform|
+  supports platform
+end
