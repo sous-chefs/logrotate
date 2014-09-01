@@ -45,6 +45,13 @@ define(:logrotate_app, log_rotate_params) do
     unless invalid_options.empty?
       Chef::Application.fatal! "The passed value(s) [#{invalid_options.join(',')}] are not valid"
     end
+    
+    case node[:platform_family] 
+    when "rhel"
+      path = Array(params[:path]).map { |path| path.to_s }.join(' ') 
+    else
+      path = Array(params[:path]).map { |path| path.to_s.inspect }.join(' ')
+    end
 
     template "/etc/logrotate.d/#{params[:name]}" do
       source   params[:template]
@@ -54,7 +61,7 @@ define(:logrotate_app, log_rotate_params) do
       group    params[:template_group]
       backup   false
       variables(
-        :path             => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
+        :path             => path,
         :create           => params[:create],
         :frequency        => params[:frequency],
         :dateformat       => params[:dateformat],
