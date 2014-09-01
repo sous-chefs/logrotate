@@ -3,6 +3,13 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v1.7.0
+------
+
+### Improvements
+
+- Support for options "maxage", "shred", "tabooext", "extensions"
+
 v1.6.0
 ------
 
