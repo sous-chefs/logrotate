@@ -43,8 +43,8 @@ define(:logrotate_app, log_rotate_params) do
     invalid_options = options - acceptable_options
 
     unless invalid_options.empty?
-      Chef::Log.error("Invalid options passed to logrotate, stripping options #{invalid_options.join(', ')}")
-      options -= invalid_options
+      Chef::Log.error("Invalid option(s) passed to logrotate: #{invalid_options.join(', ')}")
+      raise
     end
 
     template "/etc/logrotate.d/#{params[:name]}" do
