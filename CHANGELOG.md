@@ -3,6 +3,22 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v1.7.0
+------
+
+### Bugs
+
+- Use `raise` rather than Application.fatal! to prevent killing a
+  daemonized chef-client
+
+### Improvements
+
+- Chefspec matcher for logrotate_app definition
+- Support the following options: compressoptions, maxage,
+  shred/shredcycles, extension, tabooext
+- Add Solaris support
+
+
 v1.6.0
 ------
 
