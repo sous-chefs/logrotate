@@ -101,8 +101,8 @@ if defined?(ChefSpec)
         params.each do |parameter, expected|
           unless matches_parameter?(parameter, expected)
             @_unmatched_parameters[parameter] = {
-              expected: expected,
-              actual:   safe_send(parameter),
+              :expected => expected,
+              :actual => safe_send(parameter),
             }
           end
         end
