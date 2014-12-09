@@ -32,7 +32,7 @@ module CookbookLogrotate
     compresscmd    uncompresscmd  compressext    compressoptions
     create         dateformat     include        mail
     maxage         minsize        rotate         size
-    shredcycles    start          tabooext
+    shredcycles    start          tabooext       su
   ) unless const_defined?(:VALUES)
 
   SCRIPTS = %w(firstaction  prerotate  postrotate  lastaction) unless const_defined?(:SCRIPTS)
