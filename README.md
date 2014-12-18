@@ -98,8 +98,10 @@ The definition takes the following params:
 - `template_group`: the group of the logrotate template (default "root")
 - `cookbook`: select the template source from the specified cookbook. By default it will use the template from the logrotate cookbook.
 - `create`: creation parameters for the logrotate "create" config, follows the form "mode owner group". This is an optional parameter, and is nil by default.
+- `firstaction`: lines to be executed once before all log files that match the wildcarded pattern are rotated, before pre-rotate  script is run and only if at least one log will actually be rotated
 - `postrotate`: lines to be executed after the log file is rotated
 - `prerotate`: lines to be executed before the log file is rotated
+- `lastaction`: lines to be executed once after  all  log files  that  match  the  wildcarded  pattern  are rotated, after postrotate script is run  and  only  if  at  least  one  log  is rotated
 - `rotate`: Log files are rotated this many times before being removed or mailed.
 - `sharedscripts`: if true, the sharedscripts options is specified which makes sure prescript and postscript commands are run only once (even if multiple files match the path)
 
