@@ -3,6 +3,19 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v1.8.0
+------
+
+### Resolved Bugs
+
+- `su` parameter now supported in global config.
+
+### Improvements
+
+- firstaction and lastaction attributes documented in the README
+- rotate attribute documented in the README
+- Use hash-rocket syntax in rspec matcher to maintain 1.9 support.
+
 v1.7.0
 ------
 
