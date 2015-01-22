@@ -46,6 +46,13 @@ define(:logrotate_app, log_rotate_params) do
       Chef::Log.error("Invalid option(s) passed to logrotate: #{invalid_options.join(', ')}")
       raise
     end
+    
+    case node[:platform_family] 
+    when "rhel"
+      path = Array(params[:path]).map { |path| path.to_s }.join(' ') 
+    else
+      path = Array(params[:path]).map { |path| path.to_s.inspect }.join(' ')
+    end
 
     template "/etc/logrotate.d/#{params[:name]}" do
       source   params[:template]
@@ -55,7 +62,7 @@ define(:logrotate_app, log_rotate_params) do
       group    params[:template_group]
       backup   false
       variables(
-        :path             => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
+        :path             => path,
         :create           => params[:create],
         :frequency        => params[:frequency],
         :dateformat       => params[:dateformat],
