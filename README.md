@@ -151,11 +151,11 @@ end
 License & Authors
 -----------------
 - Author:: Scott M. Likens (<scott@likens.us>)
-- Author:: Joshua Timberman (<joshua@opscode.com>)
+- Author:: Joshua Timberman (<joshua@chef.io>)
 
 ```text
 Copyright 2009, Scott M. Likens
-Copyright 2011-2012, Opscode, Inc.
+Copyright 2011-2012, Chef Software, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
