@@ -21,7 +21,7 @@
 module CookbookLogrotate
   DIRECTIVES = %w(
     compress        copy        copytruncate    daily           dateext
-    delaycompress   ifempty     mailfirst       maillast        missingok
+    delaycompress   hourly      ifempty         mailfirst       maillast        missingok
     monthly         nocompress  nocopy          nocopytruncate  nocreate
     nodelaycompress nodateext   nomail          nomissingok     noolddir
     nosharedscripts noshred     notifempty      sharedscripts   shred
