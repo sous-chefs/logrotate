@@ -43,7 +43,7 @@ Development
 6. Run the tests:
     - `bundle exec rspec`
     - `bundle exec foodcritic .`
-    - `bundle exec rubocop`
+    - `bundle exec rubocop -l `
     - `bundle exec kitchen test`
 
 7. Assuming the tests pass, open a Pull Request on GitHub
