@@ -1,9 +1,9 @@
 name              'logrotate'
-maintainer        'Chef Software, Inc.'
-maintainer_email  'cookbooks@chef.io'
+maintainer        'Steven Danna'
+maintainer_email  'steve@chef.io'
 license           'Apache 2.0'
 description       'Installs logrotate package and provides a definition for logrotate configs'
-long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
+long_description  'Installs the logrotate package, manages /etc/logrotate.conf, and provides a logrotate_app definition.'
 version           '1.8.0'
 
 recipe 'logrotate', 'Installs logrotate package'
