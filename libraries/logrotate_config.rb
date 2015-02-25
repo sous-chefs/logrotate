@@ -17,25 +17,20 @@
 # limitations under the License.
 #
 
-# Helper module for Logrotate configuration
+# Helper module for Logrotate configuration module CookbookLogrotate
 module CookbookLogrotate
-  DIRECTIVES = %w(
-    compress        copy        copytruncate    daily           dateext
-    delaycompress   hourly      ifempty         mailfirst       maillast        missingok
-    monthly         nocompress  nocopy          nocopytruncate  nocreate
-    nodelaycompress nodateext   nomail          nomissingok     noolddir
-    nosharedscripts noshred     notifempty      sharedscripts   shred
-    weekly          yearly
-  ) unless const_defined?(:DIRECTIVES)
+  DIRECTIVES = %w(compress copy copytruncate daily dateext
+    dateyesterday delaycompress hourly ifempty mailfirst maillast
+    missingok monthly nocompress nocopy nocopytruncate nocreate
+    nodelaycompress nodateext nomail nomissingok noolddir
+    nosharedscripts noshred notifempty sharedscripts shred weekly
+    yearly) unless const_defined?(:DIRECTIVES)
 
-  VALUES = %w(
-    compresscmd    uncompresscmd  compressext    compressoptions
-    create         dateformat     include        mail
-    maxage         minsize        rotate         size
-    shredcycles    start          tabooext       su
-  ) unless const_defined?(:VALUES)
+  VALUES = %w(compresscmd uncompresscmd compressext compressoptions
+    create dateformat include mail extension maxage minsize maxsize
+    rotate size shredcycles start tabooext su olddir) unless const_defined?(:VALUES)
 
-  SCRIPTS = %w(firstaction  prerotate  postrotate  lastaction) unless const_defined?(:SCRIPTS)
+  SCRIPTS = %w(firstaction prerotate postrotate lastaction preremove) unless const_defined?(:SCRIPTS)
 
   DIRECTIVES_AND_VALUES = DIRECTIVES + VALUES unless const_defined?(:DIRECTIVES_AND_VALUES)
 
