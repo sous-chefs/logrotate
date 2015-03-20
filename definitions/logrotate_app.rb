@@ -37,6 +37,7 @@ define(:logrotate_app, log_rotate_params) do
 
   options_tmp = params[:options] ||= %w(missingok compress delaycompress copytruncate notifempty)
   options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
+  options << 'sharedscripts' if params[:sharedscripts]
 
   if params[:enable]
     invalid_options = options - CookbookLogrotate::DIRECTIVES

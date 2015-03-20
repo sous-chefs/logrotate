@@ -50,4 +50,8 @@ describe 'logrotate::default' do
       )
     end
   end
+
+  describe file('/etc/logrotate.d/tomcat-myapp-sharedscripts') do
+    it { should contain "sharedscripts" }
+  end
 end
