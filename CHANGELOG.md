@@ -3,6 +3,38 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v1.9.2
+------
+
+## Bug Fixes
+
+- Fix deprecation warnings from ChefSpec
+
+v1.9.1
+------
+
+## Bug Fixes
+
+- Fixes regression in the sharedscripts logrotate_app
+  parameter (Bug #69)
+
+v1.9.0
+------
+
+### Improvements
+
+- All configuration options from the logrotate 3.8.8 manual page can
+be used by the global configuration and the logrotate_app
+definition.
+
+- Berkshelf is no longer a development dependency of the
+logrotate cookbook.
+
+- Rubocop lint failures have been resolved.
+
+
+
+
 v1.8.0
 ------
 
