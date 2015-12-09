@@ -102,7 +102,7 @@ if defined?(ChefSpec)
           unless matches_parameter?(parameter, expected)
             @_unmatched_parameters[parameter] = {
               :expected => expected,
-              :actual => safe_send(parameter),
+              :actual => actual_parameter(parameter),
             }
           end
         end
@@ -110,16 +110,21 @@ if defined?(ChefSpec)
         @_unmatched_parameters
       end
 
+      def actual_parameter(parameter)
+        if parameter == :cookbook
+          safe_send(parameter)
+        else
+          safe_send('variables')[parameter]
+        end
+      end
+
       def matches_parameter?(parameter, expected)
         # Chef 11+ stores the source parameter internally as an Array
         #
-        case parameter
-        when :cookbook
-          expected === safe_send(parameter)
-        when :path
-          Array(expected == safe_send('variables')[parameter])
+        if parameter == :path
+          Array(expected == actual_parameter(parameter))
         else
-          expected == safe_send('variables')[parameter]
+          expected === actual_parameter(parameter)
         end
       end
 
