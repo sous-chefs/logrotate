@@ -1,6 +1,12 @@
+---
+language: ruby
+cache: bundler
+sudo: false
+script: bundle exec rake travis
 rvm:
-  - 2.0.0
-script:
-  - bundle exec foodcritic -f any . --tags ~FC015
-  - bundle exec rspec --color --format progress
-  - bundle exec rubocop -l
+  - 2.2
+branches:
+  only:
+    - master
+matrix:
+  fast_finish: true

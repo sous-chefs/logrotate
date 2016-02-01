@@ -18,6 +18,7 @@ Berksfile.lock
 bin/
 tmp/
 vendor/
+Berksfile.lock
 
 # RVM
 .ruby-version
