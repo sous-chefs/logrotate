@@ -13,3 +13,8 @@ group :integration do
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
 end
+
+group :development do
+  gem 'rake'
+  gem 'stove'
+end

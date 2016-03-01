@@ -18,9 +18,7 @@ desc 'Run all style checks'
 task style: ['style:chef', 'style:ruby']
 
 desc 'Run ChefSpec unit tests'
-RSpec::Core::RakeTask.new(:unit) do |t|
-  t.pattern = 'test/spec/**{,/*/**}/*_spec.rb'
-end
+RSpec::Core::RakeTask.new(:unit)
 
 # Integration tests. Kitchen.ci
 desc 'Run Test Kitchen with Vagrant'

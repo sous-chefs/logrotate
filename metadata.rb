@@ -12,3 +12,6 @@ provides 'logrotate_app'
 %w(aix amazon centos debian fedora redhat scientific solaris2 ubuntu).each do |platform|
   supports platform
 end
+
+source_url 'https://github.com/stevendanna/logrotate' if respond_to?(:source_url)
+issues_url 'https://github.com/stevendanna/logrotate/issues' if respond_to?(:issues_url)
