@@ -3,6 +3,7 @@ if defined?(ChefSpec)
     LogrotateAppMatcher.new(name)
   end
 
+  # Class to create logrotate matchers
   class LogrotateAppMatcher
     def initialize(name)
       @name = name
@@ -30,7 +31,7 @@ if defined?(ChefSpec)
     #
     def method_missing(m, *args, &block)
       if m.to_s =~ /^with_(.+)$/
-        with($1.to_sym => args.first)
+        with(Regexp.last_match(1).to_sym => args.first)
         self
       else
         super
@@ -38,7 +39,7 @@ if defined?(ChefSpec)
     end
 
     def description
-      %Q{"enable" #{@name} "logrotate_app"}
+      %("enable" #{@name} "logrotate_app")
     end
 
     def matches?(runner)
@@ -56,99 +57,99 @@ if defined?(ChefSpec)
         if resource.performed_action?('create')
           if unmatched_parameters.empty?
             if @compile_time
-              %Q{expected "#{resource}" to be run at compile time}
+              %(expected "#{resource}" to be run at compile time)
             else
-              %Q{expected "#{resource}" to be run at converge time}
+              %(expected "#{resource}" to be run at converge time)
             end
           else
-            %Q{expected "#{resource}" to have parameters:} \
+            %(expected "#{resource}" to have parameters:) \
             "\n\n" \
-            "  " + unmatched_parameters.collect { |parameter, h|
+            '  ' + unmatched_parameters.collect do |parameter, h|
               "#{parameter} #{h[:expected].inspect}, was #{h[:actual].inspect}"
-            }.join("\n  ")
+            end.join("\n  ")
           end
         else
-          %Q{expected "#{resource}" actions #{resource.performed_actions.inspect}} \
-          " to include : create"
+          %(expected "#{resource}" actions #{resource.performed_actions.inspect}) \
+          ' to include : create'
         end
       else
-        %Q{expected "logrotate_app[#{@name}] with"} \
-        " enable : true to be in Chef run. Other" \
+        %(expected "logrotate_app[#{@name}] with") \
+        ' enable : true to be in Chef run. Other' \
         " #{@name} resources:" \
         "\n\n" \
-        "  " + similar_resources.map(&:to_s).join("\n  ") + "\n "
+        '  ' + similar_resources.map(&:to_s).join("\n  ") + "\n "
       end
     end
 
     def failure_message_when_negated
-      if resource
-        message = %Q{expected "#{resource}" actions #{resource.performed_actions.inspect} to not exist}
-      else
-        message = %Q{expected "#{resource}" to not exist}
-      end
+      message = if resource
+                  %(expected "#{resource}" actions #{resource.performed_actions.inspect} to not exist)
+                else
+                  %(expected "#{resource}" to not exist)
+                end
 
-      message << " at compile time"  if @compile_time
-      message << " at converge time" if @converge_time
+      message << ' at compile time'  if @compile_time
+      message << ' at converge time' if @converge_time
       message
     end
 
     private
-      def unmatched_parameters
-        return @_unmatched_parameters if @_unmatched_parameters
 
-        @_unmatched_parameters = {}
+    def unmatched_parameters
+      return @_unmatched_parameters if @_unmatched_parameters
 
-        params.each do |parameter, expected|
-          unless matches_parameter?(parameter, expected)
-            @_unmatched_parameters[parameter] = {
-              :expected => expected,
-              :actual => safe_send(parameter),
-            }
-          end
-        end
+      @_unmatched_parameters = {}
 
-        @_unmatched_parameters
+      params.each do |parameter, expected|
+        next if matches_parameter?(parameter, expected)
+        @_unmatched_parameters[parameter] = {
+          expected: expected,
+          actual: safe_send(parameter)
+        }
       end
 
-      def matches_parameter?(parameter, expected)
-        # Chef 11+ stores the source parameter internally as an Array
-        #
-        case parameter
-        when :cookbook
-          expected === safe_send(parameter)
-        when :path
-          Array(expected == safe_send('variables')[parameter])
-        else
-          expected == safe_send('variables')[parameter]
-        end
-      end
+      @_unmatched_parameters
+    end
 
-      def correct_phase?
-        if @compile_time
-          resource.performed_action('create')[:compile_time]
-        elsif @converge_time
-          resource.performed_action('create')[:converge_time]
-        else
-          true
-        end
+    def matches_parameter?(parameter, expected)
+      # Chef 11+ stores the source parameter internally as an Array
+      #
+      case parameter
+      when :cookbook
+        expected === safe_send(parameter)
+      when :path
+        Array(expected == safe_send('variables')[parameter])
+      else
+        expected == safe_send('variables')[parameter]
       end
+    end
 
-      def safe_send(parameter)
-        resource.send(parameter)
-      rescue NoMethodError
-        nil
+    def correct_phase?
+      if @compile_time
+        resource.performed_action('create')[:compile_time]
+      elsif @converge_time
+        resource.performed_action('create')[:converge_time]
+      else
+        true
       end
+    end
 
-      def similar_resources
-        @_similar_resources ||= @runner.find_resources('template')
-      end
+    def safe_send(parameter)
+      resource.send(parameter)
+    rescue NoMethodError
+      nil
+    end
 
-      def resource
-        @_resource ||= @runner.find_resource('template',  "/etc/logrotate.d/#{@name}")
-      end
+    def similar_resources
+      @_similar_resources ||= @runner.find_resources('template')
+    end
 
-      def params
-        @_params ||= {}
-      end
+    def resource
+      @_resource ||= @runner.find_resource('template', "/etc/logrotate.d/#{@name}")
+    end
+
+    def params
+      @_params ||= {}
+    end
   end
 end

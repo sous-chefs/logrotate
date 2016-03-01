@@ -18,18 +18,18 @@
 #
 
 log_rotate_params = {
-  :enable         => true,
-  :frequency      => 'weekly',
-  :template       => 'logrotate.erb',
-  :cookbook       => 'logrotate',
-  :template_mode  => '0644',
-  :template_owner => 'root',
-  :template_group => 'root',
-  :postrotate     => nil,
-  :prerotate      => nil,
-  :firstaction    => nil,
-  :lastaction     => nil,
-  :sharedscripts  => false
+  enable: true,
+  frequency: 'weekly',
+  template: 'logrotate.erb',
+  cookbook: 'logrotate',
+  template_mode: '0644',
+  template_owner: 'root',
+  template_group: 'root',
+  postrotate: nil,
+  prerotate: nil,
+  firstaction: nil,
+  lastaction: nil,
+  sharedscripts: false
 }
 
 define(:logrotate_app, log_rotate_params) do
@@ -48,9 +48,9 @@ define(:logrotate_app, log_rotate_params) do
     end
 
     logrotate_config = {
-      :path => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
-      :frequency => params[:frequency],
-      :options => options
+      path: Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
+      frequency: params[:frequency],
+      options: options
     }
     CookbookLogrotate::VALUES.each do |opt_name|
       logrotate_config[opt_name.to_sym] = params[opt_name.to_sym]
@@ -61,12 +61,12 @@ define(:logrotate_app, log_rotate_params) do
     end
 
     template "/etc/logrotate.d/#{params[:name]}" do
-      source   params[:template]
+      source params[:template]
       cookbook params[:cookbook]
-      mode     params[:template_mode]
-      owner    params[:template_owner]
-      group    params[:template_group]
-      backup   false
+      mode params[:template_mode]
+      owner params[:template_owner]
+      group params[:template_group]
+      backup false
       variables logrotate_config
     end
   else

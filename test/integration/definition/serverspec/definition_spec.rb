@@ -6,13 +6,13 @@ describe 'logrotate::default' do
     it { should be_a_file }
     it { should be_mode(644) }
     it do
-      should contain %q(
+      should contain '
         "/var/log/tomcat/myapp.log" {
           daily
           rotate 30
           create 644 root adm
         }
-      )
+      '
     end
   end
 
@@ -20,12 +20,12 @@ describe 'logrotate::default' do
     it { should be_a_file }
     it { should be_mode(644) }
     it do
-      should contain %q(
+      should contain '
         "/var/log/tomcat/myapp.log" "/opt/local/tomcat/catalina.out" {
           daily
           rotate 7
           create 644 root adm
-      )
+      '
     end
   end
 
@@ -43,15 +43,15 @@ describe 'logrotate::default' do
     it { should be_a_file }
     it { should be_mode(644) }
     it do
-      should contain %q(
+      should contain '
         missingok
         delaycompress
         firstaction
-      )
+      '
     end
   end
 
   describe file('/etc/logrotate.d/tomcat-myapp-sharedscripts') do
-    it { should contain "sharedscripts" }
+    it { should contain 'sharedscripts' }
   end
 end
