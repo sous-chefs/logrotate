@@ -31,6 +31,7 @@ default['logrotate']['cron']['name'] = 'logrotate'
 default['logrotate']['cron']['command'] = '/usr/sbin/logrotate /etc/logrotate.conf'
 default['logrotate']['cron']['minute'] = 35
 default['logrotate']['cron']['hour'] = 2
+default['logrotate']['cron']['user'] = 'root'
 
 default['logrotate']['global'] = {
   'weekly' => true,

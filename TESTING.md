@@ -14,6 +14,9 @@ You must also have `bundler` installed:
 
     $ gem install bundler
 
+You must also have `chefdk` installed:
+- [chefdk](https://downloads.chef.io/chef-dk/)
+
 You must also have Vagrant and VirtualBox installed:
 
 - [Vagrant](https://vagrantup.com)
@@ -41,9 +44,7 @@ Development
 4. Make any changes
 5. Write tests to support those changes. It is highly recommended you write both unit and integration tests.
 6. Run the tests:
-    - `bundle exec rspec`
-    - `bundle exec foodcritic .`
-    - `bundle exec rubocop -l `
-    - `bundle exec kitchen test`
+    - `bundle exec rake travis`
+    - `kitchen test`
 
 7. Assuming the tests pass, open a Pull Request on GitHub

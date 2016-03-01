@@ -17,12 +17,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-return if platform?('windows')
-
 package node['logrotate']['package']['name'] do
   provider node['logrotate']['package']['provider'] if node['logrotate']['package']['provider']
-  source node['logrotate']['package']['provider'] if node['logrotate']['package']['source']
-  version node['logrotate']['package']['provider'] if node['logrotate']['package']['version']
+  source node['logrotate']['package']['source'] if node['logrotate']['package']['source']
+  version node['logrotate']['package']['version'] if node['logrotate']['package']['version']
   action :upgrade
 end
 
@@ -36,6 +34,6 @@ cron node['logrotate']['cron']['name'] do
   minute node['logrotate']['cron']['minute']
   hour node['logrotate']['cron']['hour']
   command node['logrotate']['cron']['command']
-  not_if { platform_family?('debian') }
-  not_if { platform_family?('rhel') }
+  user node['logrotate']['cron']['user']
+  only_if { platform?('aix', 'solaris2') }
 end

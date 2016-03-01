@@ -7,14 +7,9 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-    run_list:
-      - recipe[ubuntu::default]
   - name: ubuntu-12.04
-    run_list:
-      - recipe[ubuntu::default]
   - name: centos-7.2
-  - name: centos-6.6
-  - name: centos-5.11
+  - name: centos-6.7
 
 suites:
   - name: default
