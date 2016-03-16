@@ -37,10 +37,10 @@ define(:logrotate_app, log_rotate_params) do
   options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
   options << 'sharedscripts' if params[:sharedscripts]
 
-  directory "/etc/logrotate.d" do
-    owner "root"
-    group "root"
-    mode "0755"
+  directory '/etc/logrotate.d' do
+    owner 'root'
+    group 'root'
+    mode '0755'
     action :create
   end
 
