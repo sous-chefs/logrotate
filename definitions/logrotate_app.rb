@@ -24,7 +24,7 @@ log_rotate_params = {
   cookbook: 'logrotate',
   template_mode: '0644',
   template_owner: 'root',
-  template_group: 'root',
+  template_group: node['root_group'],
   postrotate: nil,
   prerotate: nil,
   firstaction: nil,
