@@ -3,6 +3,7 @@
 # Attribute:: default
 #
 # Copyright 2013, Chef
+# Copyright 2016, Bloomberg Finance L.P.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,6 +17,21 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+default['logrotate']['package'] = {
+  'name' => 'logrotate',
+  'source' => nil,
+  'version' => nil,
+  'provider' => nil
+}
+
+default['logrotate']['directory'] = '/etc/logrotate.d'
+
+default['logrotate']['cron']['name'] = 'logrotate'
+default['logrotate']['cron']['command'] = '/usr/sbin/logrotate /etc/logrotate.conf'
+default['logrotate']['cron']['minute'] = 35
+default['logrotate']['cron']['hour'] = 2
+default['logrotate']['cron']['user'] = 'root'
 
 default['logrotate']['global'] = {
   'weekly' => true,

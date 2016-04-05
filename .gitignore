@@ -9,6 +9,7 @@
 *.bkup
 .kitchen.local.yml
 Berksfile.lock
+Gemfile.lock
 
 .bundle/
 .cache/
@@ -18,6 +19,7 @@ Berksfile.lock
 bin/
 tmp/
 vendor/
+Berksfile.lock
 
 # RVM
 .ruby-version

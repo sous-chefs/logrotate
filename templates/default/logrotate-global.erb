@@ -9,7 +9,7 @@
 <%= k %> <%= v %>
 <% end -%>
 
-include /etc/logrotate.d
+include <%= node['logrotate']['directory'] %>
 
 <% @configuration.paths.each do |path, path_config| -%>
 <%= path %> {

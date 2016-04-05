@@ -3,6 +3,13 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v1.10
+-----
+## Improvements
+- Add support for AIX platform.
+- Update the testing harness to latest Test Kitchen.
+- Update the Travis configuration.
+
 v1.9.2
 ------
 

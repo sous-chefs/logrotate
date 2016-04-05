@@ -20,17 +20,17 @@
 # Helper module for Logrotate configuration module CookbookLogrotate
 module CookbookLogrotate
   DIRECTIVES = %w(compress copy copytruncate daily dateext
-    dateyesterday delaycompress hourly ifempty mailfirst maillast
-    missingok monthly nocompress nocopy nocopytruncate nocreate
-    nodelaycompress nodateext nomail nomissingok noolddir
-    nosharedscripts noshred notifempty sharedscripts shred weekly
-    yearly) unless const_defined?(:DIRECTIVES)
+                  dateyesterday delaycompress hourly ifempty mailfirst maillast
+                  missingok monthly nocompress nocopy nocopytruncate nocreate
+                  nodelaycompress nodateext nomail nomissingok noolddir
+                  nosharedscripts noshred notifempty sharedscripts shred weekly
+                  yearly).freeze unless const_defined?(:DIRECTIVES)
 
   VALUES = %w(compresscmd uncompresscmd compressext compressoptions
-    create dateformat include mail extension maxage minsize maxsize
-    rotate size shredcycles start tabooext su olddir) unless const_defined?(:VALUES)
+              create dateformat include mail extension maxage minsize maxsize
+              rotate size shredcycles start tabooext su olddir).freeze unless const_defined?(:VALUES)
 
-  SCRIPTS = %w(firstaction prerotate postrotate lastaction preremove) unless const_defined?(:SCRIPTS)
+  SCRIPTS = %w(firstaction prerotate postrotate lastaction preremove).freeze unless const_defined?(:SCRIPTS)
 
   DIRECTIVES_AND_VALUES = DIRECTIVES + VALUES unless const_defined?(:DIRECTIVES_AND_VALUES)
 
@@ -52,27 +52,23 @@ module CookbookLogrotate
       end
 
       def paths_from(hash)
-        hash.select { |k| !(DIRECTIVES_AND_VALUES.include?(k)) }.reduce({}) do | accum_paths, (path, config) |
+        hash.select { |k| !DIRECTIVES_AND_VALUES.include?(k) }.each_with_object({}) do |(path, config), accum_paths|
           accum_paths[path] = {
             'directives' => directives_from(config),
             'values' => values_from(config),
             'scripts' => scripts_from(config)
           }
-
-          accum_paths
         end
       end
 
       def scripts_from(hash)
         defined_scripts = hash.select { |k| SCRIPTS.include?(k) }
-        defined_scripts.reduce({}) do | accum_scripts, (script, lines) |
-          if lines.respond_to?(:join)
-            accum_scripts[script] = lines.join("\n")
-          else
-            accum_scripts[script] = lines
-          end
-
-          accum_scripts
+        defined_scripts.each_with_object({}) do |(script, lines), accum_scripts|
+          accum_scripts[script] = if lines.respond_to?(:join)
+                                    lines.join("\n")
+                                  else
+                                    lines
+                                  end
         end
       end
     end

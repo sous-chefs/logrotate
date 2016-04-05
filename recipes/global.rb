@@ -23,8 +23,8 @@ parsed_configuration = CookbookLogrotate::LogrotateConfiguration.from_hash(node[
 
 template '/etc/logrotate.conf' do
   source 'logrotate-global.erb'
-  mode   '0644'
+  mode '0644'
   variables(
-    :configuration => parsed_configuration
+    configuration: parsed_configuration
   )
 end

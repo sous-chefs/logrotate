@@ -3,6 +3,7 @@
 # Recipe:: default
 #
 # Copyright 2009-2013, Chef Software, Inc.
+# Copyright 2016, Bloomberg Finance L.P.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,20 +17,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-package 'logrotate'
-
-directory "/etc/logrotate.d" do
-  owner "root"
-  group "root"
-  mode "0755"
-  action :create
+package node['logrotate']['package']['name'] do
+  provider node['logrotate']['package']['provider'] if node['logrotate']['package']['provider']
+  source node['logrotate']['package']['source'] if node['logrotate']['package']['source']
+  version node['logrotate']['package']['version'] if node['logrotate']['package']['version']
+  action :upgrade
 end
 
-if platform? "solaris2" # ~FC023 style preference
-  cron "logrotate" do
-    minute "35"
-    hour "7"
-    command "/usr/sbin/logrotate /etc/logrotate.conf"
-  end
+directory node['logrotate']['directory'] do
+  owner 'root'
+  group node['root_group']
+  mode '0755'
+end
+
+cron node['logrotate']['cron']['name'] do
+  minute node['logrotate']['cron']['minute']
+  hour node['logrotate']['cron']['hour']
+  command node['logrotate']['cron']['command']
+  user node['logrotate']['cron']['user']
+  only_if { platform?('aix', 'solaris2') }
 end

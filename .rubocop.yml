@@ -2,3 +2,19 @@ AllCops:
   Exclude:
     - vendor/**
     - .kitchen/**
+ClassLength:
+  Enabled: false
+CyclomaticComplexity:
+  Enabled: false
+LineLength:
+  Enabled: false
+MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+PerceivedComplexity:
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
+Style/CaseEquality:
+  Enabled: false
