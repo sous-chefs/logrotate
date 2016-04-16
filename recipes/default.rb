@@ -19,17 +19,16 @@
 
 package 'logrotate'
 
-directory "/etc/logrotate.d" do
-  owner "root"
-  group "root"
-  mode "0755"
+directory '/etc/logrotate.d' do
+  owner 'root'
+  group 'root'
+  mode '0755'
   action :create
 end
 
-if platform? "solaris2" # ~FC023 style preference
-  cron "logrotate" do
-    minute "35"
-    hour "7"
-    command "/usr/sbin/logrotate /etc/logrotate.conf"
-  end
+cron 'logrotate' do
+  minute '35'
+  hour '7'
+  command '/usr/sbin/logrotate /etc/logrotate.conf'
+  only_if { platform? 'solaris2' }
 end

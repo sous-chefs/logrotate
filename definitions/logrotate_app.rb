@@ -33,11 +33,16 @@ log_rotate_params = {
 }
 
 define(:logrotate_app, log_rotate_params) do
-  include_recipe 'logrotate::default'
-
   options_tmp = params[:options] ||= %w(missingok compress delaycompress copytruncate notifempty)
   options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
   options << 'sharedscripts' if params[:sharedscripts]
+
+  directory '/etc/logrotate.d' do
+    owner 'root'
+    group 'root'
+    mode '0755'
+    action :create
+  end
 
   if params[:enable]
     invalid_options = options - CookbookLogrotate::DIRECTIVES
