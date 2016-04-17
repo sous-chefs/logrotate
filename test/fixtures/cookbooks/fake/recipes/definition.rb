@@ -19,13 +19,6 @@ logrotate_app "tomcat-myapp-no-enable" do
   enable    false
 end
 
-logrotate_app "tomcat-myapp-alt-cookbook" do
-  cookbook  "fake"
-  path      "/var/log/tomcat/myapp.log"
-  frequency "daily"
-  rotate    30
-end
-
 logrotate_app "tomcat-myapp-custom-options" do
   path        "/var/log/tomcat/myapp.log"
   options     %w{missingok delaycompress}

@@ -5,19 +5,15 @@
 <%- if @frequency %>
   <%= @frequency %>
 <%- end %>
-<%- CookbookLogrotate::VALUES.each do |opt_name| %>
-  <% if instance_variable_get("@#{opt_name}") %>
-  <%= "#{opt_name} #{instance_variable_get("@#{opt_name}")}" %>
-  <%- end %>
+<%- @configurables.each do |name, value| %>
+  <%= "#{name} #{value}" %>
 <%- end %>
-<% @options.each do |o| -%>
+<% @directives.each do |o| -%>
   <%= o %>
 <% end -%>
-<%- CookbookLogrotate::SCRIPTS.each do |script_name| %>
-  <% unless instance_variable_get("@#{script_name}").empty? %>
+<%- @scripts.each do |script_name, script| %>
   <%= script_name %>
-    <%= instance_variable_get("@#{script_name}") %>
+    <%= script %>
   endscript
-  <%- end %>
 <%- end %>
 }
