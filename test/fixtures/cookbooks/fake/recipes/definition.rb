@@ -16,7 +16,7 @@ logrotate_app "tomcat-myapp-no-enable" do
   path      "/var/log/tomcat/myapp.log"
   frequency "daily"
   rotate    30
-  enable    false
+  action :disable
 end
 
 logrotate_app "tomcat-myapp-custom-options" do

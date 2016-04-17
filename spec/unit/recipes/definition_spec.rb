@@ -31,17 +31,6 @@ describe "fake::definition" do
     end
   end
 
-  context "tomcat-myapp-alt-cookbook" do
-    it "creates appropriate logrotate config" do
-      expect(chef_run).to enable_logrotate_app("tomcat-myapp-alt-cookbook").with(
-        cookbook: "fake",
-        frequency: "daily",
-        path: "/var/log/tomcat/myapp.log",
-        rotate: 30
-      )
-    end
-  end
-
   context "tomcat-myapp-custom-options" do
     it "creates appropriate logrotate config" do
       expect(chef_run).to enable_logrotate_app("tomcat-myapp-custom-options").with(
@@ -58,7 +47,8 @@ describe "fake::definition" do
   context "tomcat-myapp-sharedscripts" do
     it "creates appropriate logrotate config" do
       expect(chef_run).to enable_logrotate_app("tomcat-myapp-sharedscripts").with(
-        options: %w{missingok compress delaycompress copytruncate notifempty sharedscripts},
+        sharedscripts: true,
+        options: %w{missingok compress delaycompress copytruncate notifempty},
         path: "/var/log/tomcat/myapp.log"
       )
     end
