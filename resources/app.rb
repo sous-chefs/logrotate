@@ -57,7 +57,7 @@ action :enable do
 
   directory new_resource.base_dir do
     owner "root"
-    group "root"
+    group node["root_group"]
     mode "0755"
     action :create
   end
