@@ -3,6 +3,7 @@
 # Recipe:: default
 #
 # Copyright 2009-2013, Chef Software, Inc.
+# Copyright 2015-2016, Steven Danna
 # Copyright 2016, Bloomberg Finance L.P.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
