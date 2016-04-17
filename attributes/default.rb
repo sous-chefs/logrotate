@@ -18,36 +18,36 @@
 # limitations under the License.
 #
 
-default['logrotate']['package'] = {
-  'name' => 'logrotate',
-  'source' => nil,
-  'version' => nil,
-  'provider' => nil
+default["logrotate"]["package"] = {
+  "name" => "logrotate",
+  "source" => nil,
+  "version" => nil,
+  "provider" => nil,
 }
 
-default['logrotate']['directory'] = '/etc/logrotate.d'
+default["logrotate"]["directory"] = "/etc/logrotate.d"
+default["logrotate"]["cron"]["install"] = platform?("solaris2") || platform?("aix")
+default["logrotate"]["cron"]["name"] = "logrotate"
+default["logrotate"]["cron"]["command"] = "/usr/sbin/logrotate /etc/logrotate.conf"
+default["logrotate"]["cron"]["minute"] = 35
+default["logrotate"]["cron"]["hour"] = 2
 
-default['logrotate']['cron']['name'] = 'logrotate'
-default['logrotate']['cron']['command'] = '/usr/sbin/logrotate /etc/logrotate.conf'
-default['logrotate']['cron']['minute'] = 35
-default['logrotate']['cron']['hour'] = 2
+default["logrotate"]["global"] = {
+  "weekly" => true,
+  "rotate" => 4,
+  "create" => "",
 
-default['logrotate']['global'] = {
-  'weekly' => true,
-  'rotate' => 4,
-  'create' => '',
-
-  '/var/log/wtmp' => {
-    'missingok' => true,
-    'monthly' => true,
-    'create' => '0664 root utmp',
-    'rotate' => 1
+  "/var/log/wtmp" => {
+    "missingok" => true,
+    "monthly" => true,
+    "create" => "0664 root utmp",
+    "rotate" => 1,
   },
 
-  '/var/log/btmp' => {
-    'missingok' => true,
-    'monthly' => true,
-    'create' => '0660 root utmp',
-    'rotate' => 1
-  }
+  "/var/log/btmp" => {
+    "missingok" => true,
+    "monthly" => true,
+    "create" => "0660 root utmp",
+    "rotate" => 1,
+  },
 }

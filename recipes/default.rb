@@ -17,25 +17,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-return if platform?('windows')
+return if platform?("windows")
 
-package node['logrotate']['package']['name'] do
-  provider node['logrotate']['package']['provider'] if node['logrotate']['package']['provider']
-  source node['logrotate']['package']['provider'] if node['logrotate']['package']['source']
-  version node['logrotate']['package']['provider'] if node['logrotate']['package']['version']
+package node["logrotate"]["package"]["name"] do
+  provider node["logrotate"]["package"]["provider"] if node["logrotate"]["package"]["provider"]
+  source node["logrotate"]["package"]["provider"] if node["logrotate"]["package"]["source"]
+  version node["logrotate"]["package"]["provider"] if node["logrotate"]["package"]["version"]
   action :upgrade
 end
 
-directory node['logrotate']['directory'] do
-  owner 'root'
-  group node['root_group']
-  mode '0755'
+directory node["logrotate"]["directory"] do
+  owner "root"
+  group node["root_group"]
+  mode "0755"
 end
 
-cron node['logrotate']['cron']['name'] do
-  minute node['logrotate']['cron']['minute']
-  hour node['logrotate']['cron']['hour']
-  command node['logrotate']['cron']['command']
-  not_if { platform_family?('debian') }
-  not_if { platform_family?('rhel') }
+if node["logrotate"]["cron"]["install"] # ~FC023
+  cron node["logrotate"]["cron"]["name"] do
+    minute node["logrotate"]["cron"]["minute"]
+    hour node["logrotate"]["cron"]["hour"]
+    command node["logrotate"]["cron"]["command"]
+  end
 end
