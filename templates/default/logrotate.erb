@@ -16,7 +16,7 @@
 <%- CookbookLogrotate::SCRIPTS.each do |script_name| %>
   <% unless instance_variable_get("@#{script_name}").empty? %>
   <%= script_name %>
-  <%= instance_variable_get("@#{script_name}") %>
+    <%= instance_variable_get("@#{script_name}") %>
   endscript
   <%- end %>
 <%- end %>

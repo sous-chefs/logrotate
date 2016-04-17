@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-package 'logrotate'
+package "logrotate"
 
 directory "/etc/logrotate.d" do
   owner "root"

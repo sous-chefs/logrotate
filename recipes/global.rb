@@ -17,13 +17,13 @@
 # limitations under the License.
 #
 
-include_recipe 'logrotate::default'
+include_recipe "logrotate::default"
 
-parsed_configuration = CookbookLogrotate::LogrotateConfiguration.from_hash(node['logrotate']['global'].to_hash)
+parsed_configuration = CookbookLogrotate::LogrotateConfiguration.from_hash(node["logrotate"]["global"].to_hash)
 
-template '/etc/logrotate.conf' do
-  source 'logrotate-global.erb'
-  mode   '0644'
+template "/etc/logrotate.conf" do
+  source "logrotate-global.erb"
+  mode   "0644"
   variables(
     :configuration => parsed_configuration
   )

@@ -14,13 +14,13 @@ if defined?(ChefSpec)
     end
 
     def at_compile_time
-      raise ArgumentError, 'Cannot specify both .at_converge_time and .at_compile_time!' if @converge_time
+      raise ArgumentError, "Cannot specify both .at_converge_time and .at_compile_time!" if @converge_time
       @compile_time = true
       self
     end
 
     def at_converge_time
-      raise ArgumentError, 'Cannot specify both .at_compile_time and .at_converge_time!' if @compile_time
+      raise ArgumentError, "Cannot specify both .at_compile_time and .at_converge_time!" if @compile_time
       @converge_time = true
       self
     end
@@ -45,7 +45,7 @@ if defined?(ChefSpec)
       @runner = runner
 
       if resource
-        resource.performed_action?('create') && unmatched_parameters.empty? && correct_phase?
+        resource.performed_action?("create") && unmatched_parameters.empty? && correct_phase?
       else
         false
       end
@@ -53,7 +53,7 @@ if defined?(ChefSpec)
 
     def failure_message
       if resource
-        if resource.performed_action?('create')
+        if resource.performed_action?("create")
           if unmatched_parameters.empty?
             if @compile_time
               %Q{expected "#{resource}" to be run at compile time}
@@ -93,62 +93,63 @@ if defined?(ChefSpec)
     end
 
     private
-      def unmatched_parameters
-        return @_unmatched_parameters if @_unmatched_parameters
 
-        @_unmatched_parameters = {}
+    def unmatched_parameters
+      return @_unmatched_parameters if @_unmatched_parameters
 
-        params.each do |parameter, expected|
-          unless matches_parameter?(parameter, expected)
-            @_unmatched_parameters[parameter] = {
-              :expected => expected,
-              :actual => safe_send(parameter),
-            }
-          end
-        end
+      @_unmatched_parameters = {}
 
-        @_unmatched_parameters
-      end
-
-      def matches_parameter?(parameter, expected)
-        # Chef 11+ stores the source parameter internally as an Array
-        #
-        case parameter
-        when :cookbook
-          expected === safe_send(parameter)
-        when :path
-          Array(expected == safe_send('variables')[parameter])
-        else
-          expected == safe_send('variables')[parameter]
+      params.each do |parameter, expected|
+        unless matches_parameter?(parameter, expected)
+          @_unmatched_parameters[parameter] = {
+            :expected => expected,
+            :actual => safe_send(parameter),
+          }
         end
       end
 
-      def correct_phase?
-        if @compile_time
-          resource.performed_action('create')[:compile_time]
-        elsif @converge_time
-          resource.performed_action('create')[:converge_time]
-        else
-          true
-        end
-      end
+      @_unmatched_parameters
+    end
 
-      def safe_send(parameter)
-        resource.send(parameter)
-      rescue NoMethodError
-        nil
+    def matches_parameter?(parameter, expected)
+      # Chef 11+ stores the source parameter internally as an Array
+      #
+      case parameter
+      when :cookbook
+        expected === safe_send(parameter)
+      when :path
+        Array(expected == safe_send("variables")[parameter])
+      else
+        expected == safe_send("variables")[parameter]
       end
+    end
 
-      def similar_resources
-        @_similar_resources ||= @runner.find_resources('template')
+    def correct_phase?
+      if @compile_time
+        resource.performed_action("create")[:compile_time]
+      elsif @converge_time
+        resource.performed_action("create")[:converge_time]
+      else
+        true
       end
+    end
 
-      def resource
-        @_resource ||= @runner.find_resource('template',  "/etc/logrotate.d/#{@name}")
-      end
+    def safe_send(parameter)
+      resource.send(parameter)
+    rescue NoMethodError
+      nil
+    end
 
-      def params
-        @_params ||= {}
-      end
+    def similar_resources
+      @_similar_resources ||= @runner.find_resources("template")
+    end
+
+    def resource
+      @_resource ||= @runner.find_resource("template", "/etc/logrotate.d/#{@name}")
+    end
+
+    def params
+      @_params ||= {}
+    end
   end
 end

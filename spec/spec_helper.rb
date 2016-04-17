@@ -1,1 +1,1 @@
-require 'chefspec'
+require "chefspec"

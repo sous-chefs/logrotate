@@ -19,25 +19,25 @@
 
 log_rotate_params = {
   :enable         => true,
-  :frequency      => 'weekly',
-  :template       => 'logrotate.erb',
-  :cookbook       => 'logrotate',
-  :template_mode  => '0644',
-  :template_owner => 'root',
-  :template_group => 'root',
+  :frequency      => "weekly",
+  :template       => "logrotate.erb",
+  :cookbook       => "logrotate",
+  :template_mode  => "0644",
+  :template_owner => "root",
+  :template_group => "root",
   :postrotate     => nil,
   :prerotate      => nil,
   :firstaction    => nil,
   :lastaction     => nil,
-  :sharedscripts  => false
+  :sharedscripts  => false,
 }
 
 define(:logrotate_app, log_rotate_params) do
-  include_recipe 'logrotate::default'
+  include_recipe "logrotate::default"
 
-  options_tmp = params[:options] ||= %w(missingok compress delaycompress copytruncate notifempty)
+  options_tmp = params[:options] ||= %w{missingok compress delaycompress copytruncate notifempty}
   options = options_tmp.respond_to?(:each) ? options_tmp : options_tmp.split
-  options << 'sharedscripts' if params[:sharedscripts]
+  options << "sharedscripts" if params[:sharedscripts]
 
   if params[:enable]
     invalid_options = options - CookbookLogrotate::DIRECTIVES
@@ -48,9 +48,9 @@ define(:logrotate_app, log_rotate_params) do
     end
 
     logrotate_config = {
-      :path => Array(params[:path]).map { |path| path.to_s.inspect }.join(' '),
+      :path => Array(params[:path]).map { |path| path.to_s.inspect }.join(" "),
       :frequency => params[:frequency],
-      :options => options
+      :options => options,
     }
     CookbookLogrotate::VALUES.each do |opt_name|
       logrotate_config[opt_name.to_sym] = params[opt_name.to_sym]

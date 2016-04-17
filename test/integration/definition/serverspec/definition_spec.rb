@@ -1,8 +1,8 @@
-require 'serverspec'
+require "serverspec"
 set :backend, :exec
 
-describe 'logrotate::default' do
-  describe file('/etc/logrotate.d/tomcat-myapp') do
+describe "logrotate::default" do
+  describe file("/etc/logrotate.d/tomcat-myapp") do
     it { should be_a_file }
     it { should be_mode(644) }
     it do
@@ -16,7 +16,7 @@ describe 'logrotate::default' do
     end
   end
 
-  describe file('/etc/logrotate.d/tomcat-myapp-multi-path') do
+  describe file("/etc/logrotate.d/tomcat-myapp-multi-path") do
     it { should be_a_file }
     it { should be_mode(644) }
     it do
@@ -29,29 +29,29 @@ describe 'logrotate::default' do
     end
   end
 
-  describe file('/etc/logrotate.d/tomcat-myapp-no-enable') do
+  describe file("/etc/logrotate.d/tomcat-myapp-no-enable") do
     it { should_not be_a_file }
   end
 
-  describe file('/etc/logrotate.d/tomcat-myapp-alt-cookbook') do
+  describe file("/etc/logrotate.d/tomcat-myapp-alt-cookbook") do
     it { should be_a_file }
     it { should be_mode(644) }
     it { should contain('# This is a different template') }
   end
 
-  describe file('/etc/logrotate.d/tomcat-myapp-custom-options') do
+  describe file("/etc/logrotate.d/tomcat-myapp-custom-options") do
     it { should be_a_file }
     it { should be_mode(644) }
     it do
-      should contain %q(
+      should contain %q{
         missingok
         delaycompress
         firstaction
-      )
+      }
     end
   end
 
-  describe file('/etc/logrotate.d/tomcat-myapp-sharedscripts') do
+  describe file("/etc/logrotate.d/tomcat-myapp-sharedscripts") do
     it { should contain "sharedscripts" }
   end
 end
