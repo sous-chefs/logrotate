@@ -21,13 +21,13 @@
 module CookbookLogrotate
   DIRECTIVES = %w{compress copy copytruncate daily dateext
     dateyesterday delaycompress hourly ifempty mailfirst maillast
-    missingok monthly nocompress nocopy nocopytruncate nocreate
+    missingok monthly nocompress nocopy nocopytruncate nocreate nocreateolddir
     nodelaycompress nodateext nomail nomissingok noolddir
-    nosharedscripts noshred notifempty sharedscripts shred weekly
+    nosharedscripts noshred notifempty renamecopy sharedscripts shred weekly
     yearly} unless const_defined?(:DIRECTIVES)
 
   VALUES = %w{compresscmd uncompresscmd compressext compressoptions
-    create dateformat include mail extension maxage minsize maxsize
+    create createolddir dateformat include mail extension maxage minsize maxsize
     rotate size shredcycles start tabooext su olddir} unless const_defined?(:VALUES)
 
   SCRIPTS = %w{firstaction prerotate postrotate lastaction preremove} unless const_defined?(:SCRIPTS)
