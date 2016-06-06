@@ -33,12 +33,6 @@ describe "logrotate::default" do
     it { should_not be_a_file }
   end
 
-  describe file("/etc/logrotate.d/tomcat-myapp-alt-cookbook") do
-    it { should be_a_file }
-    it { should be_mode(644) }
-    it { should contain('# This is a different template') }
-  end
-
   describe file("/etc/logrotate.d/tomcat-myapp-custom-options") do
     it { should be_a_file }
     it { should be_mode(644) }
