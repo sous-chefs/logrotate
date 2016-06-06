@@ -6,8 +6,8 @@ description       "Installs logrotate package and provides a definition for logr
 long_description  "Installs the logrotate package, manages /etc/logrotate.conf, and provides a logrotate_app definition."
 version           "2.0.0"
 
-source_url "https://github.com/stevendanna/logrotate"
-issues_url "https://github.com/stevendanna/logrotate/issues"
+source_url "https://github.com/stevendanna/logrotate" if respond_to?(:source_url)
+issues_url "https://github.com/stevendanna/logrotate/issues" if respond_to?(:issues_url)
 
 recipe "logrotate", "Installs logrotate package"
 provides "logrotate_app"
