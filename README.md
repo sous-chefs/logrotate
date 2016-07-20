@@ -133,9 +133,6 @@ The definition takes the following params:
   "root")
 - `template_group`: the group of the logrotate template (default:
   "root")
-- `cookbook`: select the template source from the specified
-  cookbook. By default it will use the template from the logrotate
-  cookbook.
 - `create`: creation parameters for the logrotate "create" config,
   follows the form "mode owner group". This is an optional parameter,
   and is nil by default.
@@ -164,7 +161,6 @@ application named myapp that writes its log file to
 
 ```ruby
 logrotate_app 'tomcat-myapp' do
-  cookbook  'logrotate'
   path      '/var/log/tomcat/myapp.log'
   frequency 'daily'
   rotate    30
@@ -176,7 +172,6 @@ To rotate multiple logfile paths, specify the path as an array:
 
 ```ruby
 logrotate_app 'tomcat-myapp' do
-  cookbook  'logrotate'
   path      ['/var/log/tomcat/myapp.log', '/opt/local/tomcat/catalina.out']
   frequency 'daily'
   create    '644 root adm'
@@ -188,7 +183,6 @@ To specify which logrotate options, specify the options as an array:
 
 ```ruby
 logrotate_app 'tomcat-myapp' do
-  cookbook  'logrotate'
   path      '/var/log/tomcat/myapp.log'
   options   ['missingok', 'delaycompress', 'notifempty']
   frequency 'daily'
