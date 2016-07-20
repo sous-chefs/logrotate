@@ -3,6 +3,17 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v2.0.0
+------
+
+- Convert the logrotate_app definition to a resource
+- Accept all options included in logrotate 3.9.2
+
+# Known incompatibilities
+
+- The `cookbook` parameter to `logrotate_app` is no longer accepted.
+
+
 v1.9.2
 ------
 
