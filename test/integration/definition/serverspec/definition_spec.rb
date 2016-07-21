@@ -45,6 +45,18 @@ describe "logrotate::default" do
     end
   end
 
+  describe file("/etc/logrotate.d/tomcat-myapp-custom-options-as-string") do
+    it { should be_a_file }
+    it { should be_mode(644) }
+    it do
+      should contain %q{
+        missingok
+        delaycompress
+        firstaction
+      }
+    end
+  end
+
   describe file("/etc/logrotate.d/tomcat-myapp-sharedscripts") do
     it { should contain "sharedscripts" }
   end
