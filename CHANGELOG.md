@@ -11,6 +11,10 @@ v2.1.0 (Unreleased)
 - Restore `cookbook` parameter for `logrotate_app` resource due to
   popular demand.
 
+- Add a `template_name` parameter to replace the 1.x `template`
+  parameter. The name `template` can't be used inside a resource
+  without conflicting with an attribute of the same name.
+
 - Fix exception when `options` specified as a string rather than an
   array
 
