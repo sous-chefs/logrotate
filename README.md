@@ -1,20 +1,18 @@
-logrotate Cookbook
-==================
+# logrotate Cookbook
 [![Build Status](https://secure.travis-ci.org/stevendanna/logrotate.png?branch=master)](http://travis-ci.org/stevendanna/logrotate)
 
 Manages the logrotate package and provides a definition to manage
 application specific logrotate configuration.
 
 
-Requirements
-------------
+## Requirements
 Should work on any platform that includes a 'logrotate' package and
-writes logrotate configuration to /etc/logrotate.d. Tested on Ubuntu,
-Debian and Red Hat/CentOS.
+writes logrotate configuration to /etc/logrotate.d. Tested on Ubuntu
+and Centos.
 
 
-Recipes
--------
+## Recipes
+
 ### global
 
 Generates and controls a global `/etc/logrotate.conf` file that will
@@ -98,20 +96,36 @@ node['logrotate']['global']['/var/log/foo/*.log'] = {
 ```
 
 
-Definitions
+Resources
 -----------
 ### logrotate_app
 
-This definition can be used to drop off customized logrotate config
+This resource can be used to drop off customized logrotate config
 files on a per application basis.
 
-The definition takes the following params:
+The resource takes the following properties:
 
 - `path`: specifies a single path (string) or multiple paths (array)
   that should have logrotation stanzas created in the config file. No
   default, this must be specified.
-- `enable`: true/false, if true it will create the template in
-  /etc/logrotate.d.
+
+- `cookbook`: The cookbook that continues the template for
+  logrotate_app config definitions. By default this is `logrotate`.
+  Users can provide their own template by setting this attribute to
+  point at a different cookbook.
+
+- `template_name`: sets the template source, default is
+  "logrotate.erb".
+
+- `template_mode`: the mode to create the logrotate template with
+  (default: "0440")
+
+- `template_owner`: the owner of the logrotate template (default:
+  "root")
+
+- `template_group`: the group of the logrotate template (default:
+  "root")
+
 - `frequency`: sets the frequency for rotation. Default value is
   'weekly'. Valid values are: hourly, daily, weekly, monthly, yearly,
   see the logrotate man page for more information. Note that usually
@@ -119,38 +133,29 @@ The definition takes the following params:
   this configuration and run logrotate hourly to be able to really
   rotate logs hourly. Hourly rotation requires logrotate v3.8.5 or
   higher.
-- `dateformat`: specifies date extension with %Y, %m, %d, and %s. The
-  default value is -%Y%m%d.
-- `size`: Log files are rotated when they grow bigger than size bytes.
-- `maxsize`: Log files are rotated when they grow bigger than size
-  bytes even before the additionally specified time interval.
-- `su`: Rotate log files set under this user and group instead of
-  using default user/group.
-- `template`: sets the template source, default is "logrotate.erb".
-- `template_mode`: the mode to create the logrotate template with
-  (default: "0440")
-- `template_owner`: the owner of the logrotate template (default:
-  "root")
-- `template_group`: the group of the logrotate template (default:
-  "root")
-- `create`: creation parameters for the logrotate "create" config,
-  follows the form "mode owner group". This is an optional parameter,
-  and is nil by default.
-- `firstaction`: lines to be executed once before all log files that
-  match the wildcarded pattern are rotated, before pre-rotate script
-  is run and only if at least one log will actually be rotated
-- `postrotate`: lines to be executed after the log file is rotated
-- `prerotate`: lines to be executed before the log file is rotated
-- `lastaction`: lines to be executed once after all log files that
-  match the wildcarded pattern are rotated, after postrotate script is
-  run and only if at least one log is rotated
-- `rotate`: Log files are rotated this many times before being removed or mailed.
-- `sharedscripts`: if true, the sharedscripts options is specified
-  which makes sure prescript and postscript commands are run only once
-  (even if multiple files match the path)
 
-Usage
------
+- `options`: Any logrotate configuration option that doesn't specify a
+  value. See the logrotate(8) manual page of v3.9.2 or earlier for
+  details.
+
+In addition to these properties, any logrotate option that takes a
+parameter can be used as a logrotate_app property. For example, to set
+the `rotate` option you can use a resource declaration such as:
+
+```ruby
+logrotate_app 'tomcat-myapp' do
+  path      '/var/log/tomcat/myapp.log'
+  frequency 'daily'
+  rotate    30
+  create    '644 root adm'
+end
+```
+
+See the logrotate(8) manual page of v3.9.2 or earlier for the list of
+available options.
+
+
+## Usage
 
 The default recipe will ensure logrotate is always up to date.
 
@@ -191,15 +196,16 @@ logrotate_app 'tomcat-myapp' do
 end
 ```
 
+## License & Authors
 
-License & Authors
------------------
+- Author:: Steven Danna (<steve@chef.io>)
 - Author:: Scott M. Likens (<scott@likens.us>)
 - Author:: Joshua Timberman (<joshua@chef.io>)
 
 ```text
 Copyright 2009, Scott M. Likens
 Copyright 2011-2012, Chef Software, Inc.
+Copyright 2016, Steven Danna
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
