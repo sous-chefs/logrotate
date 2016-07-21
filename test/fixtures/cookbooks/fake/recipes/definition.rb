@@ -37,6 +37,15 @@ logrotate_app "tomcat-myapp-custom-options-as-string" do
   firstaction 'echo "hi"'
 end
 
+logrotate_app "tomcat-myapp-custom-template" do
+  path        "/var/log/tomcat/myapp.log"
+  cookbook    "fake"
+  options     "missingok delaycompress"
+  frequency   "daily"
+  rotate      30
+  create      "644 root adm"
+  firstaction 'echo "hi"'
+end
 
 logrotate_app "tomcat-myapp-sharedscripts" do
   path "/var/log/tomcat/myapp.log"

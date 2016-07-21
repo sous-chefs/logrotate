@@ -1,0 +1,22 @@
+#
+# This is a custom template!
+# This is the interface we support, if it isn't here,
+# don't depend on it being available
+#
+
+<%= @path %> {
+<%- if @frequency %>
+  <%= @frequency %>
+<%- end %>
+<%- @configurables.each do |name, value| %>
+  <%= "#{name} #{value}" %>
+<%- end %>
+<% @directives.each do |o| -%>
+  <%= o %>
+<% end -%>
+<%- @scripts.each do |script_name, script| %>
+  <%= script_name %>
+    <%= script %>
+  endscript
+<%- end %>
+}
