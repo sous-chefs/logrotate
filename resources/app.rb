@@ -103,7 +103,7 @@ def handle_options(new_resource)
   opts = if new_resource.options.is_a?(Array)
            new_resource.options.dup
          else
-           new_reosurce.options.split
+           new_resource.options.split
          end
 
   if new_resource.sharedscripts
