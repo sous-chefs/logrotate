@@ -3,7 +3,7 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
-v2.1.0 (Unreleased)
+v2.1.0
 ------
 
 # Bug Fixes
