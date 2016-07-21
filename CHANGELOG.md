@@ -3,6 +3,17 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v2.1.0 (Unreleased)
+------
+
+# Bug Fixes
+
+- Restore `cookbook` parameter for `logrotate_app` resource due to
+  popular demand.
+
+- Fix exception when `options` specified as a string rather than an
+  array
+
 v2.0.0
 ------
 
