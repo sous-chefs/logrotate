@@ -18,6 +18,7 @@ resource_name :logrotate_app
 
 property :path, [String, Array], required: true
 property :frequency, String, default: "weekly"
+property :cookbook, default: "logrotate"
 property :template_mode, default: "0644"
 property :template_owner, default: "root"
 property :template_group, default: "root"
@@ -64,7 +65,7 @@ action :enable do
 
   template "#{new_resource.base_dir}/#{new_resource.name}" do
     source   "logrotate.erb"
-    cookbook "logrotate"
+    cookbook new_resource.cookbook
     mode     new_resource.template_mode
     owner    new_resource.template_owner
     group    new_resource.template_group
