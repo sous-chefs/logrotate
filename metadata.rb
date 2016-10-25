@@ -6,13 +6,14 @@ description       "Installs logrotate package and provides a definition for logr
 long_description  "Installs the logrotate package, manages /etc/logrotate.conf, and provides a logrotate_app definition."
 version           "2.1.0"
 
-source_url "https://github.com/stevendanna/logrotate" if respond_to?(:source_url)
-issues_url "https://github.com/stevendanna/logrotate/issues" if respond_to?(:issues_url)
+source_url "https://github.com/stevendanna/logrotate"
+issues_url "https://github.com/stevendanna/logrotate/issues"
+chef_version ">= 12.1" if respond_to?(:chef_version)
 
 recipe "logrotate", "Installs logrotate package"
 provides "logrotate_app"
 
-depends "compat_resource"
+depends "compat_resource", ">= 12.14.7"
 
 %w{amazon centos debian fedora redhat scientific solaris2 ubuntu}.each do |platform|
   supports platform
