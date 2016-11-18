@@ -4,7 +4,7 @@ maintainer_email  "steve@chef.io"
 license           "Apache 2.0"
 description       "Installs logrotate package and provides a definition for logrotate configs"
 long_description  "Installs the logrotate package, manages /etc/logrotate.conf, and provides a logrotate_app definition."
-version           "2.1.0"
+version           "2.1.1"
 
 source_url "https://github.com/stevendanna/logrotate" if respond_to?(:source_url)
 issues_url "https://github.com/stevendanna/logrotate/issues" if respond_to?(:issues_url)
