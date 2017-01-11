@@ -108,24 +108,18 @@ The resource takes the following properties:
 - `path`: specifies a single path (string) or multiple paths (array)
   that should have logrotation stanzas created in the config file. No
   default, this must be specified.
-
 - `cookbook`: The cookbook that continues the template for
   logrotate_app config definitions. By default this is `logrotate`.
   Users can provide their own template by setting this attribute to
   point at a different cookbook.
-
 - `template_name`: sets the template source, default is
   "logrotate.erb".
-
 - `template_mode`: the mode to create the logrotate template with
   (default: "0440")
-
 - `template_owner`: the owner of the logrotate template (default:
   "root")
-
 - `template_group`: the group of the logrotate template (default:
   "root")
-
 - `frequency`: sets the frequency for rotation. Default value is
   'weekly'. Valid values are: hourly, daily, weekly, monthly, yearly,
   see the logrotate man page for more information. Note that usually
@@ -133,7 +127,18 @@ The resource takes the following properties:
   this configuration and run logrotate hourly to be able to really
   rotate logs hourly. Hourly rotation requires logrotate v3.8.5 or
   higher.
-
+- `dateformat`:  specify the extension for dateext
+- `size`: 
+- `maxsize`: 
+- `minsize`:  
+- `su`: 
+- `rotate`:  
+- `olddir`: 
+- `sharedobjects`: 
+- `postrotate`: 
+- `prerotate`:  
+- `firstaction`: 
+- `lastaction`:  
 - `options`: Any logrotate configuration option that doesn't specify a
   value. See the logrotate(8) manual page of v3.9.2 or earlier for
   details.
