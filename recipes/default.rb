@@ -24,7 +24,7 @@ package node["logrotate"]["package"]["name"] do
   provider node["logrotate"]["package"]["provider"] if node["logrotate"]["package"]["provider"]
   source node["logrotate"]["package"]["source"] if node["logrotate"]["package"]["source"]
   version node["logrotate"]["package"]["version"] if node["logrotate"]["package"]["version"]
-  action :upgrade
+  action node["logrotate"]["package"]["action"]
 end
 
 directory node["logrotate"]["directory"] do
