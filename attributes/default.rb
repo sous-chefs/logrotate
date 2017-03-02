@@ -24,6 +24,7 @@ default["logrotate"]["package"] = {
   "source" => nil,
   "version" => nil,
   "provider" => nil,
+  "action" => :upgrade,
 }
 
 default["logrotate"]["directory"] = "/etc/logrotate.d"
