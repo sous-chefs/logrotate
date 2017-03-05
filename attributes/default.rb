@@ -1,10 +1,10 @@
 #
-# Cookbook Name:: logrotate
+# Cookbook:: logrotate
 # Attribute:: default
 #
-# Copyright 2013, Chef Software, Inc
-# Copyright 2015-2016, Steven Danna
-# Copyright 2016, Bloomberg Finance L.P.
+# Copyright:: 2013-2017, Chef Software, Inc
+# Copyright:: 2015-2017, Steven Danna
+# Copyright:: 2016-2017, Bloomberg Finance L.P.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
