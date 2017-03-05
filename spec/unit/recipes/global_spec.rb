@@ -1,17 +1,17 @@
-require "spec_helper"
+require 'spec_helper'
 
-describe "logrotate::global" do
+describe 'logrotate::global' do
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
-  it "includes the default recipe" do
-    expect(chef_run).to include_recipe("logrotate::default")
+  it 'includes the default recipe' do
+    expect(chef_run).to include_recipe('logrotate::default')
   end
 
-  it "writes the configuration template" do
-    template = chef_run.template("/etc/logrotate.conf")
+  it 'writes the configuration template' do
+    template = chef_run.template('/etc/logrotate.conf')
     expect(template).to be
-    expect(template.source).to eq("logrotate-global.erb")
-    expect(template.mode).to eq("0644")
+    expect(template.source).to eq('logrotate-global.erb')
+    expect(template.mode).to eq('0644')
   end
 
   shared_examples "script in global context" do
