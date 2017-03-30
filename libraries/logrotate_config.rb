@@ -52,7 +52,7 @@ module CookbookLogrotate
       end
 
       def paths_from(hash)
-        hash.select { |k| !DIRECTIVES_AND_VALUES.include?(k) }.each_with_object do |accum_paths, (path, config)|
+        hash.select { |k| !DIRECTIVES_AND_VALUES.include?(k) }.reduce({}) do |accum_paths, (path, config)| # rubocop:disable Style/EachWithObject
           accum_paths[path] = {
             'directives' => directives_from(config),
             'values' => values_from(config),
@@ -65,7 +65,7 @@ module CookbookLogrotate
 
       def scripts_from(hash)
         defined_scripts = hash.select { |k| SCRIPTS.include?(k) }
-        defined_scripts.each_with_object do |accum_scripts, (script, lines)|
+        defined_scripts.reduce({}) do |accum_scripts, (script, lines)| # rubocop:disable Style/EachWithObject
           accum_scripts[script] = (lines.respond_to?(:join) ? lines.join('\n') : lines)
           accum_scripts
         end
