@@ -118,7 +118,7 @@ The resource takes the following properties:
   "logrotate.erb".
 
 - `template_mode`: the mode to create the logrotate template with
-  (default: "0440")
+  (default: "0644")
 
 - `template_owner`: the owner of the logrotate template (default:
   "root")
