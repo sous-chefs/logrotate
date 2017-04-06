@@ -1,10 +1,10 @@
 #
-# Cookbook Name:: logrotate
+# Cookbook:: logrotate
 # Attribute:: default
 #
-# Copyright 2013, Chef Software, Inc
-# Copyright 2015-2016, Steven Danna
-# Copyright 2016, Bloomberg Finance L.P.
+# Copyright:: 2013-2017, Chef Software, Inc
+# Copyright:: 2015-2017, Steven Danna
+# Copyright:: 2016-2017, Bloomberg Finance L.P.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,37 +19,37 @@
 # limitations under the License.
 #
 
-default["logrotate"]["package"] = {
-  "name" => "logrotate",
-  "source" => nil,
-  "version" => nil,
-  "provider" => nil,
-  "action" => :upgrade,
+default['logrotate']['package'] = {
+  'name' => 'logrotate',
+  'source' => nil,
+  'version' => nil,
+  'provider' => nil,
+  'action' => :upgrade,
 }
 
-default["logrotate"]["directory"] = "/etc/logrotate.d"
-default["logrotate"]["cron"]["install"] = platform?("solaris2") || platform?("aix")
-default["logrotate"]["cron"]["name"] = "logrotate"
-default["logrotate"]["cron"]["command"] = "/usr/sbin/logrotate /etc/logrotate.conf"
-default["logrotate"]["cron"]["minute"] = 35
-default["logrotate"]["cron"]["hour"] = 2
+default['logrotate']['directory'] = '/etc/logrotate.d'
+default['logrotate']['cron']['install'] = platform?('solaris2') || platform?('aix')
+default['logrotate']['cron']['name'] = 'logrotate'
+default['logrotate']['cron']['command'] = '/usr/sbin/logrotate /etc/logrotate.conf'
+default['logrotate']['cron']['minute'] = 35
+default['logrotate']['cron']['hour'] = 2
 
-default["logrotate"]["global"] = {
-  "weekly" => true,
-  "rotate" => 4,
-  "create" => "",
+default['logrotate']['global'] = {
+  'weekly' => true,
+  'rotate' => 4,
+  'create' => '',
 
-  "/var/log/wtmp" => {
-    "missingok" => true,
-    "monthly" => true,
-    "create" => "0664 root utmp",
-    "rotate" => 1,
+  '/var/log/wtmp' => {
+    'missingok' => true,
+    'monthly' => true,
+    'create' => '0664 root utmp',
+    'rotate' => 1,
   },
 
-  "/var/log/btmp" => {
-    "missingok" => true,
-    "monthly" => true,
-    "create" => "0660 root utmp",
-    "rotate" => 1,
+  '/var/log/btmp' => {
+    'missingok' => true,
+    'monthly' => true,
+    'create' => '0660 root utmp',
+    'rotate' => 1,
   },
 }
