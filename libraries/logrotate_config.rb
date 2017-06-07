@@ -32,11 +32,11 @@ module CookbookLogrotate
 
   SCRIPTS = %w{firstaction prerotate postrotate lastaction preremove} unless const_defined?(:SCRIPTS)
 
-  DIRECTIVES_AND_VALUES = DIRECTIVES + VALUES unless const_defined?(:DIRECTIVES_AND_VALUES)
+  DIRECTIVES_AND_VALUES_AND_SCRIPTS = DIRECTIVES + VALUES + SCRIPTS unless const_defined?(:DIRECTIVES_AND_VALUES_AND_SCRIPTS)
 
   # Helper class for creating configurations
   class LogrotateConfiguration
-    attr_reader :directives, :values, :paths
+    attr_reader :directives, :values, :scripts, :paths
 
     class << self
       def from_hash(hash)
@@ -52,7 +52,7 @@ module CookbookLogrotate
       end
 
       def paths_from(hash)
-        hash.select { |k| !(DIRECTIVES_AND_VALUES.include?(k)) }.reduce({}) do |accum_paths, (path, config)|
+        hash.select { |k| !(DIRECTIVES_AND_VALUES_AND_SCRIPTS.include?(k)) }.reduce({}) do |accum_paths, (path, config)|
           accum_paths[path] = {
             "directives" => directives_from(config),
             "values" => values_from(config),
@@ -82,6 +82,7 @@ module CookbookLogrotate
     def initialize(hash)
       @directives = LogrotateConfiguration.directives_from(hash)
       @values = LogrotateConfiguration.values_from(hash)
+      @scripts = LogrotateConfiguration.scripts_from(hash)
       @paths = LogrotateConfiguration.paths_from(hash)
     end
   end
