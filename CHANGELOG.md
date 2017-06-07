@@ -3,6 +3,34 @@ logrotate Cookbook CHANGELOG
 This file is used to list changes made in each version of the
 logrotate cookbook.
 
+v2.2.0
+------
+# Compatibility Notes
+
+The `compat_resource` dependency was removed. This means we now
+require Chef 12.5 or higher. It also means we now better support Chef
+13.
+
+# Enhancements
+
+- The global configuration now supports scripts.
+- The package install action (upgrade by default) is now configurable
+  via an attribute.
+- The development environment now more closely follows modern cookbook
+  practices.
+
+# Bug Fixes
+
+- ChefSpec matcher now correctly calls ChefSpec.define_matcher.
+-
+# Contributors
+
+- Austin Heiman
+- Baptiste Courtois
+- Bogdan Katynski
+- Thomas Dziedzic
+- Tim Smith
+
 v2.1.0
 ------
 
