@@ -3,7 +3,9 @@ driver:
 
 provisioner:
   name: chef_zero
-  deprecations_as_errors: true
+  # We have tests that ensure our deprecated features still
+  # work so we can't turn this on globally.
+  # deprecations_as_errors: true
 
 platforms:
   - name: centos-6.8
