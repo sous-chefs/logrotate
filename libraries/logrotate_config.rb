@@ -19,18 +19,18 @@
 
 # Helper module for Logrotate configuration module CookbookLogrotate
 module CookbookLogrotate
-  DIRECTIVES = [%w(compress copy copytruncate daily dateext
-                   dateyesterday delaycompress hourly ifempty mailfirst maillast
-                   missingok monthly nocompress nocopy nocopytruncate nocreate nocreateolddir
-                   nodelaycompress nodateext nomail nomissingok noolddir
-                   nosharedscripts noshred notifempty renamecopy sharedscripts shred weekly
-                   yearly)].freeze unless const_defined?(:DIRECTIVES)
+  DIRECTIVES = %w(compress copy copytruncate daily dateext
+                  dateyesterday delaycompress hourly ifempty mailfirst maillast
+                  missingok monthly nocompress nocopy nocopytruncate nocreate nocreateolddir
+                  nodelaycompress nodateext nomail nomissingok noolddir
+                  nosharedscripts noshred notifempty renamecopy sharedscripts shred weekly
+                  yearly).freeze unless const_defined?(:DIRECTIVES)
 
-  VALUES = [%w(compresscmd uncompresscmd compressext compressoptions
-               create createolddir dateformat include mail extension maxage minsize maxsize
-               rotate size shredcycles start tabooext su olddir)].freeze unless const_defined?(:VALUES)
+  VALUES = %w(compresscmd uncompresscmd compressext compressoptions
+              create createolddir dateformat include mail extension maxage minsize maxsize
+              rotate size shredcycles start tabooext su olddir).freeze unless const_defined?(:VALUES)
 
-  SCRIPTS = [%w(firstaction prerotate postrotate lastaction preremove)].freeze unless const_defined?(:SCRIPTS)
+  SCRIPTS = %w(firstaction prerotate postrotate lastaction preremove).freeze unless const_defined?(:SCRIPTS)
 
   DIRECTIVES_AND_VALUES_AND_SCRIPTS = DIRECTIVES + VALUES + SCRIPTS unless const_defined?(:DIRECTIVES_AND_VALUES_AND_SCRIPTS)
 
