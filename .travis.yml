@@ -1,10 +1,20 @@
+# Use Travis's cointainer based infrastructure
 sudo: false
+addons:
+  apt:
+    sources:
+      - chef-stable-precise
+    packages:
+      - chefdk
+
 branches:
   only:
     - master
-language: ruby
-cache: bundler
-rvm:
-  - 2.2
+
+# Ensure we make ChefDK's Ruby the default
+install: echo "Using ChefDK for all dependencies"
+before_script:
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+
 script:
   - make travis

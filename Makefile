@@ -1,13 +1,11 @@
-travis: bundle berks
-	bundle exec chefstyle -D
-	bundle exec foodcritic .
-	bundle exec rspec --color --format doc
+all: delivery
 
-integration: bundle berks
-	bundle exec kitchen test
+travis: debug_version_info all
 
-bundle:
-	bundle install
+debug_version_info:
+	/opt/chefdk/embedded/bin/chef --version
+	/opt/chefdk/embedded/bin/cookstyle --version
+	/opt/chefdk/embedded/bin/foodcritic --version
 
-berks:
-	bundle exec berks install
+delivery:
+	/opt/chefdk/bin/chef exec delivery local all
