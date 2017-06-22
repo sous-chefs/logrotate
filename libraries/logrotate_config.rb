@@ -23,7 +23,7 @@ module CookbookLogrotate
                   dateyesterday delaycompress hourly ifempty mailfirst maillast
                   missingok monthly nocompress nocopy nocopytruncate nocreate nocreateolddir
                   nodelaycompress nodateext nomail nomissingok noolddir
-                  nosharedscripts noshred notifempty renamecopy sharedscripts shred weekly
+                  nosharedscripts noshred notifempty renamecopy sharedscripts shred su weekly
                   yearly).freeze unless const_defined?(:DIRECTIVES)
 
   VALUES = %w(compresscmd uncompresscmd compressext compressoptions
