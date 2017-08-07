@@ -15,7 +15,6 @@
 
 ### Requirements
 
-- Ruby 2.0+
 - Latest ChefDK
 - [Vagrant](https://vagrantup.com)
 - [VirtualBox](https://virtualbox.org)
