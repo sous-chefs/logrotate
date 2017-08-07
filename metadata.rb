@@ -9,7 +9,7 @@ version           '2.2.0'
 recipe 'logrotate', 'Installs logrotate package'
 provides 'logrotate_app'
 
-%w(amazon centos debian fedora redhat scientific solaris2 ubuntu).each do |platform|
+%w(amazon centos debian fedora redhat scientific solaris2 ubuntu suse opensuse opensuseleap).each do |platform|
   supports platform
 end
 
