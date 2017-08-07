@@ -1,13 +1,13 @@
 describe file('/etc/logrotate.d/tomcat-myapp') do
   it { should be_a_file }
   its('mode') { should cmp '0644' }
-  its('content') { should match(/"\/var\/log\/tomcat\/myapp.log" {\s*daily\s*create 644 root adm\s*rotate 30/) }
+  its('content') { should match(%r("/var/log/tomcat/myapp.log" {\s*daily\s*create 644 root adm\s*rotate 30)) }
 end
 
 describe file('/etc/logrotate.d/tomcat-myapp-multi-path') do
   it { should be_a_file }
   its('mode') { should cmp '0644' }
-  its('content') { should match(/"\/opt\/local\/tomcat\/catalina.out" {\s*daily\s*create 644 root adm\s*rotate 7/) }
+  its('content') { should match(%r("/opt/local/tomcat/catalina.out" {\s*daily\s*create 644 root adm\s*rotate 7)) }
 end
 
 describe file('/etc/logrotate.d/tomcat-myapp-no-enable') do
