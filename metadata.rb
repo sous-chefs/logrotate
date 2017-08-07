@@ -1,7 +1,7 @@
 name              'logrotate'
 maintainer        'Steven Danna'
 maintainer_email  'steve@chef.io'
-license           'Apache 2.0'
+license           'Apache-2.0'
 description       'Installs logrotate package and provides a definition for logrotate configs'
 long_description  'Installs the logrotate package, manages /etc/logrotate.conf, and provides a logrotate_app definition.'
 version           '2.2.0'
