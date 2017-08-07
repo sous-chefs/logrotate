@@ -21,9 +21,9 @@ suites:
   - name: default
     run_list:
       - recipe[logrotate::default]
-  - name: definition
+  - name: resources
     run_list:
-      - recipe[fake::definition]
+      - recipe[test::definition]
   - name: global
     run_list:
       - recipe[logrotate::global]
