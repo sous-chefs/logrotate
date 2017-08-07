@@ -7,6 +7,9 @@ provisioner:
   # work so we can't turn this on globally.
   # deprecations_as_errors: true
 
+verifier:
+  name: inspec
+
 platforms:
   - name: centos-6.8
   - name: centos-7.3
