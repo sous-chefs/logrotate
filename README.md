@@ -8,7 +8,14 @@ Manages the logrotate package and provides a resource to manage application spec
 
 ### Platforms
 
-Should work on any platform that includes a 'logrotate' package and writes logrotate configuration to /etc/logrotate.d. Tested on Ubuntu and Centos.
+Should work on any platform that includes a 'logrotate' package and writes logrotate configuration to /etc/logrotate.d.
+
+Tested on:
+
+- Ubuntu / Debian
+- CentOS
+- Amazon Linux
+- openSUSE Leap
 
 ### Chef
 
