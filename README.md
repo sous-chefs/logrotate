@@ -147,7 +147,7 @@ The resource takes the following properties:
 
 - `options`: Any logrotate configuration option that doesn't specify a
   value. See the logrotate(8) manual page of v3.9.2 or earlier for
-  details.
+  details. Default: %w(missingok compress delaycompress copytruncate notifempty)
 
 In addition to these properties, any logrotate option that takes a
 parameter can be used as a logrotate_app property. For example, to set
