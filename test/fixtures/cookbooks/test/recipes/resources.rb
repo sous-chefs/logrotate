@@ -39,7 +39,7 @@ end
 
 logrotate_app 'tomcat-myapp-custom-template' do
   path        '/var/log/tomcat/myapp.log'
-  cookbook    'fake'
+  cookbook    'test'
   options     'missingok delaycompress'
   frequency   'daily'
   rotate      30

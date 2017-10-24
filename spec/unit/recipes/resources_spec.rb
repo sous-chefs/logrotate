@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'fake::definition' do
+describe 'test::resources' do
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
 
   context 'tomcat-myapp' do
