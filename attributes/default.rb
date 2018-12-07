@@ -53,3 +53,7 @@ default['logrotate']['global'] = {
     'rotate' => 1,
   },
 }
+
+if platform?("ubuntu")
+  default["logrotate"]["global"]["su"] = "root syslog"
+end
