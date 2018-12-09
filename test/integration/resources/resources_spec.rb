@@ -40,5 +40,19 @@ describe file('/etc/logrotate.d/tomcat-myapp-custom-template') do
 end
 
 describe file('/etc/logrotate.d/tomcat-myapp-sharedscripts') do
+  it { should be_a_file }
+  its('mode') { should cmp '0644' }
   its('content') { should include 'sharedscripts' }
+end
+
+describe file('/etc/logrotate.d/tomcat-myapp-multi-script') do
+  it { should be_a_file }
+  its('mode') { should cmp '0644' }
+  postrotate_content = [
+    '  postrotate',
+    '    /bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true',
+    '    /bin/kill -HUP `cat /var/run/rsyslogd.pid 2> /dev/null` 2> /dev/null || true',
+    '  endscript',
+  ]
+  its('content') { should match /#{postrotate_content.join("\n")}/ }
 end
