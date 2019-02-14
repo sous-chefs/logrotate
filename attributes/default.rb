@@ -23,6 +23,7 @@ default['logrotate']['package'] = {
   'name' => 'logrotate',
   'source' => nil,
   'version' => nil,
+  # TODO: remove provider option in next major release
   'provider' => nil,
   'action' => :upgrade,
 }
