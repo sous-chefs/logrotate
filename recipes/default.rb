@@ -21,6 +21,7 @@
 return if platform?('windows')
 
 package node['logrotate']['package']['name'] do
+  # TODO: remove provider option in next major release
   provider node['logrotate']['package']['provider'] if node['logrotate']['package']['provider']
   source node['logrotate']['package']['source'] if node['logrotate']['package']['source']
   version node['logrotate']['package']['version'] if node['logrotate']['package']['version']

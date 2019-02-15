@@ -51,3 +51,11 @@ logrotate_app 'tomcat-myapp-sharedscripts' do
   path '/var/log/tomcat/myapp.log'
   sharedscripts true
 end
+
+logrotate_app 'tomcat-myapp-multi-script' do
+  path '/var/log/tomcat/myapp.log'
+  postrotate [
+    '/bin/kill -HUP `cat /var/run/syslogd.pid 2> /dev/null` 2> /dev/null || true',
+    '/bin/kill -HUP `cat /var/run/rsyslogd.pid 2> /dev/null` 2> /dev/null || true',
+  ]
+end

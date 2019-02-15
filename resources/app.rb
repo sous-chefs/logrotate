@@ -28,7 +28,7 @@ property :base_dir, String, default: '/etc/logrotate.d'
 property :options, [Array, String], default: %w(missingok compress delaycompress copytruncate notifempty)
 
 CookbookLogrotate::SCRIPTS.each do |script_name|
-  property script_name.to_sym, coerce: proc { |val| Array(val).join("\n") }
+  property script_name.to_sym, coerce: proc { |val| Array(val).join("\n    ") }
 end
 
 CookbookLogrotate::VALUES.each do |configurable_name|
