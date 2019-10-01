@@ -39,4 +39,6 @@ matrix:
   include:
     - script:
       - make travis
-      env: UNIT_AND_LINT=1
+      env:
+        - UNIT_AND_LINT=1
+        - CHEF_LICENSE=accept

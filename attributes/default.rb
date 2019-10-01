@@ -50,7 +50,7 @@ default['logrotate']['global'] = {
   '/var/log/btmp' => {
     'missingok' => true,
     'monthly' => true,
-    'create' => '0660 root utmp',
+    'create' => '0600 root utmp',
     'rotate' => 1,
   },
 }
