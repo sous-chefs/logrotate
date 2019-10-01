@@ -1,6 +1,6 @@
 # logrotate Cookbook
 
-[![Build Status](https://secure.travis-ci.org/stevendanna/logrotate.svg?branch=master)](http://travis-ci.org/stevendanna/logrotate) [![Cookbook Version](https://img.shields.io/cookbook/v/logrotate.svg)](https://supermarket.chef.io/cookbooks/logrotate)
+[![Build Status](https://secure.travis-ci.org/chef-cookbooks/logrotate.svg?branch=master)](http://travis-ci.org/chef-cookbooks/logrotate) [![Cookbook Version](https://img.shields.io/cookbook/v/logrotate.svg)](https://supermarket.chef.io/cookbooks/logrotate)
 
 Manages the logrotate package and provides a resource to manage application specific logrotate configuration.
 
