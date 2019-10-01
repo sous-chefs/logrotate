@@ -1,7 +1,27 @@
 logrotate Cookbook CHANGELOG
 ============================
 This file is used to list changes made in each version of the
-logrotate cookbook.
+
+## 2.2.1 (2019-10-01)
+
+- Avoid deprecation warnings in the chefspecs - [@tas50](https://github.com/tas50)
+- Resolve foodcritic license warning - [@tas50](https://github.com/tas50)
+- There's no need to define a default action in a custom resource - [@tas50](https://github.com/tas50)
+- Move templates out of default dir and remove node name - [@tas50](https://github.com/tas50)
+- Remove the mention of Ruby 2.0 in the contributing docs - [@tas50](https://github.com/tas50)
+- Add initial kitchen-dokken config - [@tas50](https://github.com/tas50)
+- Use our standard chefignore file - [@tas50](https://github.com/tas50)
+- Rename fake recipe to test and definitions -> resources - [@tas50](https://github.com/tas50)
+- Convert to inspec from serverspec - [@tas50](https://github.com/tas50)
+- Remove the default test kitchen suite since global includes it - [@tas50](https://github.com/tas50)
+- Remove references to the definition from the metadata - [@tas50](https://github.com/tas50)
+- Expand platforms we test on in Test Kitchen - [@tas50](https://github.com/tas50)
+- Remove unused prep recipe - [@tas50](https://github.com/tas50)
+- Add suse platforms to the metadata now that we test them - [@tas50](https://github.com/tas50)
+- Format readme and remove references to the definition - [@tas50](https://github.com/tas50)
+- Fix alignment for multiple scripts - [@shoekstra](https://github.com/shoekstra)
+- Ignore FC109 - [@shoekstra](https://github.com/shoekstra)
+- Update /var/log/btmp default permissions - [@jasonwbarnett](https://github.com/jasonwbarnett)
 
 v2.2.0
 ------

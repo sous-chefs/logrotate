@@ -4,7 +4,7 @@ maintainer_email  'steve@chef.io'
 license           'Apache-2.0'
 description       'Installs logrotate package and provides a resource for managing logrotate configs'
 long_description  'Installs the logrotate package, manages /etc/logrotate.conf, and provides a logrotate_app resource.'
-version           '2.2.0'
+version           '2.2.1'
 
 recipe 'logrotate', 'Installs logrotate package'
 provides 'logrotate_app'
