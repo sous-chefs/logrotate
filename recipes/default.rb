@@ -34,7 +34,7 @@ directory node['logrotate']['directory'] do
   mode '0755'
 end
 
-if node['logrotate']['cron']['install'] # ~FC023
+if node['logrotate']['cron']['install']
   cron node['logrotate']['cron']['name'] do
     minute node['logrotate']['cron']['minute']
     hour node['logrotate']['cron']['hour']
