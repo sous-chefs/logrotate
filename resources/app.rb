@@ -36,8 +36,8 @@ CookbookLogrotate::VALUES.each do |configurable_name|
 end
 
 # Deprecated options
-property :sharedscripts, [TrueClass, FalseClass], default: false
-property :enable, [TrueClass, FalseClass], default: true
+property :sharedscripts, [true, false], default: false
+property :enable, [true, false], default: true
 
 action :enable do
   unless new_resource.enable
