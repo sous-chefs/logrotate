@@ -11,4 +11,4 @@ end
 
 source_url 'https://github.com/chef-cookbooks/logrotate'
 issues_url 'https://github.com/chef-cookbooks/logrotate/issues'
-chef_version '>= 12.5'
+chef_version '>= 12.15'
