@@ -27,13 +27,6 @@ platforms:
     image: dokken/amazonlinux-2
     pid_one_command: /usr/lib/systemd/systemd
 
-- name: debian-8
-  driver:
-    image: dokken/debian-8
-    pid_one_command: /bin/systemd
-    intermediate_instructions:
-      - RUN /usr/bin/apt-get update
-
 - name: debian-9
   driver:
     image: dokken/debian-9
@@ -76,11 +69,6 @@ platforms:
     pid_one_command: /bin/systemd
     intermediate_instructions:
       - RUN /usr/bin/apt-get update
-
-- name: opensuse-leap-42
-  driver:
-    image: dokken/opensuse-leap-42
-    pid_one_command: /bin/systemd
 
 - name: opensuse-leap-15
   driver:

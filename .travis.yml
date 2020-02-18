@@ -22,8 +22,8 @@ env:
   - INSTANCE=resources-ubuntu-1804
   - INSTANCE=resources-centos-6
   - INSTANCE=resources-centos-7
-  - INSTANCE=resources-debian-8
   - INSTANCE=resources-debian-9
+  - INSTANCE=resources-debian-10
   - INSTANCE=resources-fedora-latest
   - INSTANCE=resources-opensuse-leap
   - INSTANCE=resources-amazonlinux
