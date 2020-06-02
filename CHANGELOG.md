@@ -2,9 +2,14 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
-## Unreleased
+## 2.2.3 (2020-06-02)
 
-- resolved cookstyle error: resources/app.rb:17:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
+- Remove opensuse platform from metadata.rb as it's no longer valid - [@tas50](https://github.com/tas50)
+- Don't fail on deprecated properties - [@tas50](https://github.com/tas50)
+- Require Chef 12.15+ - [@tas50](https://github.com/tas50)
+- Standardise files with files in chef-cookbooks/repo-management - [@xorimabot](https://github.com/xorimabot)
+- Resolved deprecations to provide Chef Infra Client 16 compatibility - [@xorimabot](https://github.com/xorimabot)
+  - resolved cookstyle error: resources/app.rb:17:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
 
 ## 2.2.2 (2019-10-01)
 
