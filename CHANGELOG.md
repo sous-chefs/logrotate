@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
+## Unreleased
+
+- resolved cookstyle error: resources/app.rb:17:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
+
 ## 2.2.2 (2019-10-01)
 
 - Update build badge with chef-cookbooks namespace - [@jasonwbarnett](https://github.com/jasonwbarnett)
