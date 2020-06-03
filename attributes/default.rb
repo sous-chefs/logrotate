@@ -36,11 +36,11 @@ default['logrotate']['cron']['minute'] = 35
 default['logrotate']['cron']['hour'] = 2
 
 if platform_family?('rhel') && node['platform_version'].to_i >= 8
-    default['logrotate']['global'] = {
-      'weekly' => true,
-      'rotate' => 4,
-      'create' => '',
-    }
+  default['logrotate']['global'] = {
+    'weekly' => true,
+    'rotate' => 4,
+    'create' => '',
+  }
 else
   default['logrotate']['global'] = {
     'weekly' => true,
