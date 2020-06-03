@@ -35,22 +35,30 @@ default['logrotate']['cron']['command'] = '/usr/sbin/logrotate /etc/logrotate.co
 default['logrotate']['cron']['minute'] = 35
 default['logrotate']['cron']['hour'] = 2
 
-default['logrotate']['global'] = {
-  'weekly' => true,
-  'rotate' => 4,
-  'create' => '',
+if platform_family?('rhel') && node['platform_version'].to_i >= 8
+    default['logrotate']['global'] = {
+      'weekly' => true,
+      'rotate' => 4,
+      'create' => '',
+    }
+else
+  default['logrotate']['global'] = {
+    'weekly' => true,
+    'rotate' => 4,
+    'create' => '',
 
-  '/var/log/wtmp' => {
-    'missingok' => true,
-    'monthly' => true,
-    'create' => '0664 root utmp',
-    'rotate' => 1,
-  },
+    '/var/log/wtmp' => {
+      'missingok' => true,
+      'monthly' => true,
+      'create' => '0664 root utmp',
+      'rotate' => 1,
+    },
 
-  '/var/log/btmp' => {
-    'missingok' => true,
-    'monthly' => true,
-    'create' => '0600 root utmp',
-    'rotate' => 1,
-  },
-}
+    '/var/log/btmp' => {
+      'missingok' => true,
+      'monthly' => true,
+      'create' => '0600 root utmp',
+      'rotate' => 1,
+    },
+  }
+end
