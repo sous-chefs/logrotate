@@ -121,6 +121,20 @@ logrotate_app 'tomcat-myapp' do
 end
 ```
 
+Also, any logrotate option that takes one of scripts names (`firstaction`, `prerotate`, `postrotate`, and `lastaction`) can be used. Script body should be passed as value of this option. For example, nginx logrotation with `postrotate`:
+```ruby
+logrotate_app 'nginx' do
+  path      '/var/log/nginx/*.log'
+  frequency 'daily'
+  options %w(missingok compress delaycompress notifempty dateext dateyesterday nomail sharedscripts)
+  rotate 365
+  create '640 www-data www-data'
+  dateformat '.%Y-%m-%d'
+  maxage 365
+  postrotate '[ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`'
+end
+```
+
 See the logrotate(8) manual page of v3.9.2 or earlier for the list of available options.
 
 ## Usage
