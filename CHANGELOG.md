@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
+## Unreleased
+
+- resolved cookstyle error: attributes/default.rb:32:43 refactor: `ChefRedundantCode/MultiplePlatformChecks`
+
 ## 2.2.3 (2020-06-02)
 
 - Remove opensuse platform from metadata.rb as it's no longer valid - [@tas50](https://github.com/tas50)

@@ -29,7 +29,7 @@ default['logrotate']['package'] = {
 }
 
 default['logrotate']['directory'] = '/etc/logrotate.d'
-default['logrotate']['cron']['install'] = platform?('solaris2') || platform?('aix')
+default['logrotate']['cron']['install'] = platform?('solaris2', 'aix')
 default['logrotate']['cron']['name'] = 'logrotate'
 default['logrotate']['cron']['command'] = '/usr/sbin/logrotate /etc/logrotate.conf'
 default['logrotate']['cron']['minute'] = 35
