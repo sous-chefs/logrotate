@@ -122,6 +122,7 @@ end
 ```
 
 Also, any logrotate option that takes one of scripts names (`firstaction`, `prerotate`, `postrotate`, and `lastaction`) can be used. Script body should be passed as value of this option. For example, nginx logrotation with `postrotate`:
+
 ```ruby
 logrotate_app 'nginx' do
   path      '/var/log/nginx/*.log'
