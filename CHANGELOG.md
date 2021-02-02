@@ -4,7 +4,10 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 ## Unreleased
 
-- resolved cookstyle error: attributes/default.rb:32:43 refactor: `ChefRedundantCode/MultiplePlatformChecks`
+### Changed
+
+- Sous Chefs Adoption
+- Update Changelog to Sous Chefs
 
 ## 2.2.3 (2020-06-02)
 
