@@ -8,6 +8,11 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 - Sous Chefs Adoption
 - Update Changelog to Sous Chefs
+- Update Readme to Sous Chefs
+- Update metadata.rb to Sous Chefs
+- Fix cookstyle issues
+- mdl and yamlint fixes
+- Audit kitchen platforms
 
 ## 2.2.3 (2020-06-02)
 
