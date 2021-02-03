@@ -46,7 +46,6 @@ jobs:
           - 'centos-7'
           - 'centos-8'
           - 'fedora-latest'
-          - 'ubuntu-1604'
           - 'ubuntu-1804'
           - 'ubuntu-2004'
           - 'opensuse-leap-15'

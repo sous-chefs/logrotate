@@ -49,7 +49,7 @@ end
 
 logrotate_app 'tomcat-myapp-sharedscripts' do
   path '/var/log/tomcat/myapp.log'
-  sharedscripts true
+  options 'missingok compress delaycompress copytruncate notifempty sharedscripts'
 end
 
 logrotate_app 'tomcat-myapp-multi-script' do
