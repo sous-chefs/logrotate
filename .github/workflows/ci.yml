@@ -51,9 +51,8 @@ jobs:
           - 'ubuntu-2004'
           - 'opensuse-leap-15'
         suite:
-          - 'simple'
-          - 'read-only'
-          - 'networking'
+          - 'global'
+          - 'resources'
       fail-fast: false
 
     steps:
