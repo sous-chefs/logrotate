@@ -8,7 +8,6 @@ provisioner:
   enforce_idempotency: true
   multiple_converge: 2
 
-
 verifier:
   name: inspec
 
