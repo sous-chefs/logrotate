@@ -8,6 +8,10 @@
 
 Manages the logrotate package and provides a resource to manage application specific logrotate configuration.
 
+## Maintainers
+
+This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of Chef cookbook maintainers working together to maintain important cookbooks. If you’d like to know more please visit sous-chefs.org or come chat with us on the Chef Community Slack in #sous-chefs.
+
 ## Requirements
 
 ### Platforms
