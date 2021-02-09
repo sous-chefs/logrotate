@@ -18,9 +18,9 @@ platforms:
   - name: debian-9
   - name: debian-10
   - name: fedora-latest
-  - name: freebsd-12
   - name: opensuse-leap-15
   - name: ubuntu-18.04
+  - name: ubuntu-20.04
 
 suites:
   - name: resources
