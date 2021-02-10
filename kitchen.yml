@@ -4,28 +4,23 @@ driver:
 provisioner:
   name: chef_zero
   chef_license: accept
-  # We have tests that ensure our deprecated features still
-  # work so we can't turn this on globally.
-  # deprecations_as_errors: true
+  deprecations_as_errors: true
+  enforce_idempotency: true
+  multiple_converge: 2
 
 verifier:
   name: inspec
 
 platforms:
-  - name: amazonlinux
-    driver_config:
-      box: mvbcoding/awslinux
   - name: amazonlinux-2
-  - name: centos-6
   - name: centos-7
   - name: centos-8
   - name: debian-9
   - name: debian-10
   - name: fedora-latest
-  - name: freebsd-12
   - name: opensuse-leap-15
-  - name: ubuntu-16.04
   - name: ubuntu-18.04
+  - name: ubuntu-20.04
 
 suites:
   - name: resources

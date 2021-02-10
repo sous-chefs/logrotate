@@ -47,8 +47,7 @@ describe 'test::resources' do
   context 'tomcat-myapp-sharedscripts' do
     it 'creates appropriate logrotate config' do
       expect(chef_run).to enable_logrotate_app('tomcat-myapp-sharedscripts').with(
-        sharedscripts: true,
-        options: %w(missingok compress delaycompress copytruncate notifempty),
+        options: 'missingok compress delaycompress copytruncate notifempty sharedscripts',
         path: '/var/log/tomcat/myapp.log'
       )
     end

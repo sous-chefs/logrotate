@@ -16,11 +16,11 @@
 
 property :path, [String, Array], required: true
 property :frequency, String, default: 'weekly'
-property :cookbook, default: 'logrotate'
-property :template_name, default: 'logrotate.erb'
-property :template_mode, default: '0644'
-property :template_owner, default: 'root'
-property :template_group, default: 'root'
+property :cookbook, String, default: 'logrotate'
+property :template_name, String, default: 'logrotate.erb'
+property :template_mode, String, default: '0644'
+property :template_owner, String, default: 'root'
+property :template_group, String, default: 'root'
 property :base_dir, String, default: '/etc/logrotate.d'
 
 property :options, [Array, String], default: %w(missingok compress delaycompress copytruncate notifempty)
