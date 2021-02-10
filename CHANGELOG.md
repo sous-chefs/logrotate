@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
-## Unreleased
+## 2.3.0 - *2021-02-10*
 
 - Sous Chefs Adoption
 - Fix cookstyle issues
