@@ -85,13 +85,14 @@ action :enable do
   end
 
   template "#{new_resource.base_dir}/#{new_resource.name}" do
-    source   new_resource.template_name
-
     cookbook new_resource.cookbook
+    source new_resource.template_name
 
-    mode     new_resource.template_mode
-    owner    new_resource.template_owner
-    group    new_resource.template_group
+    mode new_resource.template_mode
+    owner new_resource.template_owner
+    group new_resource.template_group
+
+    sensitive new_resource.sensitive
 
     variables(
       path: new_resource.path,

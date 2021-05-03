@@ -68,6 +68,8 @@ action :create do
     group new_resource.template_group
     mode new_resource.template_mode
 
+    sensitive new_resource.sensitive
+
     variables(
       includes: new_resource.includes,
       options: new_resource.options,
