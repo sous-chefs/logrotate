@@ -1,5 +1,9 @@
 #
+# Cookbook:: logrotate
+# Resource:: app
+#
 # Copyright:: 2016-2019, Steven Danna
+# Copyright:: 2009-2019, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,44 +18,64 @@
 # limitations under the License.
 #
 
-property :path, [String, Array], required: true
-property :frequency, String, default: 'weekly'
-property :cookbook, String, default: 'logrotate'
-property :template_name, String, default: 'logrotate.erb'
-property :template_mode, String, default: '0644'
-property :template_owner, String, default: 'root'
-property :template_group, String, default: 'root'
-property :base_dir, String, default: '/etc/logrotate.d'
+unified_mode true
 
-property :options, [Array, String], default: %w(missingok compress delaycompress copytruncate notifempty)
+include ::Logrotate::Cookbook::LogrotateHelpers
 
-CookbookLogrotate::SCRIPTS.each do |script_name|
-  property script_name.to_sym, coerce: proc { |val| Array(val).join("\n    ") }
-end
+property :path, [String, Array],
+          coerce: proc { |p| Array(p).sort.map { |path| path.to_s.inspect }.join(' ') }
 
-CookbookLogrotate::VALUES.each do |configurable_name|
-  property configurable_name.to_sym
-end
+property :frequency, String,
+          default: 'weekly'
 
-# Deprecated options
-property :sharedscripts, [true, false], default: false
-property :enable, [true, false], default: true
+property :cookbook, String,
+          default: 'logrotate'
 
-action :enable do
-  unless new_resource.enable
-    Chef::Log.deprecation 'Use `action :disable` rather than `enable false` in the logrotate_app resource'
-    action_disable
-    return true
+property :template_name, String,
+          default: 'logrotate.erb'
+
+property :template_mode, String,
+          default: '0644'
+
+property :template_owner, String,
+          default: 'root'
+
+property :template_group, String,
+          default: 'root'
+
+property :base_dir, String,
+          default: '/etc/logrotate.d'
+
+property :options, [String, Array],
+          default: %w(missingok compress delaycompress copytruncate notifempty),
+          coerce: proc { |p| options_from(p.is_a?(Array) ? p : p.split) }
+
+::Logrotate::Cookbook::LogrotateHelpers::SCRIPTS.each { |script_name| property(script_name.to_sym, coerce: proc { |p| Array(p).join("\n    ") }) }
+
+::Logrotate::Cookbook::LogrotateHelpers::PARAMETERS.each { |configurable_name| property(configurable_name.to_sym) }
+
+action_class do
+  include ::Logrotate::Cookbook::LogrotateHelpers
+
+  def required_properties_set?
+    raise Chef::Exceptions::ValidationFailed, 'path is a required property' unless action.eql?(:delete) || !new_resource.path.nil?
   end
 
-  logrotate_config = {
-    # The path should be a space separated list of quoted filesystem paths
-    path: Array(new_resource.path).map { |path| path.to_s.inspect }.join(' '),
-    frequency: new_resource.frequency,
-    directives: handle_options(new_resource),
-    scripts: handle_scripts(new_resource),
-    configurables: handle_configurables(new_resource),
-  }
+  def handle_parameters(new_resource)
+    ::Logrotate::Cookbook::LogrotateHelpers::PARAMETERS.map do |parameter_name|
+      [ parameter_name, new_resource.send(parameter_name.to_sym) ] if new_resource.send(parameter_name.to_sym)
+    end.compact.to_h
+  end
+
+  def handle_scripts(new_resource)
+    ::Logrotate::Cookbook::LogrotateHelpers::SCRIPTS.map do |script_name|
+      [ script_name, new_resource.send(script_name.to_sym) ] if new_resource.send(script_name.to_sym)
+    end.compact.to_h
+  end
+end
+
+action :enable do
+  required_properties_set?
 
   directory new_resource.base_dir do
     owner 'root'
@@ -62,12 +86,24 @@ action :enable do
 
   template "#{new_resource.base_dir}/#{new_resource.name}" do
     source   new_resource.template_name
+
     cookbook new_resource.cookbook
+
     mode     new_resource.template_mode
     owner    new_resource.template_owner
     group    new_resource.template_group
-    backup   false
-    variables logrotate_config
+
+    variables(
+      path: new_resource.path,
+      frequency: new_resource.frequency,
+      options: new_resource.options,
+      scripts: handle_scripts(new_resource),
+      parameters: handle_parameters(new_resource)
+    )
+
+    helpers(Logrotate::Cookbook::TemplateHelpers)
+
+    action :create
   end
 end
 
@@ -75,38 +111,4 @@ action :disable do
   file "#{new_resource.base_dir}/#{new_resource.name}" do
     action :delete
   end
-end
-
-def handle_configurables(new_resource)
-  configurables = {}
-  CookbookLogrotate::VALUES.each do |opt_name|
-    if value = new_resource.send(opt_name.to_sym) # rubocop: disable Lint/AssignmentInCondition
-      configurables[opt_name] = value
-    end
-  end
-  configurables
-end
-
-def handle_scripts(new_resource)
-  scripts = {}
-  CookbookLogrotate::SCRIPTS.each do |script_name|
-    if script_body = new_resource.send(script_name.to_sym) # rubocop: disable Lint/AssignmentInCondition
-      scripts[script_name] = script_body
-    end
-  end
-  scripts
-end
-
-def handle_options(new_resource)
-  opts = if new_resource.options.is_a?(Array)
-           new_resource.options.dup
-         else
-           new_resource.options.split
-         end
-
-  if new_resource.sharedscripts
-    Chef::Log.deprecation('The sharedscripts resource property is deprecated.  Use the options property instead to set this value')
-    opts << 'sharedscripts'
-  end
-  opts
 end

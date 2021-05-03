@@ -4,6 +4,12 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 ## Unreleased
 
+- Replace recipes and attributes with Chef 17 compliant resources
+  - Remove attributes
+  - Remove recipes
+  - Replace default recipe with package and global resource
+  - Enable unified_mode on all resources.
+
 ## 2.3.0 - *2021-02-10*
 
 - Sous Chefs Adoption

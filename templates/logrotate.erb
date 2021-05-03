@@ -2,18 +2,24 @@
 # Do not modify this file by hand!
 
 <%= @path %> {
-<%- if @frequency %>
+<% unless nil_or_empty?(@frequency) -%>
   <%= @frequency %>
-<%- end %>
-<%- @configurables.each do |name, value| %>
-  <%= "#{name} #{value}" %>
-<%- end %>
-<% @directives.each do |o| -%>
-  <%= o %>
 <% end -%>
-<%- @scripts.each do |script_name, script| %>
-  <%= script_name %>
+<% unless nil_or_empty?(@parameters) -%>
+<% @parameters.each do |name, value| -%>
+  <%= "#{name} #{value}" %>
+<% end -%>
+<% end -%>
+<% unless nil_or_empty?(@options) -%>
+<% @options.each do |opt| -%>
+  <%= opt %>
+<% end -%>
+<% end -%>
+<% unless nil_or_empty?(@scripts) -%>
+<% @scripts.each do |name, script| -%>
+  <%= name %>
     <%= script %>
   endscript
-<%- end %>
+<% end -%>
+<% end -%>
 }
