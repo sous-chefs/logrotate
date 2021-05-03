@@ -103,52 +103,13 @@ node['logrotate']['global']['/var/log/foo/*.log'] = {
 
 ## Resources
 
-### logrotate_app
-
-This resource can be used to drop off customized logrotate config files on a per application basis.
-
-The resource takes the following properties:
-
-- `path`: specifies a single path (string) or multiple paths (array) that should have logrotation stanzas created in the config file. No default, this must be specified.
-- `cookbook`: The cookbook that continues the template for logrotate_app config resources. By default this is `logrotate`. Users can provide their own template by setting this attribute to point at a different cookbook.
-- `template_name`: sets the template source, default is "logrotate.erb".
-- `template_mode`: the mode to create the logrotate template with (default: "0644")
-- `template_owner`: the owner of the logrotate template (default: "root")
-- `template_group`: the group of the logrotate template (default: "root")
-- `frequency`: sets the frequency for rotation. Default value is 'weekly'. Valid values are: hourly, daily, weekly, monthly, yearly, see the logrotate man page for more information. Note that usually logrotate is configured to be run by cron daily. You have to change this configuration and run logrotate hourly to be able to really rotate logs hourly. Hourly rotation requires logrotate v3.8.5 or higher.
-- `options`: Any logrotate configuration option that doesn't specify a value. See the logrotate(8) manual page of v3.9.2 or earlier for details.
-
-In addition to these properties, any logrotate option that takes a parameter can be used as a logrotate_app property. For example, to set the `rotate` option you can use a resource declaration such as:
-
-```ruby
-logrotate_app 'tomcat-myapp' do
-  path      '/var/log/tomcat/myapp.log'
-  frequency 'daily'
-  rotate    30
-  create    '644 root adm'
-end
-```
-
-Also, any logrotate option that takes one of scripts names (`firstaction`, `prerotate`, `postrotate`, and `lastaction`) can be used. Script body should be passed as value of this option. For example, nginx logrotation with `postrotate`:
-
-```ruby
-logrotate_app 'nginx' do
-  path      '/var/log/nginx/*.log'
-  frequency 'daily'
-  options %w(missingok compress delaycompress notifempty dateext dateyesterday nomail sharedscripts)
-  rotate 365
-  create '640 www-data www-data'
-  dateformat '.%Y-%m-%d'
-  maxage 365
-  postrotate '[ ! -f /var/run/nginx.pid ] || kill -USR1 `cat /var/run/nginx.pid`'
-end
-```
-
-See the logrotate(8) manual page of v3.9.2 or earlier for the list of available options.
+- [logrotate_app](documentation/logrotate_app.md)
+- [logrotate_global](documentation/logrotate_global.md)
+- [logrotate_package](documentation/logrotate_package.md)
 
 ## Usage
 
-The default recipe will ensure logrotate is always up to date.
+The package resource will ensure logrotate is always up to date by default.
 
 To create application specific logrotate configs, use the `logrotate_app` resource. For example, to rotate logs for a tomcat application named myapp that writes its log file to `/var/log/tomcat/myapp.log`:
 
