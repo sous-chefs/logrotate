@@ -8,10 +8,10 @@
 <%- if @frequency %>
   <%= @frequency %>
 <%- end %>
-<%- @configurables.each do |name, value| %>
+<%- @parameters.each do |name, value| %>
   <%= "#{name} #{value}" %>
 <%- end %>
-<% @directives.each do |o| -%>
+<% @options.each do |o| -%>
   <%= o %>
 <% end -%>
 <%- @scripts.each do |script_name, script| %>

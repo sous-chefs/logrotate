@@ -50,8 +50,7 @@ jobs:
           - 'ubuntu-2004'
           - 'opensuse-leap-15'
         suite:
-          - 'global'
-          - 'resources'
+          - 'default'
       fail-fast: false
 
     steps:

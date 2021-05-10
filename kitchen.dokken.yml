@@ -1,17 +1,14 @@
+---
 driver:
   name: dokken
-  privileged: true  # because Docker and SystemD/Upstart
-  chef_version: <%= ENV['CHEF_VERSION'] || 'current' %>
-  chef_license: accept-no-persist
+  privileged: true
+  chef_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
 
 transport:
   name: dokken
 
 provisioner:
   name: dokken
-  # We have tests that ensure our deprecated features still
-  # work so we can't turn this on globally.
-  # deprecations_as_errors: true
 
 verifier:
   name: inspec
@@ -43,7 +40,12 @@ platforms:
 
   - name: centos-8
     driver:
-      image: dokken/centos-7
+      image: dokken/centos-8
+      pid_one_command: /usr/lib/systemd/systemd
+
+  - name: centos-stream-8
+    driver:
+      image: dokken/centos-stream-8
       pid_one_command: /usr/lib/systemd/systemd
 
   - name: fedora-latest
@@ -69,3 +71,4 @@ platforms:
     driver:
       image: dokken/opensuse-leap-15
       pid_one_command: /bin/systemd
+...

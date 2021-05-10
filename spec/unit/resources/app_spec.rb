@@ -1,14 +1,19 @@
 require 'spec_helper'
 
-describe 'test::resources' do
-  let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
+describe 'logrotate_global' do
+  step_into :logrotate_resources
+  platform 'centos'
+
+  recipe do
+    include_recipe 'test::app'
+  end
 
   context 'tomcat-myapp' do
     it 'creates appropriate logrotate config' do
       expect(chef_run).to enable_logrotate_app('tomcat-myapp').with(
         create: '644 root adm',
         frequency: 'daily',
-        path: '/var/log/tomcat/myapp.log',
+        path: '"/var/log/tomcat/myapp.log"',
         rotate: 30
       )
     end
@@ -19,7 +24,7 @@ describe 'test::resources' do
       expect(chef_run).to enable_logrotate_app('tomcat-myapp-multi-path').with(
         create: '644 root adm',
         frequency: 'daily',
-        path: %w(/var/log/tomcat/myapp.log /opt/local/tomcat/catalina.out),
+        path: '"/opt/local/tomcat/catalina.out" "/var/log/tomcat/myapp-multi-path.log"',
         rotate: 7
       )
     end
@@ -36,9 +41,9 @@ describe 'test::resources' do
       expect(chef_run).to enable_logrotate_app('tomcat-myapp-custom-options').with(
         create: '644 root adm',
         frequency: 'daily',
-        path: '/var/log/tomcat/myapp.log',
+        path: '"/var/log/tomcat/myapp-custom-options.log"',
         rotate: 30,
-        options: %w(missingok delaycompress),
+        options: %w(delaycompress missingok),
         firstaction: 'echo "hi"'
       )
     end
@@ -47,8 +52,8 @@ describe 'test::resources' do
   context 'tomcat-myapp-sharedscripts' do
     it 'creates appropriate logrotate config' do
       expect(chef_run).to enable_logrotate_app('tomcat-myapp-sharedscripts').with(
-        options: 'missingok compress delaycompress copytruncate notifempty sharedscripts',
-        path: '/var/log/tomcat/myapp.log'
+        options: %w(compress copytruncate delaycompress missingok notifempty sharedscripts),
+        path: '"/var/log/tomcat/myapp-sharedscripts.log"'
       )
     end
   end
