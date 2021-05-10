@@ -1,6 +1,6 @@
 #
 # Cookbook:: logrotate
-# Recipe:: default
+# Resource:: app
 #
 # Copyright:: 2009-2019, Chef Software, Inc.
 #
@@ -17,14 +17,18 @@
 # limitations under the License.
 #
 
-include_recipe 'logrotate::default'
+unified_mode true
 
-parsed_configuration = CookbookLogrotate::LogrotateConfiguration.from_hash(node['logrotate']['global'].to_hash)
+property :packages, [String, Array],
+          default: 'logrotate'
 
-template '/etc/logrotate.conf' do
-  source 'logrotate-global.erb'
-  mode   '0644'
-  variables(
-    configuration: parsed_configuration
-  )
+action_class do
+  def do_package_action(action)
+    package 'logrotate' do
+      package_name new_resource.packages
+      action action
+    end
+  end
 end
+
+%i(upgrade install remove).each { |action_type| send(:action, action_type) { do_package_action(action) } }

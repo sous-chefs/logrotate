@@ -7,7 +7,7 @@ end
 describe file('/etc/logrotate.d/tomcat-myapp-multi-path') do
   it { should be_a_file }
   its('mode') { should cmp '0644' }
-  its('content') { should match(%r("/opt/local/tomcat/catalina.out" {\s*daily\s*create 644 root adm\s*rotate 7)) }
+  its('content') { should match(%r("/opt/local/tomcat/catalina.out" "/var/log/tomcat/myapp-multi-path.log" {\s*daily\s*create 644 root adm\s*rotate 7)) }
 end
 
 describe file('/etc/logrotate.d/tomcat-myapp-no-enable') do
@@ -55,4 +55,8 @@ describe file('/etc/logrotate.d/tomcat-myapp-multi-script') do
     '  endscript',
   ]
   its('content') { should match /#{postrotate_content.join("\n")}/ }
+end
+
+describe command('logrotate /etc/logrotate.conf') do
+  its('exit_status') { should eq 0 }
 end
