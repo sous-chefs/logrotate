@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
-## Unreleased
+## 3.0.0 - *2021-05-10*
 
 - Replace recipes and attributes with Chef 17 compliant resources
   - Remove attributes
