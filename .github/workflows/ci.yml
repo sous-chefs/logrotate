@@ -46,8 +46,8 @@ jobs:
           - 'centos-7'
           - 'centos-8'
           - 'fedora-latest'
+          - 'ubuntu-1804'
           - 'ubuntu-2004'
-          - 'ubuntu-2104'
           - 'opensuse-leap-15'
         suite:
           - 'default'
