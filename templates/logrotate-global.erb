@@ -39,16 +39,27 @@ include <%= inc %>
 # Paths
 <% @paths.each do |path, config| -%>
 <%= path %> {
+    <% unless nil_or_empty?(config['options']) %>
+    # Options
     <% config['options'].each do |opt|-%>
     <%= opt %>
     <% end -%>
+    <% end -%>
+    <% unless nil_or_empty?(config['parameters']) %>
+
+    # Parameters
     <% config['parameters'].each do |k, v| -%>
     <%= k %> <%= v %>
     <% end -%>
-    <% config['scripts'].each do |scripttype, body| -%>
-    <%= scripttype %>
+    <% end -%>
+    <% unless nil_or_empty?(config['scripts']) %>
+
+    # Scripts
+    <% config['scripts'].each do |type, body| -%>
+    <%= type %>
     <%= body %>
     endscript
+    <% end -%>
     <% end -%>
 }
 

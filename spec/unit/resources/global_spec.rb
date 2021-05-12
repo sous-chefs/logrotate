@@ -33,5 +33,7 @@ describe 'logrotate_global' do
       .with_content(/weekly/)
       .with_content(%r{\/var\/log\/wtmp \{})
       .with_content(/    create 0664 root utmp/)
+      .with_content(/    missingok/)
+      .with_content(/    monthly/)
   end
 end

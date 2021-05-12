@@ -4,7 +4,11 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 ## Unreleased
 
+- Fix passing options to global path declarations
+
 ## 3.0.1 - *2021-05-12*
+
+- Update chef_version to >= 15.3 to require unifed_mode works
 
 ## 3.0.0 - *2021-05-10*
 
