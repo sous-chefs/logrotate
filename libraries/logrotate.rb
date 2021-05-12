@@ -36,21 +36,21 @@ module Logrotate
       PARAMETERS_AND_OPTIONS_AND_SCRIPTS ||= PARAMETERS + OPTIONS + SCRIPTS
 
       def parameters_from(hash)
-        hash.select { |k, _| PARAMETERS.include?(k) }
+        hash.sort.select { |k, _| PARAMETERS.include?(k) }.to_h
       end
 
       def options_from(values)
-        values.sort.select { |v| OPTIONS.include?(v) }
+        values.sort.select { |k, v| OPTIONS.include?(k) && v || v.nil? }.map { |k, _| k }
       end
 
       def paths_from(hash)
-        hash.select { |k| !PARAMETERS_AND_OPTIONS_AND_SCRIPTS.include?(k) }.map do |path, config|
-          [path, { 'parameters' => parameters_from(config), 'options' => options_from(config), 'scripts' => scripts_from(config) }]
+        hash.sort.select { |k, _| !PARAMETERS_AND_OPTIONS_AND_SCRIPTS.include?(k) }.map do |path, config|
+          [path, { 'options' => options_from(config), 'parameters' => parameters_from(config), 'scripts' => scripts_from(config) }]
         end.to_h
       end
 
       def scripts_from(hash)
-        hash.select { |k| SCRIPTS.include?(k) }.map do |script, lines|
+        hash.sort.select { |k, _| SCRIPTS.include?(k) }.map do |script, lines|
           [script, lines.respond_to?(:join) ? lines.join("\n") : lines]
         end.to_h
       end

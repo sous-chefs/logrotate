@@ -1,5 +1,5 @@
 logrotate_global 'logrotate' do
-  options %w(create weekly)
+  options %w(create weekly dateext)
   parameters(
     'rotate' => 4
   )
