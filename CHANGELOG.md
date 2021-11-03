@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
-## Unreleased
+## 3.0.5 - *2021-11-03*
 
 - Add CentOS Stream 8 to CI pipeline
 
