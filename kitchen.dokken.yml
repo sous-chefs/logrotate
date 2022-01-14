@@ -70,5 +70,5 @@ platforms:
   - name: opensuse-leap-15
     driver:
       image: dokken/opensuse-leap-15
-      pid_one_command: /bin/systemd
+      pid_one_command: /usr/lib/systemd/systemd
 ...
