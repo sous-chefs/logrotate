@@ -40,7 +40,7 @@ module Logrotate
       end
 
       def options_from(values)
-        values.sort.select { |k, v| OPTIONS.include?(k) && v || v.nil? }.map { |k, _| k }
+        values.select { |k, v| OPTIONS.include?(k) && v || v.nil? }.map { |k, _| k }
       end
 
       def paths_from(hash)

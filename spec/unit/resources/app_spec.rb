@@ -43,7 +43,7 @@ describe 'logrotate_global' do
         frequency: 'daily',
         path: '"/var/log/tomcat/myapp-custom-options.log"',
         rotate: 30,
-        options: %w(delaycompress missingok),
+        options: %w(missingok delaycompress),
         firstaction: 'echo "hi"'
       )
     end
@@ -52,7 +52,7 @@ describe 'logrotate_global' do
   context 'tomcat-myapp-sharedscripts' do
     it 'creates appropriate logrotate config' do
       expect(chef_run).to enable_logrotate_app('tomcat-myapp-sharedscripts').with(
-        options: %w(compress copytruncate delaycompress missingok notifempty sharedscripts),
+        options: %w(missingok compress delaycompress copytruncate notifempty sharedscripts),
         path: '"/var/log/tomcat/myapp-sharedscripts.log"'
       )
     end
