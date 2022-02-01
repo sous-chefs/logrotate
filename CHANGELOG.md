@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 ## Unreleased
 
+- Update tested platforms
+
 ## 3.0.6 - *2022-01-14*
 
 - Do not sort options as the order can be important
