@@ -3,7 +3,7 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_zero
+  name: chef_infra
   deprecations_as_errors: true
   enforce_idempotency: true
   multiple_converge: 2
@@ -18,19 +18,19 @@ verifier:
   name: inspec
 
 platforms:
+  - name: almalinux-8
   - name: amazonlinux-2
   - name: centos-7
-  - name: centos-8
   - name: centos-stream-8
-  - name: debian-9
   - name: debian-10
+  - name: debian-11
   - name: fedora-latest
   - name: opensuse-leap-15
   - name: ubuntu-18.04
   - name: ubuntu-20.04
+  - name: rockylinux-8
 
 suites:
   - name: default
     run_list:
       - recipe[test::default]
-...
