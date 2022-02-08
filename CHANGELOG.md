@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 ## Unreleased
 
+- Remove delivery folder
+
 ## 3.0.7 - *2022-02-01*
 
 - Update tested platforms
