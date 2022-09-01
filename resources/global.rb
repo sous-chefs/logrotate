@@ -22,13 +22,14 @@ unified_mode true
 include ::Logrotate::Cookbook::LogrotateHelpers
 
 property :config_file, String,
-          default: '/etc/logrotate.conf'
+          default: '/etc/logrotate.conf',
+          coerce: proc { |p| lr_path(p) }
 
 property :template_owner, String,
           default: 'root'
 
 property :template_group, String,
-          default: 'root'
+          default: node['root_group']
 
 property :template_mode, String,
           default: '0644'
@@ -64,9 +65,9 @@ action :create do
     cookbook new_resource.cookbook
     source new_resource.template_name
 
-    owner new_resource.template_owner
+    owner windows? ? nil : new_resource.template_owner
     group new_resource.template_group
-    mode new_resource.template_mode
+    mode windows? ? nil : new_resource.template_mode
 
     sensitive new_resource.sensitive
 

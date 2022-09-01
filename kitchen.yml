@@ -3,14 +3,14 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_infra
-  deprecations_as_errors: true
-  enforce_idempotency: true
-  multiple_converge: 2
-  chef_license: accept
-  product_name: chef
-  product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
-  install_strategy: always
+  name: chef_zero
+#  deprecations_as_errors: true
+#  enforce_idempotency: true
+#  multiple_converge: 2
+#  chef_license: accept
+  product_name: cinc
+  product_version: <%= ENV['KITCHEN_CINC_VERSION'] %>
+#  install_strategy: always
   log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'auto' %>
 
 
@@ -29,6 +29,9 @@ platforms:
   - name: ubuntu-18.04
   - name: ubuntu-20.04
   - name: rockylinux-8
+  - name: windows-2019
+    driver:
+      box: sev1tech/windows-2019s
 
 suites:
   - name: default

@@ -17,18 +17,34 @@
 # limitations under the License.
 #
 
-unified_mode true
+unified_mode true if respond_to? :unified_mode
 
 property :packages, [String, Array],
           default: 'logrotate'
 
+default_action :install
+allowed_actions %i[install remove]
+
 action_class do
   def do_package_action(action)
-    package 'logrotate' do
-      package_name new_resource.packages
-      action action
+    if windows?
+      powershell_package 'Log-Rotate' do
+        skip_publisher_check true
+        action action
+      end
+    else # linux. you know, *normal*
+      package 'logrotate' do
+        package_name new_resource.packages
+        action action
+      end
     end
   end
 end
 
-%i(upgrade install remove).each { |action_type| send(:action, action_type) { do_package_action(action) } }
+action :install do
+  do_package_action :install
+end
+
+action :remove do
+  do_package_action :remove
+end

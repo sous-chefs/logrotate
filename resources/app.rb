@@ -41,10 +41,11 @@ property :template_owner, String,
           default: 'root'
 
 property :template_group, String,
-          default: 'root'
+          default: node['root_group']
 
 property :base_dir, String,
-          default: '/etc/logrotate.d'
+          default: '/etc/logrotate.d',
+          coerce: proc { |p| lr_path(p) }
 
 property :options, [String, Array],
           default: %w(missingok compress delaycompress copytruncate notifempty),
@@ -56,6 +57,17 @@ property :options, [String, Array],
 
 action_class do
   include ::Logrotate::Cookbook::LogrotateHelpers
+
+  # If running on windows AND given a relative path, prepend WINDOWS_LR_BASEPATH
+  # @param [String] orig_path
+  # @return [String]
+  def lr_path(orig_path)
+    return orig_path if ::File.absolute_path?(orig_path)
+
+    return ::File.join(WINDOWS_LR_BASEPATH, orig_path) if windows?
+
+    orig_path
+  end
 
   def required_properties_set?
     raise Chef::Exceptions::ValidationFailed, 'path is a required property' unless action.eql?(:delete) || !new_resource.path.nil?
@@ -78,19 +90,18 @@ action :enable do
   required_properties_set?
 
   directory new_resource.base_dir do
-    owner 'root'
-    group node['root_group']
-    mode '0755'
+    owner windows? ? nil : new_resource.template_owner
+    group new_resource.template_group
+    mode windows? ? nil : '0755'
     action :create
   end
 
   template "#{new_resource.base_dir}/#{new_resource.name}" do
     cookbook new_resource.cookbook
     source new_resource.template_name
-
-    mode new_resource.template_mode
-    owner new_resource.template_owner
+    owner windows? ? nil : new_resource.template_owner
     group new_resource.template_group
+    mode windows? ? nil: new_resource.template_mode
 
     sensitive new_resource.sensitive
 
