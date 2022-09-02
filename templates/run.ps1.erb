@@ -1,0 +1,8 @@
+Import-Module Log-Rotate
+
+$state = "<%= ::Logrotate::Cookbook::LogrotateHelpers::lr_basepath('/var/lib/logrotate.status') -%>"
+$config = "<%= ::Logrotate::Cookbook::LogrotateHelpers::lr_basepath('/etc/logrotate.conf') -%>"
+$log = "<%= ::Logrotate::Cookbook::LogrotateHelpers::lr_basepath('/var/log/logrotate.log') -%>"
+
+Log-Rotate -Config $config -State $state >> $log
+

@@ -29,7 +29,7 @@ property :frequency, String,
           default: 'weekly'
 
 property :cookbook, String,
-          default: 'logrotate'
+          default: 'sev1-logrotate'
 
 property :template_name, String,
           default: 'logrotate.erb'
@@ -45,7 +45,7 @@ property :template_group, String,
 
 property :base_dir, String,
           default: '/etc/logrotate.d',
-          coerce: proc { |p| lr_path(p) }
+          coerce: proc { |p| lr_basepath(p) }
 
 property :options, [String, Array],
           default: %w(missingok compress delaycompress copytruncate notifempty),
@@ -57,17 +57,6 @@ property :options, [String, Array],
 
 action_class do
   include ::Logrotate::Cookbook::LogrotateHelpers
-
-  # If running on windows AND given a relative path, prepend WINDOWS_LR_BASEPATH
-  # @param [String] orig_path
-  # @return [String]
-  def lr_path(orig_path)
-    return orig_path if ::File.absolute_path?(orig_path)
-
-    return ::File.join(WINDOWS_LR_BASEPATH, orig_path) if windows?
-
-    orig_path
-  end
 
   def required_properties_set?
     raise Chef::Exceptions::ValidationFailed, 'path is a required property' unless action.eql?(:delete) || !new_resource.path.nil?

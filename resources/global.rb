@@ -23,7 +23,7 @@ include ::Logrotate::Cookbook::LogrotateHelpers
 
 property :config_file, String,
           default: '/etc/logrotate.conf',
-          coerce: proc { |p| lr_path(p) }
+          coerce: proc { |p| lr_basepath(p) }
 
 property :template_owner, String,
           default: 'root'
@@ -35,7 +35,7 @@ property :template_mode, String,
           default: '0644'
 
 property :cookbook, String,
-          default: 'logrotate'
+          default: 'sev1-logrotate'
 
 property :template_name, String,
           default: 'logrotate-global.erb'
@@ -61,7 +61,13 @@ property :scripts, Hash,
           coerce: proc { |p| scripts_from(p) }
 
 action :create do
-  template new_resource.config_file do
+
+  directory ::File.dirname(lr_basepath(new_resource.config_file)) do
+    action :create
+    recursive true
+  end
+
+  template lr_basepath(new_resource.config_file) do
     cookbook new_resource.cookbook
     source new_resource.template_name
 
@@ -76,7 +82,8 @@ action :create do
       options: new_resource.options,
       parameters: new_resource.parameters,
       paths: new_resource.paths,
-      scripts: new_resource.scripts
+      scripts: new_resource.scripts,
+      windows: windows?
     )
 
     helpers(Logrotate::Cookbook::TemplateHelpers)

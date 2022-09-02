@@ -27,7 +27,7 @@ endscript
 <% end -%>
 
 # Includes
-include /etc/logrotate.d
+include <%= @windows ? 'c:/logrotate/etc/logrotate.d' : '/etc/logrotate.d' %>
 <% unless nil_or_empty?(@includes) %>
 
 <% @includes.each do |inc| -%>

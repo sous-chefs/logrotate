@@ -22,16 +22,68 @@ unified_mode true if respond_to? :unified_mode
 property :packages, [String, Array],
           default: 'logrotate'
 
+property :cookbook, String,
+         default: 'sev1-logrotate'
+
 default_action :install
 allowed_actions %i[install remove]
 
+include ::Logrotate::Cookbook::LogrotateHelpers
+
 action_class do
-  def do_package_action(action)
-    if windows?
+
+  def do_windows_install
+
+    begin
+      # there's a bug in cinc 17.10.0, fixed in > 17.10.0 but as of this writing
+      # 17.10.0 is the latest version of cinc client available.
+      #
+      # The package installs fine, but the bug causes a problem that makes chef think
+      # the powershell command failed. begin/rescue here hacks around the problem.
       powershell_package 'Log-Rotate' do
         skip_publisher_check true
-        action action
+        action :install
       end
+    rescue NoMethodError => e
+      msg = <<EOF
+        Chef just did an amber heard on the bed:
+        #{e.message}
+        Going to pretend it didn't happen.
+EOF
+      Chef::Log.warn(msg)
+    end
+
+    directory lr_basepath('/bin') do
+      action :create
+      recursive true
+    end
+
+    template ::File.join(lr_basepath('/bin'), 'run.ps1') do
+      cookbook new_resource.cookbook
+      source 'run.ps1.erb'
+    end
+
+    windows_task 'logrotate' do
+      frequency :daily
+      command "powershell -Command #{::File.join(lr_basepath('/bin'), 'run.ps1')}"
+      description 'Rotate logs daily'
+    end
+
+    seven_zip_tool "7z #{node['sev1-logrotate']['7z']['version']} install" do
+      action %i[install add_to_path]
+      package "7-Zip #{node['sev1-logrotate']['7z']['version']}"
+      # path 'C:\\Program Files\\7-Zip' # must be backslash or the installer will demand to speak to your manager
+      source "https://www.7-zip.org/a/7z#{node['sev1-logrotate']['7z']['version'].delete('.')}-x64.msi"
+      checksum node['sev1-logrotate']['7z']['checksum']
+    end
+
+    # TODO: implement remove action
+
+  end
+
+  def do_package_action(action)
+    if windows?
+      do_windows_install
     else # linux. you know, *normal*
       package 'logrotate' do
         package_name new_resource.packages
@@ -42,7 +94,20 @@ action_class do
 end
 
 action :install do
+  directory lr_basepath('/var/log') do
+    action :create
+    recursive true
+  end
+
+  directory lr_basepath('/etc') do
+    action :create
+    recursive true
+  end
+
   do_package_action :install
+
+  2.times { |t| file lr_basepath("/var/log/dummy_log_#{t}") }
+
 end
 
 action :remove do

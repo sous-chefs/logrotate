@@ -45,7 +45,7 @@ module Logrotate
       # If running on windows AND given a relative path, prepend WINDOWS_LR_BASEPATH
       # @param [String] orig_path
       # @return [String]
-      def self.lr_path(orig_path)
+      def self.lr_basepath(orig_path)
         return orig_path if ::File.absolute_path?(orig_path)
 
         return ::File.join(WINDOWS_LR_BASEPATH, orig_path) if windows?
@@ -59,8 +59,8 @@ module Logrotate
       end
 
       # Must be defined as both self and not-self version
-      def lr_path(*args)
-        ::Logrotate::Cookbook::LogrotateHelpers.lr_path(*args)
+      def lr_basepath(*args)
+        ::Logrotate::Cookbook::LogrotateHelpers.lr_basepath(*args)
       end
 
       def parameters_from(hash)

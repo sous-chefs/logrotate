@@ -1,4 +1,4 @@
-logrotate_global 'logrotate' do
+sev1_logrotate_global 'logrotate' do
   options %w(create weekly dateext)
   parameters(
     'rotate' => 4
