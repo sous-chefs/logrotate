@@ -58,6 +58,12 @@ module Logrotate
         ::Logrotate::Cookbook::LogrotateHelpers.windows?
       end
 
+
+      def rotated_logs
+        so = Mixlib::ShellOut.new("logrotate -d /etc/logrotate.conf 2>&1 | awk '/^considering log/ {print $3}'")
+        so.run_command.stdout
+      end
+
       # Must be defined as both self and not-self version
       def lr_basepath(*args)
         ::Logrotate::Cookbook::LogrotateHelpers.lr_basepath(*args)

@@ -1,3 +1,7 @@
+sev1_logrotate_app 'messages' do
+  path '/var/log/messages'
+end
+
 sev1_logrotate_app 'tomcat-myapp' do
   path      '/var/log/tomcat/myapp.log'
   frequency 'daily'

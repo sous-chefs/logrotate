@@ -78,6 +78,12 @@ end
 action :enable do
   required_properties_set?
 
+  unmanaged = ::Logrotate::Config::Unmanaged.new
+  if unmanaged.unmanaged?(new_resource.path)
+    Chef::Log.warn("Cowardly refusing to duplicate rotation of log file #{new_resource.path}")
+    return
+  end
+
   directory new_resource.base_dir do
     owner windows? ? nil : new_resource.template_owner
     group new_resource.template_group
