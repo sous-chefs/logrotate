@@ -29,7 +29,7 @@ property :frequency, String,
           default: 'weekly'
 
 property :cookbook, String,
-          default: 'sev1-logrotate'
+          default: 'sev1_logrotate'
 
 property :template_name, String,
           default: 'logrotate.erb'
