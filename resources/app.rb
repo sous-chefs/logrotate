@@ -89,6 +89,7 @@ action :enable do
     group new_resource.template_group
     mode windows? ? nil : '0755'
     action :create
+    recursive true
   end
 
   template "#{new_resource.base_dir}/#{new_resource.name}" do
