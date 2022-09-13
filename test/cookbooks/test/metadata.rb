@@ -1,4 +1,4 @@
 name 'test'
-version '1.0.0'
+version '1.0.1'
 license 'Apache-2.0'
-depends 'sev1-logrotate'
+depends 'sev1_logrotate'

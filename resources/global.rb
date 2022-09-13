@@ -35,7 +35,7 @@ property :template_mode, String,
           default: '0644'
 
 property :cookbook, String,
-          default: 'sev1-logrotate'
+          default: 'sev1_logrotate'
 
 property :template_name, String,
           default: 'logrotate-global.erb'

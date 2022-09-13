@@ -23,7 +23,7 @@ property :packages, [String, Array],
           default: 'logrotate'
 
 property :cookbook, String,
-         default: 'sev1-logrotate'
+         default: 'sev1_logrotate'
 
 default_action :install
 allowed_actions %i[install remove]
