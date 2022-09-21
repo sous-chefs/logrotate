@@ -43,7 +43,6 @@ action_class do
 
     powershell_package_source 'PowershellGallery' do
       source_location 'https://www.powershellgallery.com/api/v2'
-      notifies_before :run, 'powershell_script[install_nuget_provider]'
     end
 
 
