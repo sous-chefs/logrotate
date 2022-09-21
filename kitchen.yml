@@ -18,20 +18,38 @@ verifier:
   name: inspec
 
 platforms:
-  - name: almalinux-8
-  - name: amazonlinux-2
-  - name: centos-7
-  - name: centos-stream-8
-  - name: debian-10
   - name: debian-11
-  - name: fedora-latest
-  - name: opensuse-leap-15
-  - name: ubuntu-18.04
-  - name: ubuntu-20.04
   - name: rockylinux-8
   - name: windows-2019
     driver:
       box: sev1tech/windows-2019s
+  - name: ec2-windows-2019
+    driver:
+      name: ec2
+      image_search:
+        owner-id: 801119661308 # amazon
+        name: Windows_Server-2019-English-Full-Base-*
+      aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
+      region: us-west-2
+      availability_zone: a
+      subnet_id: subnet-adf478c8
+      instance_type: t3.small
+      iam_profile_name: sev1-instance-profile-generic
+      security_group_ids: ['sg-92f872f6']
+      associate_public_ip: false
+      metadata-options:
+        instance_metadata_tags: enabled
+      tags:
+        recipes: sev1-vault-agent
+        created-by: test-kitchen
+      # ec2 and windows fun. double the default retryable_tries
+      retryable_sleep: 8
+      retryable_tries: 120
+    transport:
+      name: winrm
+      username: Administrator
+      elevated: true
+      ssh_key: <%= ENV['AWS_SSH_KEY_PATH'] %>
 
 suites:
   - name: default
