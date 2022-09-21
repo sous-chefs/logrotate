@@ -34,35 +34,14 @@ action_class do
 
   def do_windows_install
 
-    powershell_script 'install_nuget_provider' do
-      code 'Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force'
-      # windows ---- i hate you so much.
-      action :run
-      not_if 'Get-PackageProvider -Name NuGet'
+    # the normal way to install ps modules only works on _some_ windows hosts
+    # so we have to fight stupid with more stupid.
+    remote_file ::File.join(Chef::Config[:file_cache_path], 'log-rotate.nuget') do
+      source "https://psg-prod-eastus.azureedge.net/packages/log-rotate.#{node['sev1-logrotate']['logrotate-powershell']['version']}.nupkg"
     end
 
-    powershell_package_source 'PowershellGallery' do
-      source_location 'https://www.powershellgallery.com/api/v2'
-    end
-
-
-    begin
-      # there's a bug in cinc 17.10.0, fixed in > 17.10.0 but as of this writing
-      # 17.10.0 is the latest version of cinc client available.
-      #
-      # The package installs fine, but the bug causes a problem that makes chef think
-      # the powershell command failed. begin/rescue here hacks around the problem.
-      # powershell_package 'Log-Rotate' do
-      #   skip_publisher_check true
-      #   action :install
-      # end
-    rescue NoMethodError => e
-      msg = <<EOF
-        Chef just did an amber heard on the bed:
-        #{e.message}
-        Going to pretend it didn't happen.
-EOF
-      Chef::Log.warn(msg)
+    archive_file ::File.join(Chef::Config[:file_cache_path], 'log-rotate.nuget') do
+      destination "C:/Program Files/WindowsPowerShell/Modules/Log-Rotate/#{node['sev1-logrotate']['logrotate-powershell']['version']}"
     end
 
     directory lr_basepath('/bin') do
