@@ -18,8 +18,28 @@ verifier:
   name: inspec
 
 platforms:
-  - name: debian-11
-  - name: rockylinux-8
+  # Linux - EC2
+  - name: ec2-rocky-8
+    driver:
+      name: ec2
+      image_search:
+        owner-id: 455207486748
+        name: rockylinux-8*
+      aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
+      region: us-west-2
+      availability_zone: a
+      subnet_id: subnet-adf478c8
+      instance_type: t3a.micro
+      iam_profile_name: sev1-instance-profile-generic
+      security_group_ids: ['sg-92f872f6']
+      associate_public_ip: false
+      tags:
+        recipes: sev1_datadog_agent
+        created-by: test-kitchen
+    transport:
+      name: speedy_ssh
+      username: ec2-user
+      ssh_key: <%= ENV['AWS_SSH_KEY_PATH'] %>
   - name: windows-2019
     driver:
       box: sev1tech/windows-2019s
