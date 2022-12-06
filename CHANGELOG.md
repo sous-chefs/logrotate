@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
+## Unreleased
+
 ## 3.0.10 - *2022-12-06*
 
 Standardise files with files in sous-chefs/repo-management
