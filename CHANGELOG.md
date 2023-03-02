@@ -2,6 +2,8 @@
 
 This file is used to list changes made in each version of the logrotate cookbook
 
+## Unreleased
+
 ## 3.0.15 - *2023-03-02*
 
 ## 3.0.14 - *2023-02-27*
