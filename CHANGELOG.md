@@ -6,6 +6,8 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 Standardise files with files in sous-chefs/repo-management
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 3.0.14 - *2023-02-27*
 
 Standardise files with files in sous-chefs/repo-management
