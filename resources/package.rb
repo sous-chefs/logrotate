@@ -44,6 +44,10 @@ action_class do
       destination "C:/Program Files/WindowsPowerShell/Modules/Log-Rotate/#{node['sev1-logrotate']['logrotate-powershell']['version']}"
     end
 
+    directory 'c:/logrotate/etc/' do
+      recursive true
+    end
+
     template 'c:/logrotate/etc/logrotate.conf' do
       cookbook 'sev1_logrotate'
       source 'logrotate-global.erb'
