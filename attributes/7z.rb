@@ -1,2 +1,2 @@
-default['sev1-logrotate']['7z']['version'] = '22.01'
-default['sev1-logrotate']['7z']['checksum'] = 'f4afba646166999d6090b5beddde546450262dc595dddeb62132da70f70d14ca'
+default['sev1-logrotate']['7z']['version'] = '23.01'
+default['sev1-logrotate']['7z']['checksum'] = '26cb6e9f56333682122fafe79dbcdfd51e9f47cc7217dccd29ac6fc33b5598cd'
