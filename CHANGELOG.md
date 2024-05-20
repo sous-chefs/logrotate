@@ -4,6 +4,8 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 ## Unreleased
 
+Standardise files with files in sous-chefs/repo-management
+
 ## 3.0.25 - *2024-05-06*
 
 ## 3.0.24 - *2024-05-06*
