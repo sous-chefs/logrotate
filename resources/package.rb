@@ -44,29 +44,29 @@ action_class do
       destination "C:/Program Files/WindowsPowerShell/Modules/Log-Rotate/#{node['sev1-logrotate']['logrotate-powershell']['version']}"
     end
 
-    directory 'c:/logrotate/etc/' do
+    directory lr_basepath('etc/') do
       recursive true
     end
 
-    template 'c:/logrotate/etc/logrotate.conf' do
+    template lr_basepath('etc/logrotate.conf') do
       cookbook 'sev1_logrotate'
       source 'logrotate-global.erb'
       helpers(Logrotate::Cookbook::TemplateHelpers)
     end
 
-    directory lr_basepath('/bin') do
+    directory lr_basepath('bin') do
       action :create
       recursive true
     end
 
-    template ::File.join(lr_basepath('/bin'), 'run.ps1') do
+    template lr_basepath('bin/run.ps1') do
       cookbook new_resource.cookbook
       source 'run.ps1.erb'
     end
 
     windows_task 'logrotate' do
       frequency :daily
-      command "powershell -Command #{::File.join(lr_basepath('/bin'), 'run.ps1')}"
+      command "powershell -Command #{lr_basepath('bin/run.ps1')}"
       description 'Rotate logs daily'
     end
 
@@ -95,12 +95,12 @@ action_class do
 end
 
 action :install do
-  directory lr_basepath('/var/log') do
+  directory lr_basepath('var/log') do
     action :create
     recursive true
   end
 
-  directory lr_basepath('/etc') do
+  directory lr_basepath('etc') do
     action :create
     recursive true
   end

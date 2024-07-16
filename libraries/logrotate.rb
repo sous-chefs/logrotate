@@ -39,7 +39,7 @@ module Logrotate
 
       # @return [Boolean]
       def self.windows?
-        Gem::Platform.local.os == 'mingw32'
+        %w[mingw32 mingw].include?(Gem::Platform.local.os)
       end
 
       # If running on windows AND given a relative path, prepend WINDOWS_LR_BASEPATH

@@ -19,48 +19,46 @@ verifier:
 
 platforms:
   # Linux - EC2
-  - name: ec2-rocky-8
+  - name: ec2-rocky-9
     driver:
       name: ec2
       image_search:
         owner-id: 455207486748
-        name: rockylinux-8*
+        name: rockylinux-9*
       aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
       region: us-west-2
       availability_zone: a
       subnet_id: subnet-adf478c8
-      instance_type: t3a.micro
-      iam_profile_name: sev1-instance-profile-generic
+      instance_type: t3a.small
+      iam_profile_name: chef-profile-generic
       security_group_ids: ['sg-92f872f6']
       associate_public_ip: false
       tags:
-        recipes: sev1_datadog_agent
+        recipes: sev1-logrotate
         created-by: test-kitchen
     transport:
       name: speedy_ssh
       username: ec2-user
       ssh_key: <%= ENV['AWS_SSH_KEY_PATH'] %>
-  - name: windows-2019
-    driver:
-      box: sev1tech/windows-2019s
-  - name: ec2-windows-2019
+  - name: ec2-windows-2022
     driver:
       name: ec2
       image_search:
         owner-id: 801119661308 # amazon
-        name: Windows_Server-2019-English-Full-Base-*
+        name: Windows_Server-2022-English-Full-Base-*
       aws_ssh_key_id: <%= ENV['AWS_SSH_KEY_ID'] %>
       region: us-west-2
       availability_zone: a
       subnet_id: subnet-adf478c8
-      instance_type: t3.small
-      iam_profile_name: sev1-instance-profile-generic
+      instance_type: t3a.large
+      iam_profile_name: chef-profile-generic
+      shared_credentials_profile: sev1-coreservices
       security_group_ids: ['sg-92f872f6']
       associate_public_ip: false
       metadata-options:
         instance_metadata_tags: enabled
       tags:
-        recipes: sev1-vault-agent
+        recipes: sev1-logrotate
         created-by: test-kitchen
       # ec2 and windows fun. double the default retryable_tries
       retryable_sleep: 8
