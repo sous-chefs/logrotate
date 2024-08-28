@@ -66,7 +66,7 @@ action_class do
 
     windows_task 'logrotate' do
       frequency :daily
-      command "powershell -Command #{lr_basepath('bin/run.ps1')}"
+      command "powershell -ExecutionPolicy bypass -Command #{lr_basepath('bin/run.ps1')}"
       description 'Rotate logs daily'
     end
 
