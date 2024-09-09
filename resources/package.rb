@@ -68,6 +68,7 @@ action_class do
       frequency :daily
       command "powershell -ExecutionPolicy bypass -Command #{lr_basepath('bin/run.ps1')}"
       description 'Rotate logs daily'
+      run_level :highest
     end
 
     seven_zip_tool "7z #{node['sev1-logrotate']['7z']['version']} install" do
