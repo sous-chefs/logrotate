@@ -4,5 +4,5 @@ $state = "<%= ::Logrotate::Cookbook::LogrotateHelpers::lr_basepath('/var/lib/log
 $config = "<%= ::Logrotate::Cookbook::LogrotateHelpers::lr_basepath('/etc/logrotate.conf') -%>"
 $log = "<%= ::Logrotate::Cookbook::LogrotateHelpers::lr_basepath('/var/log/logrotate.log') -%>"
 
-Log-Rotate -Config $config -State $state -verbose >> $log
+Log-Rotate -Config $config -State $state -verbose *>> $log
 
