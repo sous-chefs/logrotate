@@ -9,15 +9,15 @@ The resource takes the following properties:
 ## Properties
 
 | Name             | Type          | Default     | Description                                                                                                                                 |
-| ---------------- | ------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| ---------------- | ------------- |-------------| ------------------------------------------------------------------------------------------------------------------------------------------- |
 | `path`           | String, Array | `nil`       | Specifies a single path (string) or multiple paths (array) that should have logrotation stanzas created in the config file.                 |
 | `cookbook`       | String        | `logrotate` | The cookbook that continues the template for logrotate_app config resources.                                                                |
 | `template_name`  | String        | `logrotate` | Sets the template source.                                                                                                                   |
 | `template_mode`  | String        | `logrotate` | The mode to create the logrotate template.                                                                                                  |
 | `template_owner` | String        | `logrotate` | The owner of the logrotate template.                                                                                                        |
 | `template_group` | String        | `logrotate` | The group of the logrotate template.                                                                                                        |
-| `frequency`      | String        | `logrotate` | Sets the frequency for rotation. Valid values are: hourly, daily, weekly, monthly, yearly, see the logrotate man page for more information. |
-| `options`        | String        | `logrotate` | Any logrotate configuration option that doesn't specify a value. See the logrotate(8) manual page of v3.9.2 or earlier for details.         |
+| `frequency`      | String        | `weekly`    | Sets the frequency for rotation. Valid values are: hourly, daily, weekly, monthly, yearly, see the logrotate man page for more information. |
+| `options`        | String        | `[]`        | Any logrotate configuration option that doesn't specify a value. See the logrotate(8) manual page of v3.9.2 or earlier for details.         |
 
 ## Examples
 
