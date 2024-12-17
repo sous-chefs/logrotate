@@ -71,15 +71,7 @@ action_class do
       run_level :highest
     end
 
-    seven_zip_tool "7z #{node['sev1-logrotate']['7z']['version']} install" do
-      action %i[install add_to_path]
-      package "7-Zip #{node['sev1-logrotate']['7z']['version']}"
-      # path 'C:\\Program Files\\7-Zip' # must be backslash or the installer will demand to speak to your manager
-      source "https://www.7-zip.org/a/7z#{node['sev1-logrotate']['7z']['version'].delete('.')}-x64.msi"
-      checksum node['sev1-logrotate']['7z']['checksum']
-    end
-
-    # TODO: implement remove action
+    include_recipe 'sev1_seven_zip_tool::default'
 
   end
 
