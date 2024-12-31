@@ -16,3 +16,5 @@ supports 'redhat'
 supports 'scientific'
 supports 'ubuntu'
 supports 'windows'
+
+depends 'sev1_seven_zip_tool'
