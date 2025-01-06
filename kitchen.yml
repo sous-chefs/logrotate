@@ -5,30 +5,26 @@ driver:
 provisioner:
   name: chef_infra
   deprecations_as_errors: true
-  enforce_idempotency: true
-  multiple_converge: 2
-  chef_license: accept
+  chef_license: accept-no-persist
   product_name: chef
   product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
-  install_strategy: always
-  log_level: <%= ENV['CHEF_LOG_LEVEL'] || 'auto' %>
-
+  install_strategy: once
+  enforce_idempotency: true
+  multiple_converge: 2
 
 verifier:
   name: inspec
 
 platforms:
-  - name: almalinux-8
-  - name: amazonlinux-2
-  - name: centos-7
-  - name: centos-stream-8
-  - name: debian-10
+  - name: almalinux-9
+  - name: amazonlinux-2023
+  - name: centos-stream-9
+  - name: centos-stream-10
   - name: debian-11
-  - name: fedora-latest
+  - name: debian-12
   - name: opensuse-leap-15
-  - name: ubuntu-18.04
-  - name: ubuntu-20.04
-  - name: rockylinux-8
+  - name: ubuntu-2204
+  - name: ubuntu-2404
 
 suites:
   - name: default
