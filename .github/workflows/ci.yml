@@ -23,24 +23,22 @@ jobs:
     strategy:
       matrix:
         os:
-          - "almalinux-8"
-          - "amazonlinux-2"
-          - "centos-7"
-          - "centos-stream-8"
-          - "debian-10"
+          - "almalinux-9"
+          - "amazonlinux-2023"
+          - "centos-stream-9"
+          - "centos-stream-10"
           - "debian-11"
-          - "fedora-latest"
+          - "debian-12"
           - "opensuse-leap-15"
-          - "rockylinux-8"
-          - "ubuntu-1804"
-          - "ubuntu-2004"
+          - "ubuntu-2204"
+          - "ubuntu-2404"
         suite:
           - "default"
       fail-fast: false
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4 # v4
+        uses: actions/checkout@v4
       - name: Install Chef
         uses: actionshub/chef-install@3.0.0
       - name: Dokken
