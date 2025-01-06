@@ -6,7 +6,7 @@
 [![OpenCollective](https://opencollective.com/sous-chefs/sponsors/badge.svg)](#sponsors)
 [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
 
-Manages the logrotate package and provides a resource to manage application specific logrotate configuration.
+Manages the logrotate package and provides resources to manage both global and application-specific logrotate configurations. This cookbook allows you to manage the logrotate package installation and create configuration for both the main logrotate.conf file and application-specific configurations in /etc/logrotate.d/.
 
 ## Maintainers
 
@@ -27,19 +27,49 @@ Tested on:
 
 ### Chef
 
-- Chef 12.5+
+- Chef 15.3+
 
 ## Resources
 
-- [logrotate_app](documentation/logrotate_app.md)
-- [logrotate_global](documentation/logrotate_global.md)
-- [logrotate_package](documentation/logrotate_package.md)
+- [logrotate_app](documentation/logrotate_app.md) - Manages application-specific logrotate configurations
+- [logrotate_global](documentation/logrotate_global.md) - Manages the global logrotate configuration
+- [logrotate_package](documentation/logrotate_package.md) - Manages the logrotate package installation
 
 ## Usage
 
-The package resource will ensure logrotate is always up to date by default.
+### Package Installation
 
-To create application specific logrotate configs, use the `logrotate_app` resource. For example, to rotate logs for a tomcat application named myapp that writes its log file to `/var/log/tomcat/myapp.log`:
+By default, the cookbook will install the logrotate package:
+
+```ruby
+logrotate_package 'logrotate'
+```
+
+### Global Configuration
+
+To manage the global logrotate configuration:
+
+```ruby
+logrotate_global 'logrotate' do
+  options %w(weekly dateext)
+  parameters(
+    'rotate' => 4,
+    'create' => nil
+  )
+  paths(
+    '/var/log/wtmp' => {
+      'missingok' => true,
+      'monthly' => true,
+      'create' => '0664 root utmp',
+      'rotate' => 1
+    }
+  )
+end
+```
+
+### Application-Specific Configuration
+
+To create application-specific logrotate configs, use the `logrotate_app` resource:
 
 ```ruby
 logrotate_app 'tomcat-myapp' do
@@ -47,10 +77,11 @@ logrotate_app 'tomcat-myapp' do
   frequency 'daily'
   rotate    30
   create    '644 root adm'
+  options   %w(missingok compress delaycompress copytruncate notifempty)
 end
 ```
 
-To rotate multiple logfile paths, specify the path as an array:
+For multiple log files:
 
 ```ruby
 logrotate_app 'tomcat-myapp' do
@@ -58,18 +89,6 @@ logrotate_app 'tomcat-myapp' do
   frequency 'daily'
   create    '644 root adm'
   rotate    7
-end
-```
-
-To specify which logrotate options, specify the options as an array:
-
-```ruby
-logrotate_app 'tomcat-myapp' do
-  path      '/var/log/tomcat/myapp.log'
-  options   ['missingok', 'delaycompress', 'notifempty']
-  frequency 'daily'
-  rotate    30
-  create    '644 root adm'
 end
 ```
 

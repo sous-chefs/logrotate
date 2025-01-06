@@ -2,7 +2,7 @@
 
 [Back to resource list](../README.md#resources)
 
-This resource can be used to drop off customized logrotate config files on a per application basis.
+This resource can be used to manage the global logrotate configuration file.
 
 The resource takes the following properties:
 
@@ -10,16 +10,17 @@ The resource takes the following properties:
 
 | Name             | Type          | Default                 | Description                                                     |
 | ---------------- | ------------- | ----------------------- | --------------------------------------------------------------- |
-| `config_file`    | String,       | `'/etc/logrotate.conf'` | Specifies the path to the logrotate global config file.         |
+| `config_file`    | String        | `'/etc/logrotate.conf'` | Specifies the path to the logrotate global config file.         |
 | `template_name`  | String        | `logrotate-global.erb`  | Sets the template source.                                       |
-| `template_mode`  | String        | `logrotate`             | The mode to create the logrotate config file template.          |
-| `template_owner` | String        | `logrotate`             | The owner of the logrotate config file template.                |
-| `template_group` | String        | `logrotate`             | The group of the logrotate config file template.                |
-| `options`        | String, Array | `['weekly', 'datext']`  | Logrotate global options.                                       |
+| `template_mode`  | String        | `0644`                  | The mode to create the logrotate config file template.          |
+| `template_owner` | String        | `root`                  | The owner of the logrotate config file template.                |
+| `template_group` | String        | `node['root_group']`    | The group of the logrotate config file template.                |
+| `cookbook`       | String        | `logrotate`             | The cookbook that contains the template source.                 |
+| `options`        | String, Array | `%w(weekly dateext)`    | Logrotate global options.                                       |
 | `includes`       | String, Array | `[]`                    | Files or directories to include in the logrotate configuration. |
-| `parameters`     | Hash          | `{}`                    | Logrotate global parameters.                                    |
-| `path`           | Hash          | `{}`                    | Logrotate global path definitions.                              |
-| `scripts`        | Hash          | `{}`                    | Logrotate global options.                                       |
+| `parameters`     | Hash          | `{ 'rotate' => 4, 'create' => nil }` | Logrotate global parameters.                      |
+| `paths`          | Hash          | `{}`                    | Logrotate global path definitions.                              |
+| `scripts`        | Hash          | `{}`                    | Global scripts to run (firstaction, prerotate, postrotate, lastaction). |
 
 ## Examples
 

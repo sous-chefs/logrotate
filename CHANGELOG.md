@@ -8,27 +8,33 @@ This file is used to list changes made in each version of the logrotate cookbook
 
 Standardise files with files in sous-chefs/repo-management
 
-Standardise files with files in sous-chefs/repo-management
-
 ## 3.0.26 - *2024-07-15*
-
-Standardise files with files in sous-chefs/repo-management
-
-Standardise files with files in sous-chefs/repo-management
 
 Standardise files with files in sous-chefs/repo-management
 
 ## 3.0.25 - *2024-05-06*
 
+No notable changes
+
 ## 3.0.24 - *2024-05-06*
+
+No notable changes
 
 ## 3.0.23 - *2023-09-28*
 
+No notable changes
+
 ## 3.0.22 - *2023-09-04*
+
+No notable changes
 
 ## 3.0.21 - *2023-07-10*
 
+No notable changes
+
 ## 3.0.20 - *2023-05-17*
+
+No notable changes
 
 ## 3.0.19 - *2023-04-07*
 
@@ -36,15 +42,19 @@ Standardise files with files in sous-chefs/repo-management
 
 ## 3.0.18 - *2023-04-01*
 
+No notable changes
+
 ## 3.0.17 - *2023-04-01*
+
+No notable changes
 
 ## 3.0.16 - *2023-04-01*
 
 Standardise files with files in sous-chefs/repo-management
 
-Standardise files with files in sous-chefs/repo-management
-
 ## 3.0.15 - *2023-03-02*
+
+No notable changes
 
 ## 3.0.14 - *2023-02-27*
 
@@ -64,39 +74,37 @@ Standardise files with files in sous-chefs/repo-management
 
 Standardise files with files in sous-chefs/repo-management
 
-Standardise files with files in sous-chefs/repo-management
-
 ## 3.0.9 - *2022-02-17*
 
-- Standardise files with files in sous-chefs/repo-management
+Standardise files with files in sous-chefs/repo-management
 
 ## 3.0.8 - *2022-02-08*
 
-- Remove delivery folder
+Remove delivery folder
 
 ## 3.0.7 - *2022-02-01*
 
-- Update tested platforms
+Update tested platforms
 
 ## 3.0.6 - *2022-01-14*
 
-- Do not sort options as the order can be important
+Do not sort options as the order can be important
 
 ## 3.0.5 - *2021-11-03*
 
-- Add CentOS Stream 8 to CI pipeline
+Add CentOS Stream 8 to CI pipeline
 
 ## 3.0.4 - *2021-08-30*
 
-- Standardise files with files in sous-chefs/repo-management
+Standardise files with files in sous-chefs/repo-management
 
 ## 3.0.3 - *2021-06-01*
 
-- Standardise files with files in sous-chefs/repo-management
+Standardise files with files in sous-chefs/repo-management
 
 ## 3.0.2 - *2021-05-12*
 
-- Fix passing options to global path declarations
+Fix passing options to global path declarations
 
 ## 3.0.1 - *2021-05-12*
 
@@ -218,46 +226,45 @@ Standardise files with files in sous-chefs/repo-management
 - Fix missing end tag in template
 - Don't re-initialize constants.
 - Fix rubocop finding
-- [COOK-3911] Allow to use maxsize parameter.
-- [COOK-4000] Allow to use dateyesterday option.
-- [COOK-4024] Allow to use su parameter.
-- [COOK-4175] Allows use of the dateformat parameter.
+- Allow to use maxsize parameter.
+- Allow to use dateyesterday option.
+- Allow to use su parameter.
+- Allows use of the dateformat parameter.
 - Loosen test-kitchen version constraint
 - Add rvm files to gitignore
 
 ## 1.4.0
 
-- **[COOK-3632](https://tickets.chef.io/browse/COOK-3632)** - Raise Exception when adding more than one invalid option
-- **[COOK-3141](https://tickets.chef.io/browse/COOK-3141)** - Do not duplicate template entires for multiple paths
-- **[COOK-3034](https://tickets.chef.io/browse/COOK-3034)** - Update logrotate_app params to accept arrays and strings
-- **[COOK-2646](https://tickets.chef.io/browse/COOK-2646)** - Add ability to choose file mode for logrotate template
+- Raise Exception when adding more than one invalid option
+- Do not duplicate template entires for multiple paths
+- Update logrotate_app params to accept arrays and strings
+- Add ability to choose file mode for logrotate template
 
 ## 1.3.0
 
-- **[COOK-3341](https://tickets.chef.io/browse/COOK-3341)** - Add optional `frequency` and `rotate` params when defined globally
-- **[COOK-3298](https://tickets.chef.io/browse/COOK-3298)** - Use `Array` instead of `respond_to?(:each)`
-- **[COOK-3285](https://tickets.chef.io/browse/COOK-3285)** - Change `logrotate.d` config file mode to `0644`
-- **[COOK-3250](https://tickets.chef.io/browse/COOK-3250)** - Add `minsize`
-- **[COOK-3274](https://tickets.chef.io/browse/COOK-3274)** - Fix README typo that suggested the opposite action
-
-- **[COOK-2923](https://tickets.chef.io/browse/COOK-2923)** - Add `olddir` option
-- **[COOK-1651](https://tickets.chef.io/browse/COOK-1651)** - Add `dateext` ability
+- Add optional `frequency` and `rotate` params when defined globally
+- Use `Array` instead of `respond_to?(:each)`
+- Change `logrotate.d` config file mode to `0644`
+- Add `minsize`
+- Fix README typo that suggested the opposite action
+- Add `olddir` option
+- Add `dateext` ability
 
 ## 1.2.2
 
-- [COOK-2872]: Add firstaction/lastaction ability to logrotate
-- [COOK-2908]: Argument error in `logrotate_app` definition
+- Add firstaction/lastaction ability to logrotate
+- Argument error in `logrotate_app` definition
 
 ## 1.2.0
 
-- [COOK-2401] - Add the ability to manage the global logrotate configuration
+- Add the ability to manage the global logrotate configuration
 
 ## 1.1.0
 
-- [COOK-2218] - Logrotate size parameter
+- Logrotate size parameter
 
 ## 1.0.2
 
-- [COOK-1027] - Add support for pre-/post-rotate commands
-- [COOK-1338] - Update log rotate for more flexibility of rotate options
-- [COOK-1598] - "Create" isn't a mandatory option
+- Add support for pre-/post-rotate commands
+- Update log rotate for more flexibility of rotate options
+- "Create" isn't a mandatory option

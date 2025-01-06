@@ -28,7 +28,7 @@ property :template_owner, String,
           default: 'root'
 
 property :template_group, String,
-          default: 'root'
+         default: lazy { node['root_group'] }
 
 property :template_mode, String,
           default: '0644'
