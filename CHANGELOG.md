@@ -5,6 +5,11 @@ This file is used to list changes made in each version of the logrotate cookbook
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## Unreleased
+
+Standardise files with files in sous-chefs/repo-management
+
+
 ## [3.0.31](https://github.com/sous-chefs/logrotate/compare/3.0.30...v3.0.31) (2025-10-15)
 
 
