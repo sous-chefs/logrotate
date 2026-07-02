@@ -1,0 +1,96 @@
+{
+  "revision_id": "bf18368b30ce95d947afd06b4b533bd24ea6f91ca20393381ffd8a1734716b53",
+  "name": "logrotate",
+  "run_list": [
+    "recipe[test::default]"
+  ],
+  "named_run_lists": {
+    "app": [
+      "recipe[test::app]"
+    ],
+    "default": [
+      "recipe[test::default]"
+    ],
+    "global": [
+      "recipe[test::global]"
+    ]
+  },
+  "included_policy_locks": [
+
+  ],
+  "cookbook_locks": {
+    "logrotate": {
+      "version": "3.0.31",
+      "identifier": "39c4b9fc25a907ad574a824b35cf8d3a723640a7",
+      "dotted_decimal_identifier": "16260376750827783.48791148496106959.155282163777703",
+      "source": ".",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "git@github.com:sous-chefs/logrotate.git",
+        "revision": "f486071aface4ec847960c92de219de325b7c7f1",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/HEAD -> origin/main",
+          "origin/main",
+          "origin/renovate/actions"
+        ]
+      },
+      "source_options": {
+        "path": "."
+      }
+    },
+    "test": {
+      "version": "1.0.0",
+      "identifier": "7e6a09cef313cb14a6b03b86c142c3248d5f920d",
+      "dotted_decimal_identifier": "35582437424829387.5812775377355074.214561758089741",
+      "source": "test/cookbooks/test",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "git@github.com:sous-chefs/logrotate.git",
+        "revision": "f486071aface4ec847960c92de219de325b7c7f1",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/HEAD -> origin/main",
+          "origin/main",
+          "origin/renovate/actions"
+        ]
+      },
+      "source_options": {
+        "path": "test/cookbooks/test"
+      }
+    }
+  },
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "logrotate",
+        ">= 0.0.0"
+      ],
+      [
+        "test",
+        ">= 0.0.0"
+      ]
+    ],
+    "dependencies": {
+      "logrotate (3.0.31)": [
+
+      ],
+      "test (1.0.0)": [
+        [
+          "logrotate",
+          ">= 0.0.0"
+        ]
+      ]
+    }
+  }
+}
