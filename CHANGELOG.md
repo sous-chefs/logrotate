@@ -5,6 +5,14 @@ This file is used to list changes made in each version of the logrotate cookbook
 Standardise files with files in sous-chefs/repo-management
 Standardise files with files in sous-chefs/repo-management
 
+## [3.0.32](https://github.com/sous-chefs/logrotate/compare/v3.0.31...v3.0.32) (2026-08-16)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#210](https://github.com/sous-chefs/logrotate/issues/210)) ([b133ef8](https://github.com/sous-chefs/logrotate/commit/b133ef8f50e6d71f6d430f283181188dee1f0782))
+* stop tracking Policyfile.lock.json ([#226](https://github.com/sous-chefs/logrotate/issues/226)) ([35d0a54](https://github.com/sous-chefs/logrotate/commit/35d0a54d1582e66be4d9e361cf0fa9958f70ae3f))
+
 ## [3.0.31](https://github.com/sous-chefs/logrotate/compare/3.0.30...v3.0.31) (2025-10-15)
 
 
